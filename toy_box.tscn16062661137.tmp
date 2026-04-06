@@ -10,11 +10,11 @@
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("1_8nbwm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.486136, 0)
-mouse_sensitivity = 0.005
+mouse_sensitivity = 0.01
 tilt_limit = 1.3089969389957472
 speed = 5.0
 jump_velocity = 4
-gravity = 20.0
+gravity = 3.0
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 transform = Transform3D(19.395, 0, 0, 0, 1, 0, 0, 0, 21.925, 0, 0, 0)

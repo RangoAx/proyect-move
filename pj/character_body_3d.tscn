@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b1anhhy354wpl"]
+[gd_scene format=3 uid="uid://b1anhhy354wpl"]
 
 [ext_resource type="Texture2D" uid="uid://bc1nrwgwvrma8" path="res://icon.svg" id="1_k1tai"]
 [ext_resource type="Script" uid="uid://cht1xsu8svoi0" path="res://pj/character_body_3d.gd" id="1_uqsb8"]
@@ -13,24 +13,26 @@ uv1_scale = Vector3(0.99, 0.99, 0.99)
 uv1_offset = Vector3(1.5, -0.495, 0.495)
 uv1_triplanar = true
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_uqsb8"]
-
-[node name="CharacterBody3D" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" unique_id=1944581078]
 floor_constant_speed = true
 floor_block_on_wall = false
 script = ExtResource("1_uqsb8")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CameraPivot" type="Node3D" parent="." unique_id=1199838907]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot" unique_id=1791631044]
+spring_length = 4.0
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot/SpringArm3D" unique_id=1313897891]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1152542772]
 shape = SubResource("BoxShape3D_k1tai")
 debug_color = Color(2.5027991e-06, 0.5920763, 0.7452832, 0.41960785)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1129567342]
 mesh = SubResource("BoxMesh_uqsb8")
 surface_material_override/0 = SubResource("StandardMaterial3D_1yfuo")
-
-[node name="SpringArm3D" type="SpringArm3D" parent="."]
-shape = SubResource("BoxShape3D_uqsb8")
-spring_length = 4.0
-
-[node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.2275865, 4.1427946)
