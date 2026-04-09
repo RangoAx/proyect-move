@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://btcasuxejncv1"]
+[gd_scene format=3 uid="uid://btcasuxejncv1"]
 
 [ext_resource type="PackedScene" uid="uid://b1anhhy354wpl" path="res://pj/character_body_3d.tscn" id="1_8nbwm"]
 
@@ -6,26 +6,23 @@
 
 [sub_resource type="BoxMesh" id="BoxMesh_by3xe"]
 
-[node name="ToyBox" type="Node3D"]
+[node name="ToyBox" type="Node3D" unique_id=304246059]
 
-[node name="CharacterBody3D" parent="." instance=ExtResource("1_8nbwm")]
+[node name="CharacterBody3D" parent="." unique_id=1399959414 instance=ExtResource("1_8nbwm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.486136, 0)
 mouse_sensitivity = 0.005
-tilt_limit = 1.3089969389957472
-speed = 5.0
-jump_velocity = 4
 gravity = 20.0
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1232195311]
 transform = Transform3D(19.395, 0, 0, 0, 1, 0, 0, 0, 21.925, 0, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=989336782]
 shape = SubResource("BoxShape3D_8nbwm")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=190344841]
 mesh = SubResource("BoxMesh_by3xe")
 
-[node name="SpotLight3D" type="SpotLight3D" parent="."]
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=467969494]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 5.509666, 0)
 light_energy = 10.992
 spot_range = 9.113
