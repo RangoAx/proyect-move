@@ -3,26 +3,27 @@
 [ext_resource type="PackedScene" uid="uid://b1anhhy354wpl" path="res://pj/character_body_3d.tscn" id="1_8nbwm"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8nbwm"]
+size = Vector3(1, 0.01, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_by3xe"]
 
 [node name="ToyBox" type="Node3D" unique_id=304246059]
 
-[node name="CharacterBody3D" parent="." unique_id=1399959414 instance=ExtResource("1_8nbwm")]
+[node name="Player" parent="." unique_id=1399959414 instance=ExtResource("1_8nbwm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.486136, 0)
-mouse_sensitivity = 0.005
-gravity = 20.0
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1232195311]
-transform = Transform3D(19.395, 0, 0, 0, 1, 0, 0, 0, 21.925, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=989336782]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
 shape = SubResource("BoxShape3D_8nbwm")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=190344841]
+transform = Transform3D(20, 0, 0, 0, 0.2, 0, 0, 0, 20, 0, 0, 0)
 mesh = SubResource("BoxMesh_by3xe")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=467969494]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 5.509666, 0)
-light_energy = 10.992
-spot_range = 9.113
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 10.550888, 0)
+light_energy = 11.866
+light_indirect_energy = 3.353
+spot_range = 23.414

@@ -13,10 +13,11 @@ uv1_scale = Vector3(0.99, 0.99, 0.99)
 uv1_offset = Vector3(1.5, -0.495, 0.495)
 uv1_triplanar = true
 
-[node name="Player" type="CharacterBody3D" unique_id=1944581078]
+[node name="Player" type="CharacterBody3D" unique_id=1944581078 node_paths=PackedStringArray("mesh")]
 floor_constant_speed = true
 floor_block_on_wall = false
 script = ExtResource("1_uqsb8")
+mesh = NodePath("MeshInstance3D")
 
 [node name="CameraPivot" type="Node3D" parent="." unique_id=1199838907]
 unique_name_in_owner = true
