@@ -24,11 +24,13 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot" unique_id=1791631044]
-spring_length = 4.0
+unique_name_in_owner = true
+spring_length = 4.5
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot/SpringArm3D" unique_id=1313897891]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.239869)
+fov = 80.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1152542772]
 shape = SubResource("BoxShape3D_k1tai")

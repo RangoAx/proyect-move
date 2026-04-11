@@ -2,15 +2,22 @@ extends CharacterBody3D
 
 @onready var _camera := %Camera3D as Camera3D
 @onready var _camera_pivot := %CameraPivot as Node3D
+@onready var _spring_arm := %SpringArm3D as SpringArm3D
 @export var mesh : MeshInstance3D
 @export_range(0.1, 3.0) var mouse_sensitivity : float = 1.8
 @export var camera_weight : float = 18
 var tilt_limit = deg_to_rad(75)
 var expected_rotation : Vector3 = Vector3(0, 0, 0)
 var expected_velocity : Vector3 = Vector3(0, 0, 0)
+@export var default_length : float = 4.5
+@export var aim_length : float = 1.8
+@export var default_fov : float = 80
+@export var aim_fov : float = 50
+@export var default_position : Vector3 = Vector3.ZERO
+@export var aim_position : Vector3 = Vector3(1, 0, 0)
 
-@export var speed = 7.0
-@export var velocity_weight = 10
+@export var speed = 5.0
+@export var velocity_weight : float = 10
 @export var jump_velocity = 15
 @export var gravity: float = 1
 
@@ -22,6 +29,20 @@ func _physics_process(delta: float) -> void:
 	#soft camera movement and movement
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_velocity
+	if Input.is_action_pressed("run") and not Input.is_action_pressed("aim"):
+		speed = 9
+	else:
+		speed = 5
+	if Input.is_action_pressed("aim"):
+		_spring_arm.position = aim_position
+		_spring_arm.spring_length = aim_length
+		_camera.fov = aim_fov
+		mesh.global_rotation.y = _camera.global_rotation.y
+		mesh.global_rotation.z = _camera.global_rotation.z
+	else:
+		_spring_arm.position = default_position
+		_spring_arm.spring_length = default_length
+		_camera.fov = default_fov
 	var input_direction := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	var direction := Vector3(input_direction.x,0,input_direction.y).rotated(Vector3(0,1,0),_camera_pivot.rotation.y)
 	_camera_pivot.rotation = _camera_pivot.rotation.move_toward(expected_rotation,delta * camera_weight * _camera_pivot.rotation.distance_to(expected_rotation))
@@ -33,10 +54,11 @@ func _physics_process(delta: float) -> void:
 	velocity = velocity.move_toward(expected_velocity, delta * velocity_weight * velocity.distance_to(expected_velocity))
 	#mesh orientation
 	var old_rotation = mesh.rotation
-	mesh.look_at(position + direction)
+	if direction.length() > 0 and not Input.is_action_pressed("aim"):
+		mesh.look_at(position + direction)
 	var new_rotation = mesh.rotation
 	mesh.rotation = old_rotation
-	mesh.rotation.y = lerp_angle(mesh.rotation.y, new_rotation.y, delta * 10)
+	mesh.rotation.y = lerp_angle(mesh.rotation.y, new_rotation.y, delta * 9)
 	move_and_slide()
 
 func _input(event: InputEvent) -> void:
