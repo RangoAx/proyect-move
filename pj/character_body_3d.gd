@@ -10,11 +10,11 @@ var tilt_limit = deg_to_rad(75)
 var expected_rotation : Vector3 = Vector3(0, 0, 0)
 var expected_velocity : Vector3 = Vector3(0, 0, 0)
 @export var default_length : float = 4.5
-@export var aim_length : float = 1.8
+@export var aim_length : float = 2.2
 @export var default_fov : float = 80
-@export var aim_fov : float = 50
+@export var aim_fov : float = 60
 @export var default_position : Vector3 = Vector3.ZERO
-@export var aim_position : Vector3 = Vector3(1, 0, 0)
+@export var aim_position : Vector3 = Vector3(1.1, 0, 0)
 
 @export var speed = 5.0
 @export var velocity_weight : float = 10
@@ -34,11 +34,11 @@ func _physics_process(delta: float) -> void:
 	else:
 		speed = 5
 	if Input.is_action_pressed("aim"):
-		_spring_arm.position = aim_position
-		_spring_arm.spring_length = aim_length
-		_camera.fov = aim_fov
-		mesh.global_rotation.y = _camera.global_rotation.y
-		mesh.global_rotation.z = _camera.global_rotation.z
+		_spring_arm.position = _spring_arm.position.move_toward(aim_position, 0.075)
+		_spring_arm.spring_length = move_toward(_spring_arm.spring_length, aim_length, 0.15)
+		_camera.fov = move_toward(_camera.fov, aim_fov, 1.5)
+		mesh.global_rotation.y = lerp_angle(mesh.global_rotation.y, _camera.global_rotation.y, 0.18)
+		mesh.global_rotation.z = lerp_angle(mesh.global_rotation.z, _camera.global_rotation.z, 0.18)
 	else:
 		_spring_arm.position = default_position
 		_spring_arm.spring_length = default_length
@@ -58,7 +58,7 @@ func _physics_process(delta: float) -> void:
 		mesh.look_at(position + direction)
 	var new_rotation = mesh.rotation
 	mesh.rotation = old_rotation
-	mesh.rotation.y = lerp_angle(mesh.rotation.y, new_rotation.y, delta * 9)
+	mesh.rotation.y = lerp_angle(mesh.rotation.y, new_rotation.y, delta * 6)
 	move_and_slide()
 
 func _input(event: InputEvent) -> void:
