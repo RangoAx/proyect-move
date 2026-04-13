@@ -37,12 +37,12 @@ func _physics_process(delta: float) -> void:
 		_spring_arm.position = _spring_arm.position.move_toward(aim_position, 0.075)
 		_spring_arm.spring_length = move_toward(_spring_arm.spring_length, aim_length, 0.15)
 		_camera.fov = move_toward(_camera.fov, aim_fov, 1.5)
-		mesh.global_rotation.y = lerp_angle(mesh.global_rotation.y, _camera.global_rotation.y, 0.18)
-		mesh.global_rotation.z = lerp_angle(mesh.global_rotation.z, _camera.global_rotation.z, 0.18)
+		mesh.global_rotation.y = lerp_angle(mesh.global_rotation.y, _camera.global_rotation.y, 0.15)
+		mesh.global_rotation.z = lerp_angle(mesh.global_rotation.z, _camera.global_rotation.z, 0.15)
 	else:
-		_spring_arm.position = default_position
-		_spring_arm.spring_length = default_length
-		_camera.fov = default_fov
+		_spring_arm.position = _spring_arm.position.move_toward(default_position, 0.12)
+		_spring_arm.spring_length = move_toward(_spring_arm.spring_length, default_length, 0.25)
+		_camera.fov = move_toward(_camera.fov, default_fov, 2.5)
 	var input_direction := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	var direction := Vector3(input_direction.x,0,input_direction.y).rotated(Vector3(0,1,0),_camera_pivot.rotation.y)
 	_camera_pivot.rotation = _camera_pivot.rotation.move_toward(expected_rotation,delta * camera_weight * _camera_pivot.rotation.distance_to(expected_rotation))
