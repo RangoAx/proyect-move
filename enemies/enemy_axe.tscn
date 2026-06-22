@@ -41,7 +41,7 @@ shape = SubResource("BoxShape3D_jfak0")
 
 [node name="Personaje con animaciones" parent="." unique_id=562842463 instance=ExtResource("2_43lb5")]
 
-[node name="Skeleton3D" parent="Personaje con animaciones/Armature" parent_id_path=PackedInt32Array(562842463, 814075178) index="0" unique_id=1788492365]
+[node name="Skeleton3D" parent="Personaje con animaciones/Armature" parent_id_path=PackedInt32Array(562842463, 239427947) index="0" unique_id=1672410733]
 bones/0/position = Vector3(-1.2927853e-11, 1.075811, 0.014604775)
 bones/0/rotation = Quaternion(-3.768593e-08, -3.1786513e-08, 8.845539e-12, 1)
 bones/1/position = Vector3(-1.2100373e-09, 0.10798304, -0.019096855)
@@ -169,7 +169,7 @@ bones/124/rotation = Quaternion(-0.25290126, 0.014320892, 0.002153807, 0.9673837
 bones/125/position = Vector3(-0.25928175, 0.8906845, -0.047811083)
 bones/125/rotation = Quaternion(0.8514768, 0.06520608, 0.5049807, 0.12541945)
 
-[node name="Personaje" parent="Personaje con animaciones/Armature/Skeleton3D" index="0" unique_id=1996687716]
+[node name="Personaje" parent="Personaje con animaciones/Armature/Skeleton3D" index="0" unique_id=117737582]
 surface_material_override/0 = SubResource("StandardMaterial3D_43lb5")
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=2000607842]

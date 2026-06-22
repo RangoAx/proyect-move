@@ -5,6 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://dhmv0uuc0okel" path="res://interactuables/floor_trap.tscn" id="4_phjgw"]
 [ext_resource type="PackedScene" uid="uid://b3ejlr2kfhsa4" path="res://enemies/enemy_axe.tscn" id="5_ab322"]
 [ext_resource type="PackedScene" uid="uid://c62b65p2kf5dq" path="res://components/pawns/player/player.tscn" id="5_ty26i"]
+[ext_resource type="ArrayMesh" uid="uid://be10vlrlerwpf" path="res://assets/models/world/terrain_Cube_006.res" id="6_ty26i"]
+[ext_resource type="ArrayMesh" uid="uid://bqos162kg6kjj" path="res://assets/models/world/terrain_Icosphere_003.res" id="7_gg1b1"]
+[ext_resource type="Script" uid="uid://d2gk8hj0yeugx" path="res://assets/models/world/multi_mesh_instance_3d.gd" id="7_jmlt3"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_4pysu"]
 vertices = PackedVector3Array(-19.5, 0.75, -19.5, -19.5, 0.75, 19.5, 19.5, 0.75, 19.5, 19.5, 0.75, -19.5)
@@ -31,6 +34,23 @@ background_mode = 2
 sky = SubResource("Sky_ej0ts")
 tonemap_mode = 2
 glow_enabled = true
+fog_enabled = true
+fog_density = 0.07
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3ejys"]
+size = Vector2(40, 40)
+
+[sub_resource type="MultiMesh" id="MultiMesh_ty26i"]
+transform_format = 1
+instance_count = 16
+mesh = ExtResource("6_ty26i")
+buffer = PackedFloat32Array(-1.001, 0, 0, -1.468399, 0, 1.001, 0, 0, 0, 0, -1.001, -8.63862, -1.001, 0, 0, -14.864789, 0, 1.001, 0, 0, 0, 0, -1.001, -14.089651, 0, 0, -1.001, 18.282787, 0, 1.001, 0, 0, 1.001, 0, 0, 15.684831, -1.001, 0, 0, -15.07685, 0, 1.001, 0, 0, 0, 0, -1.001, -17.786621, 0, 0, -1.001, 17.93135, 0, 1.001, 0, 0, 1.001, 0, 0, 13.750351, 0, 0, -1.001, 6.2802186, 0, 1.001, 0, 0, 1.001, 0, 0, -6.2336516, 0, 0, -1.001, 3.8975754, 0, 1.001, 0, 0, 1.001, 0, 0, -0.6206894, -1.001, 0, 0, -15.741278, 0, 1.001, 0, 0, 0, 0, -1.001, -6.022095, 0, 0, -1.001, 16.826931, 0, 1.001, 0, 0, 1.001, 0, 0, 9.197213, 0, 0, -1.001, 9.954695, 0, 1.001, 0, 0, 1.001, 0, 0, 16.478012, -1.001, 0, 0, 3.57584, 0, 1.001, 0, 0, 0, 0, -1.001, -9.287222, 0, 0, -1.001, 12.851191, 0, 1.001, 0, 0, 1.001, 0, 0, 8.231028, 0, 0, -1.001, 1.3523412, 0, 1.001, 0, 0, 1.001, 0, 0, 4.138828, 0, 0, -1.001, -3.2176247, 0, 1.001, 0, 0, 1.001, 0, 0, 11.83959, -1.001, 0, 0, -19.561121, 0, 1.001, 0, 0, 0, 0, -1.001, -13.248323, 0, 0, -1.001, 6.5921826, 0, 1.001, 0, 0, 1.001, 0, 0, -6.0858445)
+
+[sub_resource type="MultiMesh" id="MultiMesh_gg1b1"]
+transform_format = 1
+instance_count = 16
+mesh = ExtResource("7_gg1b1")
+buffer = PackedFloat32Array(-2.001, 0, 0, -19.915274, 0, 2.001, 0, 0, 0, 0, -2.001, 6.1937866, 0, 0, -2.001, 18.194841, 0, 2.001, 0, 0, 2.001, 0, 0, 0.87568665, -2.001, 0, 0, -8.830109, 0, 2.001, 0, 0, 0, 0, -2.001, -6.8277454, 0, 0, -2.001, 19.640965, 0, 2.001, 0, 0, 2.001, 0, 0, 14.816498, -2.001, 0, 0, -11.398163, 0, 2.001, 0, 0, 0, 0, -2.001, -3.3583012, 0, 0, -2.001, -12.257266, 0, 2.001, 0, 0, 2.001, 0, 0, 19.449665, 0, 0, -2.001, 8.469553, 0, 2.001, 0, 0, 2.001, 0, 0, 11.3389015, 0, 0, -2.001, -15.029606, 0, 2.001, 0, 0, 2.001, 0, 0, 18.053177, -2.001, 0, 0, 5.691967, 0, 2.001, 0, 0, 0, 0, -2.001, -10.421156, -2.001, 0, 0, -8.95406, 0, 2.001, 0, 0, 0, 0, -2.001, 4.760906, -2.001, 0, 0, -19.22858, 0, 2.001, 0, 0, 0, 0, -2.001, 7.423029, -2.001, 0, 0, 3.2492828, 0, 2.001, 0, 0, 0, 0, -2.001, -14.741531, 0, 0, -2.001, 16.572985, 0, 2.001, 0, 0, 2.001, 0, 0, 9.017616, -2.001, 0, 0, -14.75407, 0, 2.001, 0, 0, 0, 0, -2.001, 2.95645, 0, 0, -2.001, 16.7453, 0, 2.001, 0, 0, 2.001, 0, 0, -12.490687, 0, 0, -2.001, -2.6673722, 0, 2.001, 0, 0, 2.001, 0, 0, 16.509033)
 
 [node name="ToyBox" type="Node3D" unique_id=304246059]
 
@@ -72,3 +92,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.961213, 0.2592887, -12.53
 
 [node name="AxeEnemy" parent="." unique_id=40651175 instance=ExtResource("5_ab322")]
 transform = Transform3D(-0.0498788, 0, -0.9987553, 0, 1, 0, 0.9987553, 0, -0.0498788, 7.7201486, 0.82138157, 13.039677)
+
+[node name="Floor" type="MeshInstance3D" parent="." unique_id=1516031579]
+mesh = SubResource("PlaneMesh_3ejys")
+
+[node name="TreeInstance1" type="MultiMeshInstance3D" parent="." unique_id=1106561300]
+multimesh = SubResource("MultiMesh_ty26i")
+script = ExtResource("7_jmlt3")
+
+[node name="TreeInstance2" type="MultiMeshInstance3D" parent="." unique_id=1600481319]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+multimesh = SubResource("MultiMesh_gg1b1")
+script = ExtResource("7_jmlt3")
