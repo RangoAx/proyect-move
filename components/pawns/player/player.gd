@@ -8,7 +8,7 @@ class_name Player
 @onready var weapon_manager = $WeaponManager
 @onready var life_bar = $CanvasLayer/MarginContainer/ProgressBar 
 
-var axe_amount : int = 999
+@export var axe_amount : int = 1
 
 var _heal_delay_timer : float = 0.0
 var _heal_tick_timer : float = 0.0
