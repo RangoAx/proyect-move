@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://6ukvegh5vph0"
-path.s3tc="res://.godot/imported/Animation personaje_PS1 texture.png-d1ef3dd42d96ba78da7aef7004f85c75.s3tc.ctex"
+path.s3tc="res://.godot/imported/Animation personaje_PS1 texture.png-84e63c298cbe8018f9eb8f916cb82d0f.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://pj/model/Animation personaje_PS1 texture.png"
-dest_files=["res://.godot/imported/Animation personaje_PS1 texture.png-d1ef3dd42d96ba78da7aef7004f85c75.s3tc.ctex"]
+source_file="res://assets/models/Animation personaje_PS1 texture.png"
+dest_files=["res://.godot/imported/Animation personaje_PS1 texture.png-84e63c298cbe8018f9eb8f916cb82d0f.s3tc.ctex"]
 
 [params]
 

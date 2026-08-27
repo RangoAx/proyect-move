@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cjukgilx6vc5l"
-path="res://.godot/imported/Cuchi loco.glb-1bd18ef09fe65fd8167e11f1d47dbd5f.scn"
+path="res://.godot/imported/Cuchi loco.glb-18a72736d73c79e4b68b3f6e9a2182c2.scn"
 
 [deps]
 
-source_file="res://pj/model/Cuchi loco.glb"
-dest_files=["res://.godot/imported/Cuchi loco.glb-1bd18ef09fe65fd8167e11f1d47dbd5f.scn"]
+source_file="res://assets/models/Cuchi loco.glb"
+dest_files=["res://.godot/imported/Cuchi loco.glb-18a72736d73c79e4b68b3f6e9a2182c2.scn"]
 
 [params]
 
