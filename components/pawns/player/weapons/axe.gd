@@ -1,6 +1,6 @@
 extends Weapon
 
-@export var thrown_axe_damage: float = 50.0
+@export var thrown_axe_damage: float = 25.0
 
 func aim_start():
 	camera.expected_length = 1

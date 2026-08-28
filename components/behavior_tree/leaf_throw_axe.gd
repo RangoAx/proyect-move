@@ -29,7 +29,7 @@ func step() -> Result:
 
 	match _internal_state:
 		"idle":
-			if npc.axe_count <= 0 or npc._throw_timer > 0:
+			if npc._throw_timer > 0:
 				return Result.FAILURE
 				
 			var dist = npc.global_position.distance_to(target.global_position)

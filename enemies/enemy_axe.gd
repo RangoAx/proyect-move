@@ -14,7 +14,7 @@ func _physics_process(delta: float) -> void:
 	_throw_timer -= delta
 
 func throw_axe():
-	if axe_count <= 0 or _throw_timer > 0:
+	if _throw_timer > 0:
 		return
 	var axe: RigidBody3D = axe_scene.instantiate()
 	axe.thrower = self
@@ -29,5 +29,5 @@ func throw_axe():
 	var dir = spawn_pos.direction_to(target_pos)
 	axe.call_deferred("apply_central_impulse", dir * 16)
 	axe.call_deferred("apply_torque", Vector3(-20, 0, 0).rotated(Vector3(0, 1, 0), rotation.y))
-	axe_count -= 1
+	#axe_count -= 1
 	_throw_timer = throw_cooldown

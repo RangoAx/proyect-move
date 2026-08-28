@@ -1,12 +1,11 @@
-[gd_scene format=3 uid="uid://b3ejlr2kfhsa4"]
+[gd_scene format=3 uid="uid://bgwvrd0o052k"]
 
-[ext_resource type="Script" uid="uid://djlelkwgnuaxx" path="res://enemies/enemy_axe.gd" id="1_jennj"]
-[ext_resource type="PackedScene" uid="uid://bvskgl6kwvr07" path="res://enemies/model/Personaje con animaciones.glb" id="2_43lb5"]
-[ext_resource type="PackedScene" uid="uid://duuikg1641sl7" path="res://enemies/life_bar/enemy_life.tscn" id="3_8tr1a"]
-[ext_resource type="Script" uid="uid://qrqoxjtc2rk0" path="res://components/behavior_tree/selector.gd" id="4_65o8c"]
-[ext_resource type="Script" uid="uid://kevyo417oc2g" path="res://components/behavior_tree/leaf_follow_target.gd" id="5_jennj"]
-[ext_resource type="Script" uid="uid://kw6ht13t422m" path="res://components/behavior_tree/leaf_axe_combo.gd" id="5_pdswd"]
-[ext_resource type="Script" uid="uid://3ojrkhu3gkfs" path="res://components/behavior_tree/leaf_throw_axe.gd" id="7_48v8s"]
+[ext_resource type="Script" uid="uid://cww5s8rsh10bu" path="res://enemies/enemy_fist.gd" id="1_x1l8e"]
+[ext_resource type="PackedScene" uid="uid://bvskgl6kwvr07" path="res://enemies/model/Personaje con animaciones.glb" id="2_68d1k"]
+[ext_resource type="PackedScene" uid="uid://duuikg1641sl7" path="res://enemies/life_bar/enemy_life.tscn" id="3_5s8lq"]
+[ext_resource type="Script" uid="uid://qrqoxjtc2rk0" path="res://components/behavior_tree/selector.gd" id="4_yvx4i"]
+[ext_resource type="Script" uid="uid://kw6ht13t422m" path="res://components/behavior_tree/leaf_axe_combo.gd" id="5_57h5m"]
+[ext_resource type="Script" uid="uid://kevyo417oc2g" path="res://components/behavior_tree/leaf_follow_target.gd" id="7_x1ih1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jfak0"]
 size = Vector3(0.6586151, 1.9577637, 0.36743164)
@@ -18,23 +17,20 @@ albedo_color = Color(1, 1, 1, 0.007843138)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_43lb5"]
 next_pass = SubResource("StandardMaterial3D_8tr1a")
-albedo_color = Color(1, 0, 0, 1)
+albedo_color = Color(0, 1, 0, 1)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_jfak0"]
 viewport_path = NodePath("SubViewport")
 
-[node name="AxeEnemy" type="CharacterBody3D" unique_id=715649026 groups=["Enemy"]]
+[node name="FistEnemy" type="CharacterBody3D" unique_id=715649026 groups=["Enemy"]]
 collision_layer = 2
-script = ExtResource("1_jennj")
-throw_cooldown = 3.0
-thrown_axe_damage = 20.0
-detection_range = 10.0
+script = ExtResource("1_x1l8e")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1596429113]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00046539307, 0.9686279, -0.016235352)
 shape = SubResource("BoxShape3D_jfak0")
 
-[node name="Personaje con animaciones" parent="." unique_id=562842463 instance=ExtResource("2_43lb5")]
+[node name="Personaje con animaciones" parent="." unique_id=562842463 instance=ExtResource("2_68d1k")]
 
 [node name="Skeleton3D" parent="Personaje con animaciones/Armature" parent_id_path=PackedInt32Array(562842463, 1441661035) index="0" unique_id=830479171]
 bones/0/position = Vector3(-1.2927853e-11, 1.075811, 0.014604775)
@@ -172,28 +168,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2523718, 0)
 billboard = 1
 texture = SubResource("ViewportTexture_jfak0")
 
-[node name="SubViewport" parent="." unique_id=56900519 instance=ExtResource("3_8tr1a")]
+[node name="SubViewport" parent="." unique_id=56900519 instance=ExtResource("3_5s8lq")]
 
 [node name="CompositorSelector" type="Node" parent="." unique_id=1624268767]
-script = ExtResource("4_65o8c")
+script = ExtResource("4_yvx4i")
 metadata/_custom_type_script = "uid://qrqoxjtc2rk0"
 
 [node name="LeafAxeCombo" type="Node" parent="CompositorSelector" unique_id=39585522]
-script = ExtResource("5_pdswd")
+script = ExtResource("5_57h5m")
 attack_range = 1.2
 damage = 7.0
 time_between_hits = 0.4
 knockback_multiplier = 0.05
 metadata/_custom_type_script = "uid://kw6ht13t422m"
 
-[node name="LeafThrowAxe" type="Node" parent="CompositorSelector" unique_id=60850603]
-script = ExtResource("7_48v8s")
-min_throw_range = 2.0
-max_throw_range = 9.0
-metadata/_custom_type_script = "uid://3ojrkhu3gkfs"
-
 [node name="LeafFollowTarget" type="Node" parent="CompositorSelector" unique_id=574496903]
-script = ExtResource("5_jennj")
+script = ExtResource("7_x1ih1")
 is_target_player = true
 target_distance = 2.0
 metadata/_custom_type_script = "uid://kevyo417oc2g"
