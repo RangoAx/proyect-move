@@ -13,7 +13,6 @@ func _physics_process(delta):
 	pass
 
 func _on_hitbox_body_entered(body: Node3D) -> void:
-	print("hitbox tocó: ", body.name)
 	if hitted:
 		return
 	if body == thrower:
