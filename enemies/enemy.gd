@@ -7,6 +7,11 @@ class_name Enemy
 @export var detection_range : float = 5.0 # Rango por proximidad del GDD
 @export var attack_range : float
 
+@export_group("Fragment Drops")
+@export var amount_scarce: int = 5
+@export var amount_generous: int = 15
+@export var no_drop_chance: int = 20 # 20% de probabilidad de no dar nada
+
 var player : Node3D = null
 var state: String = "idle" 
 var override_look: bool = false
@@ -57,3 +62,12 @@ func _process(delta: float) -> void:
 	life_bar.value = health
 	# Oculta la barra de vida hasta que el combate empiece
 	life_bar.visible = is_aware
+	
+func die():
+	var roll = randi() % 100
+	if roll >= no_drop_chance:
+		var is_generous = (randi() % 100) > 60
+		var gained = amount_generous if is_generous else amount_scarce
+		Globals.add_fragments(gained)
+	
+	super.die()

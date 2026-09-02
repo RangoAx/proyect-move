@@ -108,7 +108,7 @@ func _process_cosmetic(delta : float):
 				anim.play("Crouch_idle", 0.2)
 	else:
 		if is_moving:
-			anim.play("Run" if is_running else "Walk")
+			anim.play("run" if is_running else "Walk")
 		else:
 			anim.play("Idle", 0.25) 
 	was_crouching = is_crouching

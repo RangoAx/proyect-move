@@ -28,10 +28,12 @@ func _input(_event):
 			weapon = "Sword"
 			%"Cuchillo loco".visible = true
 			%hacha1.visible = false
+			Globals.weapon_swapped.emit("Cuchillo")
 		elif Input.is_action_just_pressed("weapon_2"):
 			weapon = "Axe"
 			%hacha1.visible = true
 			%"Cuchillo loco".visible = false
+			Globals.weapon_swapped.emit("Hacha")
 
 func get_weapon() -> Weapon:
 	return get_node(str(weapon))

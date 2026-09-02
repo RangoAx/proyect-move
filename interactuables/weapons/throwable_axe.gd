@@ -4,7 +4,6 @@ extends RigidBody3D
 @export var damage : float = 75.0
 
 var thrower : Node3D = null
-# ya fue golpeado
 var hitted : bool = false
 
 
@@ -17,7 +16,6 @@ func _on_hitbox_body_entered(body: Node3D) -> void:
 		return
 	if body == thrower:
 		return
-	#notas: para hacer que clave mejor, achique la hitbox al filo del hacha
 	if linear_velocity.length() > 1.5: # solo se clava si esta yendo rapido, no tiene sentido que se clave mientras rueda por el piso.
 		freeze = true # cancela todas sus fisicas
 		reparent(body) # cambia su parent al body, para que se mueva con este
