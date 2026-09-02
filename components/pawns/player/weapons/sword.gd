@@ -61,12 +61,14 @@ func try_estocada():
 	
 	# Factor de riesgo: si no conecta, entra en vulnerabilidad por 0.8s[cite: 1]
 	if not estocada_hit:
-		# Bloquea al jugador temporalmente
-		if "is_vulnerable" in player:
-			player.is_vulnerable = true
+		# Bloquea al jugador temporalmente deteniendo su movimiento
+		if player.movement:
+			player.movement.trapped = true
+		
 		await get_tree().create_timer(0.8).timeout
-		if "is_vulnerable" in player:
-			player.is_vulnerable = false
+		
+		if player.movement:
+			player.movement.trapped = false
 	
 	is_estocada = false
 	end()

@@ -4,7 +4,9 @@ class_name Pawn
 
 @export var invulnerable : bool = false
 @export var floating : bool = false
-var health : float = 100
+
+var max_health : float = 100.0
+var health : float = max_health
 
 func _physics_process(delta):
 	if not floating:

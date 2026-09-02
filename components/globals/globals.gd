@@ -17,7 +17,7 @@ var cost_level_3 : int = 100
 
 func add_fragments(amount: int):
 	fragments += amount
-	# Trigger UI update signal here for the 2-second notification
+	fragments_updated.emit(fragments, amount)
 
 func upgrade_knife() -> bool:
 	return _process_upgrade("knife_level")
@@ -43,7 +43,7 @@ func _process_upgrade(stat_name: String) -> bool:
 
 func _apply_player_health_upgrade():
 	if player_level == 2:
-		player.max_health = 150
+		player.max_health = 150.0 # Nivel 2[cite: 1]
 	elif player_level == 3:
-		player.max_health = 200
+		player.max_health = 200.0 # Nivel 3[cite: 1]
 	player.health = player.max_health

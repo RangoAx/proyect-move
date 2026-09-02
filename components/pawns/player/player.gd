@@ -19,21 +19,21 @@ func decir_hola():
 func _ready():
 	Globals.player = self
 	
-	life_bar.max_value = 100
+	
 	life_bar.value = health
 
 func _process(delta: float) -> void:
 	life_bar.value = health
-	
-	if health < 100 and health > 0:
+	life_bar.max_value = max_health
+	if health < max_health and health > 0:
 		_heal_delay_timer += delta
 
 		if _heal_delay_timer >= 8.0:
 			_heal_tick_timer -= delta
 			if _heal_tick_timer <= 0.0:
 				health += 1
-				if health > 100:
-					health = 100
+				if health > max_health:
+					health = max_health
 				_heal_tick_timer = 0.2 
 	else:
 		_heal_delay_timer = 0.0

@@ -33,39 +33,48 @@ func _update_health_vignette():
 	if not player:
 		return
 	
-	# Si muere, activa la pantalla roja de muerte
 	if player.health <= 0:
 		death_screen.visible = true
 		health_vignette.color.a = 0.0
 		return
 	
-	# Calcula la intensidad del rojo según la salud faltante
-	var max_hp = 100.0
-	if "max_health" in player:
-		max_hp = player.max_health
-	var missing_health_ratio = clamp(1.0 - (player.health / max_hp), 0.0, 1.0)
+	var current_hp_percent = player.health / player.max_health
 	
-	# La pantalla se intensifica al estar cerca de morir
-	health_vignette.color.a = missing_health_ratio * 0.75
+	# Fades in smoothly from 0.0 at 50% HP to 0.75 opacity at 0% HP
+	if current_hp_percent < 0.5:
+		health_vignette.color.a = (0.5 - current_hp_percent) * 1.5
+	else:
+		health_vignette.color.a = 0.0
 
 func _update_axe_hud():
 	if not player or not ("axe_amount" in player):
 		return
 	
-	var weapon_node = player.get_node_or_null("WeaponManager/Axe")
-	if not weapon_node:
+	var weapon_manager = player.get_node_or_null("WeaponManager")
+	
+	# Oculta el HUD si el WeaponManager no existe o el arma activa no es el Hacha
+	if not weapon_manager or weapon_manager.weapon != "Axe":
 		axe_reload_bar.visible = false
-		axe_ammo_label.visible = false
+		if axe_ammo_label: 
+			axe_ammo_label.visible = false
 		return
 	
-	# Muestra el indicador circular solo si el hacha está en recarga
-	var max_axes = weapon_node.get_max_axes() if weapon_node.has_method("get_max_axes") else 1
-	axe_ammo_label.text = str(player.axe_amount) + "/" + str(max_axes)
+	var weapon_node = weapon_manager.get_node("Axe")
 	
+	# Muestra el texto de munición siempre que el hacha esté en la mano
+	if axe_ammo_label:
+		axe_ammo_label.visible = true
+		var max_axes = weapon_node.get_max_axes() if weapon_node.has_method("get_max_axes") else 1
+		axe_ammo_label.text = str(player.axe_amount) + "/" + str(max_axes)
+	
+	# Lógica del anillo de recarga
 	if weapon_node.recharge_timer > 0.0:
 		axe_reload_bar.visible = true
-		var cd = weapon_node.get_cooldown()
-		axe_reload_bar.value = ((cd - weapon_node.recharge_timer) / cd) * 100.0
+		var max_cd = weapon_node.get_cooldown()
+		var time_left = weapon_node.recharge_timer
+		
+		var fill_percentage = ((max_cd - time_left) / max_cd) * 100.0
+		axe_reload_bar.value = fill_percentage
 	else:
 		axe_reload_bar.visible = false
 
