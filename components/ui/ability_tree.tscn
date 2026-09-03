@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://tdt24wtym8gt"]
+
+[ext_resource type="PackedScene" uid="uid://j0extw2dg1dh" path="res://components/ui/ability_branch.tscn" id="1_h74fb"]
+
+[node name="Control" type="Control" unique_id=2095502906]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Fondo" type="ColorRect" parent="." unique_id=1482526239]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1935378, 0, 0.00018882295, 1)
+
+[node name="RamaContainer" type="VBoxContainer" parent="." unique_id=1648738332]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="Rama" parent="RamaContainer" unique_id=391351798 instance=ExtResource("1_h74fb")]
+layout_mode = 2
+ability_string = "knife_level"
+
+[node name="Rama2" parent="RamaContainer" unique_id=1463404708 instance=ExtResource("1_h74fb")]
+layout_mode = 2
+ability_string = "axe_level"
+main_explanation = "Hacha"
+
+[node name="Rama3" parent="RamaContainer" unique_id=1245946477 instance=ExtResource("1_h74fb")]
+layout_mode = 2
+ability_string = "player_level"
+main_explanation = "Personaje"

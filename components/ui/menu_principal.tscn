@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://b07phkugfhbcj"]
+
+[ext_resource type="Script" uid="uid://dy2hfu20ejqah" path="res://components/ui/menu_principal.gd" id="1_n38ee"]
+
+[node name="MenuPrincipal" type="Control" unique_id=89151208]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_n38ee")
+
+[node name="Panel" type="Panel" parent="." unique_id=1315565595]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=337754916]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NuevoJuego" type="Button" parent="Panel/VBoxContainer" unique_id=1974810164]
+layout_mode = 2
+text = "Nuevo Juego"
+
+[node name="ReanudarButton2" type="Button" parent="Panel/VBoxContainer" unique_id=691949806]
+visible = false
+layout_mode = 2
+text = "Reanudar"
+
+[node name="SalirDelJuego" type="Button" parent="Panel/VBoxContainer" unique_id=1266833227]
+layout_mode = 2
+text = "Salir del juego"
+
+[connection signal="pressed" from="Panel/VBoxContainer/NuevoJuego" to="." method="_on_nuevo_juego_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/SalirDelJuego" to="." method="_on_salir_del_juego_pressed"]

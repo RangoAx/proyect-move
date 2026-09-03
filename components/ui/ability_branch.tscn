@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://j0extw2dg1dh"]
+
+[ext_resource type="Script" uid="uid://c01wkm3rqbvlx" path="res://components/ui/ability_branch.gd" id="1_ed6cs"]
+[ext_resource type="Texture2D" uid="uid://dg1vps4ycwkmh" path="res://assets/icons/mejora-ui-icono.png" id="1_kv03s"]
+[ext_resource type="Texture2D" uid="uid://bdphdi7car0vg" path="res://assets/icons/leaf.svg" id="2_3bpil"]
+[ext_resource type="Texture2D" uid="uid://dw044qw0wl4ph" path="res://assets/icons/behavior_node.svg" id="2_ed6cs"]
+[ext_resource type="Texture2D" uid="uid://ncxd5i8grq3m" path="res://assets/icons/mejora-ui-linea.png" id="2_ldr35"]
+
+[node name="Rama" type="HBoxContainer" unique_id=391351798]
+custom_minimum_size = Vector2(0, 128)
+size_flags_vertical = 4
+alignment = 1
+script = ExtResource("1_ed6cs")
+main_icon = ExtResource("2_3bpil")
+main_explanation = "cuchillo"
+ability_1_icon = ExtResource("2_3bpil")
+ability_1_explanation = "Mejora 1"
+ability_2_icon = ExtResource("2_3bpil")
+ability_2_explanation = "mejora 2"
+
+[node name="IconoPrincipal" type="TextureRect" parent="." unique_id=1621545281]
+clip_children = 2
+layout_mode = 2
+texture = ExtResource("1_kv03s")
+
+[node name="Icono" type="TextureRect" parent="IconoPrincipal" unique_id=1938223125]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ed6cs")
+expand_mode = 5
+stretch_mode = 6
+
+[node name="Espacios" type="Control" parent="." unique_id=736993419]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+
+[node name="Habilidad1" type="Button" parent="." unique_id=64577530]
+layout_mode = 2
+icon = ExtResource("1_kv03s")
+flat = true
+
+[node name="Icono" type="TextureRect" parent="Habilidad1" unique_id=480429477]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ed6cs")
+expand_mode = 5
+stretch_mode = 6
+
+[node name="Separador" type="TextureRect" parent="." unique_id=1191898892]
+layout_mode = 2
+texture = ExtResource("2_ldr35")
+
+[node name="Habilidad2" type="Button" parent="." unique_id=1175210879]
+layout_mode = 2
+icon = ExtResource("1_kv03s")
+flat = true
+
+[node name="Icono" type="TextureRect" parent="Habilidad2" unique_id=1372006175]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ed6cs")
+expand_mode = 5
+stretch_mode = 6
+
+[connection signal="pressed" from="Habilidad1" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Habilidad2" to="." method="_on_button_pressed"]

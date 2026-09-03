@@ -62,12 +62,19 @@ func _process(delta: float) -> void:
 	life_bar.value = health
 	# Oculta la barra de vida hasta que el combate empiece
 	life_bar.visible = is_aware
-	
+
+
+const fragmento_escena = preload("res://components/fragmento.tscn")
 func die():
 	var roll = randi() % 100
 	if roll >= no_drop_chance:
 		var is_generous = (randi() % 100) > 60
 		var gained = amount_generous if is_generous else amount_scarce
-		Globals.add_fragments(gained)
+		for i in range(gained):
+			print("fragmento creado")
+			var fragmento_nuevo : RigidBody3D = fragmento_escena.instantiate()
+			get_parent().add_child(fragmento_nuevo)
+			fragmento_nuevo.global_position = global_position
+			fragmento_nuevo.apply_central_impulse(Vector3(randf_range(-1,1),2,randf_range(-1,1)))
 	
 	super.die()
