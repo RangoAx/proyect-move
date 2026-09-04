@@ -96,5 +96,15 @@ transform = Transform3D(-0.0498788, 0, -0.9987553, 0, 1, 0, 0.9987553, 0, -0.049
 [node name="FistEnemy" parent="." unique_id=109757783 instance=ExtResource("8_jmlt3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.8000145, 0, 0)
 
+[node name="FistEnemy2" parent="." unique_id=340005211 instance=ExtResource("8_jmlt3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.8000145, 0, 0)
+
 [node name="Floor" type="MeshInstance3D" parent="." unique_id=1516031579]
 mesh = SubResource("PlaneMesh_3ejys")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=493030622]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[editable path="Player"]
+[editable path="Player/PlayerMesh"]

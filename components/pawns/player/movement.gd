@@ -46,7 +46,7 @@ func _physics_process(delta):
 	_process_dash_input()
 	_process_cosmetic(delta)
 	_process_player_jump()
-	_process_player_crouch(delta)
+	#_process_player_crouch(delta)
 	_process_player_run(delta)
 	_process_player_velocity(delta)
 	player.move_and_slide()
@@ -113,16 +113,16 @@ func _process_cosmetic(delta : float):
 			anim.play("Idle", 0.25) 
 	was_crouching = is_crouching
 
-#crouch
-func _process_player_crouch(delta: float):
-	if Input.is_action_pressed("crouch") and player.is_on_floor() and not is_dashing and not weapon_manager.is_attacking:
-		is_crouching = true
-	else:
-		is_crouching = false
-	var target_height = 1.0 if is_crouching else 2.0
-	collision_shape.shape.height = move_toward(collision_shape.shape.height, target_height, delta * 10.0)
-	
-	collision_shape.position.y = collision_shape.shape.height / 2.0
+##crouch
+#func _process_player_crouch(delta: float):
+	#if Input.is_action_pressed("crouch") and player.is_on_floor() and not is_dashing and not weapon_manager.is_attacking:
+		#is_crouching = true
+	#else:
+		#is_crouching = false
+	#var target_height = 1.0 if is_crouching else 2.0
+	#collision_shape.shape.height = move_toward(collision_shape.shape.height, target_height, delta * 10.0)
+	#
+	#collision_shape.position.y = collision_shape.shape.height / 2.0
 
 # dash
 var is_dashing : bool

@@ -2,8 +2,8 @@ extends Enemy
 class_name AxeEnemy
 
 @export var axe_count: int = 1
-@export var throw_cooldown: float = 2.0
-@export var thrown_axe_damage: float = 75.0 
+@export var throw_cooldown: float = 3.0
+@export var thrown_axe_damage: float = 20.0 
 
 var _throw_timer: float = 0.0
 

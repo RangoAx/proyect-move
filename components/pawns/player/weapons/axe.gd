@@ -9,7 +9,7 @@ const axe_scene = preload("res://interactuables/weapons/throwable_axe.tscn")
 func get_cooldown() -> float:
 	if Globals.axe_level >= 2:
 		return 3.0 # Nivel 2: Reducción de enfriamiento a 3 segundos
-	return 6.0 # Base: 6 segundos de cooldown
+	return 1.0 # Base: 6 segundos de cooldown
 
 func get_max_axes() -> int:
 	if Globals.axe_level >= 3:

@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://b82ibmynpw3y4" path="res://components/pawns/player/weapons/axe.gd" id="9_rmd83"]
 [ext_resource type="Script" uid="uid://dj44q6dvq267r" path="res://components/pawns/player/hud.gd" id="11_engsh"]
 [ext_resource type="Shader" uid="uid://iws8h11e6aqa" path="res://components/pawns/player/player.gdshader" id="11_fvfw8"]
+[ext_resource type="PackedScene" uid="uid://j6bdd8ibkkua" path="res://components/ui/pause_menu.tscn" id="12_5wi1q"]
 [ext_resource type="Texture2D" uid="uid://br6lf3w4fpvh8" path="res://assets/textures/icons/behavior_tree/gray-circle-outline-png.webp" id="13_xjfsf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fvfw8"]
@@ -35,7 +36,7 @@ anim = NodePath("PlayerMesh/AnimationPlayer")
 
 [node name="PlayerMesh" parent="." unique_id=558761329 instance=ExtResource("2_v0xwp")]
 
-[node name="Skeleton3D" parent="PlayerMesh/Armature" parent_id_path=PackedInt32Array(558761329, 1154522818) index="0" unique_id=716282469]
+[node name="Skeleton3D" parent="PlayerMesh/Armature" parent_id_path=PackedInt32Array(558761329, 1343125590) index="0" unique_id=761034783]
 bones/0/position = Vector3(0.0005246657, 0.96587306, 0.024752574)
 bones/0/rotation = Quaternion(0.03522807, -3.1767094e-08, -1.1109383e-09, 0.99937934)
 bones/1/position = Vector3(-1.2248185e-09, 0.10798312, -0.019096876)
@@ -207,11 +208,11 @@ unique_name_in_owner = true
 transform = Transform3D(1.0000037, 0.0006587878, -0.00061160326, -0.00065906346, 1.0000002, -5.0857663e-05, 0.00061020255, 5.1379204e-05, 1.0000044, -1.486558, -0.18660426, 0.043156028)
 shape = SubResource("BoxShape3D_engsh")
 
-[node name="cuchi loco" parent="PlayerMesh" index="2" unique_id=1772244138]
+[node name="cuchi loco" parent="PlayerMesh" index="2" unique_id=66678271]
 transform = Transform3D(-0.3067236, 0.9495438, -0.065468416, -0.6320085, -0.1517557, 0.7599572, 0.7116776, 0.2744734, 0.6466673, -0.58099157, 1.3112522, -0.008180913)
 visible = false
 
-[node name="AnimationPlayer" parent="PlayerMesh" index="3" unique_id=171301541]
+[node name="AnimationPlayer" parent="PlayerMesh" index="3" unique_id=1221642765]
 libraries/ = ExtResource("5_ul21n")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=165164992]
@@ -389,5 +390,8 @@ texture_progress = ExtResource("13_xjfsf")
 [node name="AxeAmmoLabel" type="Label" parent="HUD/Crosshair" unique_id=491261422]
 layout_mode = 2
 text = "1/1"
+
+[node name="PauseMenu" parent="HUD" unique_id=153243669 instance=ExtResource("12_5wi1q")]
+visible = false
 
 [editable path="PlayerMesh"]
