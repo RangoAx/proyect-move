@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://b182265d1k344"]
+
+[ext_resource type="Texture2D" uid="uid://b0rnvl6fcosk" path="res://levels/map_1/layout.png" id="1_sh7hq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bg5r0"]
+albedo_color = Color(0.15294118, 0.22352941, 0.18039216, 1)
+albedo_texture = ExtResource("1_sh7hq")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_g4v7s"]
+material = SubResource("StandardMaterial3D_bg5r0")
+size = Vector2(200, 200)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_g4v7s"]
+
+[node name="Piso" type="MeshInstance3D" unique_id=749006322]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01509428, 0.02948618, -0.010109425)
+mesh = SubResource("PlaneMesh_g4v7s")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=589705267]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1286996431]
+shape = SubResource("WorldBoundaryShape3D_g4v7s")

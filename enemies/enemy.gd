@@ -76,5 +76,4 @@ func die():
 			get_parent().add_child(fragmento_nuevo)
 			fragmento_nuevo.global_position = global_position
 			fragmento_nuevo.apply_central_impulse(Vector3(randf_range(-1,1),2,randf_range(-1,1)))
-	
 	super.die()

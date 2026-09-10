@@ -1,8 +1,19 @@
 [gd_scene format=3 uid="uid://bvngeudqgthha"]
 
+[sub_resource type="PrismMesh" id="PrismMesh_g4v7s"]
+
 [node name="Casa" type="Node3D" unique_id=1516426122]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1813018792]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0312152, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9370117, 2.0312152, -2.9716797)
 use_collision = true
-size = Vector3(5, 4, 5)
+size = Vector3(6.8740234, 4, 10.943359)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=984902697]
+transform = Transform3D(8.63, 0, 0, 0, 4.445, 0, 0, 0, 10.705, -0.9714339, 12.655548, -3.0692356)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1865620502]
+transform = Transform3D(0.99999994, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, -0.0043472275, -1.4569229, 0.020810425)
+mesh = SubResource("PrismMesh_g4v7s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=144375272]
