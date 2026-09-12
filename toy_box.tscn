@@ -71,13 +71,49 @@ transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545
 shadow_enabled = true
 
 [node name="Player" parent="." unique_id=936416609 instance=ExtResource("5_ty26i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 77.68264, 0, -25.95995)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.79755, 0, 7.6058426)
 
 [node name="FistEnemy" parent="." unique_id=109757783 instance=ExtResource("8_jmlt3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.503773, 0, 0)
 
 [node name="FistEnemy2" parent="." unique_id=340005211 instance=ExtResource("8_jmlt3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.8000145, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.878309, 0, 0)
+
+[node name="FistEnemy3" parent="." unique_id=715649026 instance=ExtResource("8_jmlt3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.184364, 0, 0)
+
+[node name="FistEnemy4" parent="." unique_id=249233874 instance=ExtResource("8_jmlt3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.985985, 0, -6.853462)
+
+[node name="FistEnemy5" parent="." unique_id=1239903310 instance=ExtResource("8_jmlt3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.566213, 0, -3.7044034)
+
+[node name="FistEnemy6" parent="." unique_id=1119900163 instance=ExtResource("8_jmlt3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.703036, 0, 0)
+
+[node name="FistEnemy7" parent="." unique_id=1914132124 instance=ExtResource("8_jmlt3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.437944, 0, 0)
+
+[node name="FistEnemy8" parent="." unique_id=234897298 instance=ExtResource("8_jmlt3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4051347, 0, -6.1858115)
+
+[node name="FistEnemy9" parent="." unique_id=1921482767 instance=ExtResource("8_jmlt3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.903206, 0, -2.557682)
+
+[node name="FistEnemy10" parent="." unique_id=241352276 instance=ExtResource("8_jmlt3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.03717, 0, 0)
+
+[node name="FistEnemy11" parent="." unique_id=1702058987 instance=ExtResource("8_jmlt3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7898235, 0, 0)
+
+[node name="FistEnemy12" parent="." unique_id=1045542822 instance=ExtResource("8_jmlt3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.328806, 0, -3.3566523)
+
+[node name="FistEnemy13" parent="." unique_id=689324396 instance=ExtResource("8_jmlt3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.8000145, 0, -6.969389)
+
+[node name="FistEnemy14" parent="." unique_id=208684798 instance=ExtResource("8_jmlt3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.8000145, 0, -3.1405811)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=493030622]
 offset_right = 40.0

@@ -30,8 +30,28 @@ func _ready():
 	# Si recibe un golpe directo (ej. un hachazo), se alerta al instante
 	took_damage.connect(_on_took_damage)
 
+@onready var mesh_instance : MeshInstance3D = $"Personaje con animaciones/Armature/Skeleton3D/Personaje"
+
 func _on_took_damage():
 	is_aware = true
+	flash_red()
+
+func flash_red():
+	if not mesh_instance:
+		return
+		
+	# Crea un material rojo brillante que ignora la iluminación
+	var flash_mat = StandardMaterial3D.new()
+	flash_mat.albedo_color = Color(1, 0, 0) 
+	flash_mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	
+	# Coloca el material por encima de las texturas normales del enemigo
+	mesh_instance.material_overlay = flash_mat
+	
+	# Espera una fracción de segundo y lo elimina
+	await get_tree().create_timer(0.15).timeout
+	if mesh_instance:
+		mesh_instance.material_overlay = null
 
 func _physics_process(delta: float) -> void:
 	# Lógica del Sistema de Detección

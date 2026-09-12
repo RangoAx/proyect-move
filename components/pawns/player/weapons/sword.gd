@@ -10,67 +10,113 @@ var estocada_hit : bool = false
 
 func get_damage() -> float:
 	if Globals.knife_level >= 3:
-		return 25.0 # Nivel 3: Aumento de daño a 25
-	return base_damage # Nivel 1: Daño base de 20
+		return 25.0 
+	return base_damage 
+
+@onready var slash_trail : MeshInstance3D = sword_area.get_parent().get_node_or_null("SlashTrail")
 
 func _ready():
 	sword_area.monitoring = false
+	if slash_trail:
+		slash_trail.is_emitting = false # Changed
 	if not sword_area.body_entered.is_connected(_on_body_entered):
 		sword_area.body_entered.connect(_on_body_entered)
 
 func hitbox_open():
 	enemies_hit.clear()
 	sword_area.set_deferred("monitoring", true)
+	if slash_trail:
+		slash_trail.is_emitting = true # Changed
 
 func hitbox_close():
 	sword_area.set_deferred("monitoring", false)
+	if slash_trail:
+		slash_trail.is_emitting = false # Changed
 
-# Ataque básico (Combo de 3 golpes)[cite: 1]
 func attack():
+	if is_estocada:
+		return
+		
 	is_estocada = false
+	
+	var push_origin = player.global_position - player.movement.mesh.global_transform.basis.z
+	
+	# Open hitbox for Strike 1
+	hitbox_open()
+	player.movement.apply_knockback(push_origin, 0.12) 
 	if await play_interruptible_animation("Ataque1", 0.2):
-		pass
+		hitbox_close()
 	else:
+		# Close previous trail, open new one for Strike 2
+		hitbox_close()
+		hitbox_open()
+		player.movement.apply_knockback(push_origin, 0.12)
 		if await play_interruptible_animation("Ataque2", 0.2):
-			pass
+			hitbox_close()
 		else:
+			# Close previous trail, open new one for Strike 3
+			hitbox_close()
+			hitbox_open()
+			player.movement.apply_knockback(push_origin, 0.25) 
 			await play_interruptible_animation("Ataque3", 0.2)
+			hitbox_close()
 			
 	end()
+	
+func aim_start():
+	if Globals.knife_level >= 2 and not is_estocada:
+		try_estocada()
 
-# Nivel 2: Estocada (se puede enlazar a aim_attack() en WeaponManager)[cite: 1]
 func aim_attack():
-	try_estocada()
+	pass
 
 func try_estocada():
-	if Globals.knife_level < 2:
-		return
-	
 	is_estocada = true
 	estocada_hit = false
 	
-	# 0.8s de preparación (Carga)[cite: 1]
-	# Opcional: anim.play("Estocada_Charge")
-	await get_tree().create_timer(0.8).timeout
+	weapon_manager.is_attacking = true
 	
-	# Ventana de impacto activa
-	hitbox_open()
-	# Opcional: anim.play("Estocada_Thrust")
-	await get_tree().create_timer(0.2).timeout
-	hitbox_close()
-	
-	# Factor de riesgo: si no conecta, entra en vulnerabilidad por 0.8s[cite: 1]
-	if not estocada_hit:
-		# Bloquea al jugador temporalmente deteniendo su movimiento
-		if player.movement:
-			player.movement.trapped = true
+	if player.movement:
+		player.movement.trapped = true
 		
-		await get_tree().create_timer(0.8).timeout
+	if player.anim:
+		player.anim.play("cargando_ataque")
+
+	var charge_time = 0.0
+	var canceled = false
+	while charge_time < 0.8:
+		await get_tree().physics_frame
+		charge_time += get_physics_process_delta_time()
 		
+		if not Input.is_action_pressed("aim"):
+			canceled = true
+			break
+			
+	if canceled:
 		if player.movement:
 			player.movement.trapped = false
+		is_estocada = false
+		weapon_manager.is_attacking = false
+		return
+	
+	if player.anim:
+		player.anim.play("estocada_ataque")
+		
+	var push_origin = player.global_position - player.movement.mesh.global_transform.basis.z
+	player.movement.apply_knockback(push_origin, 2.0) 
+		
+	hitbox_open()
+	await get_tree().create_timer(0.33).timeout
+	hitbox_close()
+	
+	if not estocada_hit:
+		await get_tree().create_timer(1.2).timeout
+		
+	if player.movement:
+		player.movement.trapped = false
 	
 	is_estocada = false
+	weapon_manager.is_attacking = false
 	end()
 
 func _on_body_entered(body : Node3D):
@@ -79,9 +125,11 @@ func _on_body_entered(body : Node3D):
 			return
 		enemies_hit.append(body)
 		
-		# Determina el daño según el tipo de ataque actual
 		var damage_to_deal : float = 50.0 if is_estocada else get_damage()
-		body.take_damage(damage_to_deal, player.global_position)
+		# Multiplica el empuje x4 si es estocada, o déjalo en x1 si es normal
+		var knockback_force : float = 4.0 if is_estocada else 1.0 
+		
+		body.take_damage(damage_to_deal, player.global_position, knockback_force)
 		
 		if is_estocada:
 			estocada_hit = true

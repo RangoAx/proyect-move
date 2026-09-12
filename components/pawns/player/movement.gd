@@ -53,6 +53,9 @@ func _physics_process(delta):
 	
 
 func _process_player_jump():
+	if trapped or weapon_manager.is_attacking or is_dashing:
+		return
+		
 	if Input.is_action_just_pressed("jump") and player.is_on_floor():
 		player.velocity.y = jump_impulse
 		player.anim.play("jump")

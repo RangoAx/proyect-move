@@ -17,7 +17,7 @@ func _input(_event):
 			movement.is_aiming = true
 		if Input.is_action_just_pressed("attack") and movement.is_aiming:
 			get_weapon().aim_attack()
-		if Input.is_action_just_pressed("attack") and not is_attacking:
+		elif Input.is_action_just_pressed("attack") and not is_attacking:
 			is_attacking = true
 			await get_weapon().attack()
 			is_attacking = false
