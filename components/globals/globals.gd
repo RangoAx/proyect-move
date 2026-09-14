@@ -8,7 +8,7 @@ signal fragments_updated(total: int, added_amount: int)
 signal weapon_swapped(weapon_name: String)
 
 var fragments : int = 0
-var knife_level : int = 3
+var knife_level : int = 1
 var axe_level : int = 1
 var player_level : int = 1
 

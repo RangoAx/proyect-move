@@ -27,7 +27,7 @@ collision_layer = 2
 script = ExtResource("1_x1l8e")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1596429113]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00046539307, 0.9686279, -0.016235352)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.2, 0.00046539307, 0.9686279, -0.016235352)
 shape = SubResource("BoxShape3D_jfak0")
 
 [node name="Personaje con animaciones" parent="." unique_id=562842463 instance=ExtResource("2_68d1k")]

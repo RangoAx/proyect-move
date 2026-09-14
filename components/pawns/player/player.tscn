@@ -17,7 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://br6lf3w4fpvh8" path="res://assets/textures/icons/behavior_tree/gray-circle-outline-png.webp" id="13_xjfsf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fvfw8"]
-size = Vector3(0.15249634, 0.08154297, 0.61286926)
+size = Vector3(0.2140274, 0.08154297, 0.75416946)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_engsh"]
 size = Vector3(5.3861084, 1, 8.177103)
@@ -162,7 +162,7 @@ unique_name_in_owner = true
 collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerMesh/Armature/Skeleton3D/BoneAttachment3D/Cuchillo loco/HitboxKnife" unique_id=274596084]
-transform = Transform3D(1.63, 3.6794227e-06, 1.4901161e-07, -2.5568297e-06, 1.629998, 9.741634e-07, -7.4505806e-08, -2.1304004e-06, 1.6299999, -0.007684946, 0.026495457, 0.44293475)
+transform = Transform3D(1.63, 3.7814025e-06, 1.4901161e-07, -2.5568297e-06, 1.629998, 9.741634e-07, -7.4505806e-08, -2.7804635e-06, 1.6299999, -0.008350372, 0.026495099, 0.36594725)
 shape = SubResource("BoxShape3D_fvfw8")
 
 [node name="SlashTrail" type="MeshInstance3D" parent="PlayerMesh/Armature/Skeleton3D/BoneAttachment3D/Cuchillo loco" unique_id=1335308867]

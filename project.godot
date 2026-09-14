@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Proyect-move"
-run/main_scene="uid://btcasuxejncv1"
+run/main_scene="uid://bqd7rsqs3ja06"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://pj/icon.svg"
 
