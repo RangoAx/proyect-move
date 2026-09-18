@@ -17,7 +17,14 @@ var state: String = "idle"
 var override_look: bool = false
 var is_aware: bool = false # Estado de alerta
 
+var is_attacking: bool = false
+var current_damage: float = 0.0
+var current_knockback: float = 0.0
+
 @onready var life_bar = $SubViewport/EnemyLifeBar
+
+@export var anim : AnimationPlayer
+var enemy_meshes : Array[MeshInstance3D] = []
 
 func _ready():
 	life_bar.max_value = health
@@ -27,40 +34,44 @@ func _ready():
 	if players.size() > 0:
 		player = players[0]
 		
-	# Si recibe un golpe directo (ej. un hachazo), se alerta al instante
 	took_damage.connect(_on_took_damage)
+	
+	# Detecta automáticamente el AnimationPlayer si no lo asignaste a mano
+	if not anim:
+		anim = find_child("AnimationPlayer", true, false) as AnimationPlayer
+		
+	# Guarda todas las mallas del modelo (útil si el nuevo modelo tiene ropa/armas separadas)
+	for child in find_children("*", "MeshInstance3D"):
+		enemy_meshes.append(child)
 
-@onready var mesh_instance : MeshInstance3D = $"Personaje con animaciones/Armature/Skeleton3D/Personaje"
+func flash_red():
+	if enemy_meshes.is_empty():
+		return
+		
+	var flash_mat = enemy_meshes[0].get_active_material(0) as StandardMaterial3D
+	var texture = enemy_meshes[0].get_active_material(0).albedo_texture
+	flash_mat.albedo_texture = null
+	flash_mat.albedo_color = Color(1, 0, 0)
+	flash_mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	
+	await get_tree().create_timer(0.15).timeout
+	flash_mat.albedo_texture = texture
+	flash_mat.albedo_color = Color(1, 1, 1)
+	flash_mat.shading_mode = BaseMaterial3D.SHADING_MODE_PER_PIXEL
 
 func _on_took_damage():
 	is_aware = true
 	flash_red()
-
-func flash_red():
-	if not mesh_instance:
-		return
-		
-	# Crea un material rojo brillante que ignora la iluminación
-	var flash_mat = StandardMaterial3D.new()
-	flash_mat.albedo_color = Color(1, 0, 0) 
-	flash_mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	
-	# Coloca el material por encima de las texturas normales del enemigo
-	mesh_instance.material_overlay = flash_mat
-	
-	# Espera una fracción de segundo y lo elimina
-	await get_tree().create_timer(0.15).timeout
-	if mesh_instance:
-		mesh_instance.material_overlay = null
+	# Interrumpe cualquier combo si el enemigo recibe daño
+	is_attacking = false 
 
 func _physics_process(delta: float) -> void:
-	# Lógica del Sistema de Detección
+	# (Tu lógica de detección actual va aquí...)
 	if player and not is_aware:
 		var dist = global_position.distance_to(player.global_position)
 		if dist <= detection_range:
 			is_aware = true
 		else:
-			# Si no te detectó, apaga su árbol heredado y se queda quieto
 			ai_enabled = false
 			velocity.x = move_toward(velocity.x, 0, delta * 20.0)
 			velocity.z = move_toward(velocity.z, 0, delta * 20.0)
@@ -68,20 +79,28 @@ func _physics_process(delta: float) -> void:
 	if is_aware:
 		ai_enabled = true
 
-	# Ejecuta las físicas y el árbol de npc.gd
+	if is_attacking:
+		velocity.x = move_toward(velocity.x, 0, delta * 15.0)
+		velocity.z = move_toward(velocity.z, 0, delta * 15.0)
+	
 	super._physics_process(delta)
 
-	# Solo rota para mirar al jugador si ya lo detectó
-	if player and not override_look and hitstun_timer <= 0 and is_aware:
+	if player and not override_look and hitstun_timer <= 0 and is_aware and not is_attacking:
 		var look_target = Vector3(player.global_position.x, global_position.y, player.global_position.z)
 		if global_position.distance_to(look_target) > 0.1:
 			look_at(look_target)
 			rotation_degrees.y += 180
 
+	animation_process(delta)
+
+func animation_process(delta):
+	pass
+
 func _process(delta: float) -> void:
 	life_bar.value = health
 	# Oculta la barra de vida hasta que el combate empiece
 	life_bar.visible = is_aware
+	
 
 
 const fragmento_escena = preload("res://components/fragmento.tscn")

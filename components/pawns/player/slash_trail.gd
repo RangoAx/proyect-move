@@ -1,18 +1,27 @@
 extends MeshInstance3D
 
-# Ajusta el tiempo que la estela permanece en el aire (en segundos)
-@export var trail_lifetime : float = 0.35 
-@export var max_points : int = 35
+@export_group("Trail Settings")
+@export var trail_lifetime : float = 0.22 # Duración de la estela
+@export var min_step : float = 0.03       # Suavizado independiente de FPS (3 cm)
+
+# Coordenadas locales en Cuchillo loco (punta y base del corte)
+@export var tip_offset : Vector3 = Vector3(-0.008, 0.017, 0.64)
+@export var base_offset : Vector3 = Vector3(-0.008, 0.017, 0.50)
 
 var is_emitting : bool = false
 var _was_emitting : bool = false
-var points : Array[Vector3] = []
-var point_ages : Array[float] = []
+
+var segments : Array[Dictionary] = []
+var last_tip : Vector3 = Vector3.ZERO
+var last_base : Vector3 = Vector3.ZERO
+var has_recorded : bool = false
 
 @onready var imm_mesh = ImmediateMesh.new()
 
 func _ready():
 	mesh = imm_mesh
+	top_level = true
+	global_transform = Transform3D.IDENTITY
 	
 	var mat = StandardMaterial3D.new()
 	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
@@ -23,50 +32,73 @@ func _ready():
 	material_override = mat
 
 func _process(delta):
-	# Limpia trazos viejos si inicias un golpe nuevo
+	var knife = get_parent()
+	if not knife:
+		return
+
+	# Si empieza un ataque nuevo, borra trazos anteriores de golpe
 	if is_emitting and not _was_emitting:
-		points.clear()
-		point_ages.clear()
+		segments.clear()
+		has_recorded = false
 		
 	_was_emitting = is_emitting
 
-	# Registra nuevos puntos mientras el ataque esté activo
+	# 1. Muestreo de la punta y base del filo
 	if is_emitting:
-		points.push_front(global_transform.origin)
-		point_ages.push_front(0.0)
-		if points.size() > max_points:
-			points.pop_back()
-			point_ages.pop_back()
+		var current_tip = knife.to_global(tip_offset)
+		var current_base = knife.to_global(base_offset)
 
-	# Envejece cada punto individualmente y elimina los que expiren
-	var i = point_ages.size() - 1
+		if not has_recorded:
+			segments.push_front({"tip": current_tip, "base": current_base, "age": 0.0})
+			last_tip = current_tip
+			last_base = current_base
+			has_recorded = true
+		else:
+			var dist = last_tip.distance_to(current_tip)
+			if dist >= min_step:
+				var steps = int(dist / min_step)
+				for s in range(1, steps + 1):
+					var t = float(s) / float(steps)
+					segments.push_front({
+						"tip": last_tip.lerp(current_tip, t),
+						"base": last_base.lerp(current_base, t),
+						"age": 0.0
+					})
+				last_tip = current_tip
+				last_base = current_base
+			else:
+				if segments.size() > 0:
+					segments[0]["tip"] = current_tip
+					segments[0]["base"] = current_base
+
+	# 2. Desvanecimiento por tiempo real
+	var i = segments.size() - 1
 	while i >= 0:
-		point_ages[i] += delta
-		if point_ages[i] >= trail_lifetime:
-			points.remove_at(i)
-			point_ages.remove_at(i)
+		segments[i]["age"] += delta
+		if segments[i]["age"] >= trail_lifetime:
+			segments.remove_at(i)
 		i -= 1
 
+	# 3. Dibujado de la cinta
 	imm_mesh.clear_surfaces()
-	if points.size() < 2:
+	if segments.size() < 2:
 		return
 
-	# Dibuja la cinta suavizada por tiempo
 	imm_mesh.surface_begin(Mesh.PRIMITIVE_TRIANGLE_STRIP)
-	for j in range(points.size()):
-		var global_p = points[j]
-		var age_ratio = point_ages[j] / trail_lifetime # 0.0 (nuevo) a 1.0 (a punto de desaparecer)
+	for j in range(segments.size()):
+		var seg = segments[j]
+		var age_ratio = clampf(seg["age"] / trail_lifetime, 0.0, 1.0)
 		
-		# Se afila y se desvanece suavemente conforme pasa el tiempo
-		var size = lerp(0.08, 0.0, age_ratio)
-		var alpha = lerp(0.8, 0.0, age_ratio)
+		# Afila la punta hacia el final
+		var center = seg["tip"].lerp(seg["base"], 0.5)
+		var width_factor = 1.0 - age_ratio
+		var v_tip = center.lerp(seg["tip"], width_factor)
+		var v_base = center.lerp(seg["base"], width_factor)
 		
-		imm_mesh.surface_set_color(Color(3.0, 3.0, 3.0, alpha))
+		var alpha = lerp(0.85, 0.0, age_ratio)
+		imm_mesh.surface_set_color(Color(3.5, 3.5, 3.5, alpha))
 		
-		var top_vertex = to_local(global_p + Vector3(0, size, 0))
-		var bottom_vertex = to_local(global_p - Vector3(0, size, 0))
-		
-		imm_mesh.surface_add_vertex(top_vertex)
-		imm_mesh.surface_add_vertex(bottom_vertex)
+		imm_mesh.surface_add_vertex(v_tip)
+		imm_mesh.surface_add_vertex(v_base)
 		
 	imm_mesh.surface_end()

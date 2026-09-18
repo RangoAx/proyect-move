@@ -93,6 +93,7 @@ func _process_player_velocity(delta : float):
 	player.velocity = player.velocity.move_toward(expected_velocity, delta * slipperiness * player.velocity.distance_to(expected_velocity))
 
 func _process_cosmetic(delta : float):
+	if weapon_manager.is_attacking: return
 	mesh.global_rotation.y = lerp_angle(mesh.global_rotation.y, spring.global_rotation.y + PI, 9.0 * delta)
 	if weapon_manager.is_attacking or not player.is_on_floor():
 		was_crouching = is_crouching

@@ -9,9 +9,6 @@ size = Vector3(0.138, 0.393, 0.04096216)
 [sub_resource type="BoxShape3D" id="BoxShape3D_3ejys"]
 size = Vector3(0.038769532, 0.4074219, 0.025)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_c3s73"]
-size = Vector3(0.7, 0.7, 0.7)
-
 [node name="ThrowableAxe" type="RigidBody3D" unique_id=494095464 groups=["axe"]]
 collision_layer = 0
 script = ExtResource("1_x4bxl")
@@ -31,14 +28,6 @@ collision_mask = 7
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=1453796414]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18407848, 0.4263384, 6.708092e-09)
 shape = SubResource("BoxShape3D_3ejys")
-
-[node name="PickupHitbox" type="Area3D" parent="." unique_id=701224620 groups=["axe"]]
-visible = false
-collision_mask = 4
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PickupHitbox" unique_id=501103744]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.33308068, -0.041149408)
-shape = SubResource("BoxShape3D_c3s73")
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 

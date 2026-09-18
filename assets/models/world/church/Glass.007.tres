@@ -1,0 +1,5 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://be8hhd6vllbju"]
+
+[resource]
+resource_name = "Glass.007"
+cull_mode = 2

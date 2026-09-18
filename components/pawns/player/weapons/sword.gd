@@ -40,28 +40,15 @@ func attack():
 	is_estocada = false
 	
 	var push_origin = player.global_position - player.movement.mesh.global_transform.basis.z
-	
-	# Open hitbox for Strike 1
-	hitbox_open()
-	player.movement.apply_knockback(push_origin, 0.12) 
-	if await play_interruptible_animation("Ataque1", 0.2):
-		hitbox_close()
-	else:
-		# Close previous trail, open new one for Strike 2
-		hitbox_close()
-		hitbox_open()
+	player.movement.apply_knockback(push_origin, 0.12)
+	if await play_attack_animation("Ataque1", 0.2):
 		player.movement.apply_knockback(push_origin, 0.12)
-		if await play_interruptible_animation("Ataque2", 0.2):
-			hitbox_close()
-		else:
-			# Close previous trail, open new one for Strike 3
-			hitbox_close()
-			hitbox_open()
-			player.movement.apply_knockback(push_origin, 0.25) 
-			await play_interruptible_animation("Ataque3", 0.2)
-			hitbox_close()
-			
-	end()
+		if await play_attack_animation("Ataque2", 0.1):
+			player.movement.apply_knockback(push_origin, 0.2)
+			await play_attack_animation("Ataque3", 0.1)
+	hitbox_close()
+	
+	#player.movement.apply_knockback(push_origin, 0.12)
 	
 func aim_start():
 	if Globals.knife_level >= 2 and not is_estocada:

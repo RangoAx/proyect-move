@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://clqpv22b6dwh"]
+
+[resource]
+resource_name = "Floor_material"
+cull_mode = 2
+roughness = 0.5

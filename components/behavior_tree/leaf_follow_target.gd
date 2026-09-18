@@ -12,7 +12,7 @@ func step() -> Result:
 			return Result.FAILURE
 	else:
 		target = Globals.player
-	npc.nav.target_position = target.global_position
+		npc.nav.target_position = target.global_position
 	if npc.global_position.distance_to(target.global_position) <= target_distance:
 		return Result.SUCCESS
 	var direction := npc.global_position.direction_to(npc.nav.get_next_path_position())

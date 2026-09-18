@@ -44,7 +44,7 @@ _subresources={
 "cargando_ataque": {
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://pj/animations/cargando_ataque.res",
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://b7cjgcblhmpjv",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
@@ -2100,7 +2100,7 @@ _subresources={
 "estocada_ataque": {
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://pj/animations/estocada_ataque.res",
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://hw4qffwos7vw",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
