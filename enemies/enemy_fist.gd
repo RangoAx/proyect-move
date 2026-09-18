@@ -36,6 +36,8 @@ func _on_fist_hit(body: Node3D):
 		has_hit_player = true
 
 func perform_lunge(speed: float):
+	is_lunging = true
+	
 	if player:
 		# Corrige la puntería justo en el frame que da el paso
 		var look_target = Vector3(player.global_position.x, global_position.y, player.global_position.z)
@@ -45,7 +47,7 @@ func perform_lunge(speed: float):
 		var forward_dir = global_position.direction_to(player.global_position)
 		velocity.x = forward_dir.x * speed
 		velocity.z = forward_dir.z * speed
-
+	get_tree().create_timer(0.2).timeout.connect(func(): is_lunging = false)
 # --- LÓGICA DEL COMBO ---
 func execute_melee_combo(dmg: float, knockback: float):
 	if is_attacking or not anim: 
@@ -79,7 +81,6 @@ func execute_melee_combo(dmg: float, knockback: float):
 		if i == combo.size() - 1:
 			await get_tree().create_timer(0.8).timeout
 			
-	close_fists() 
 	is_attacking = false
 	return true
 

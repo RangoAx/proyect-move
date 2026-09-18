@@ -64,8 +64,13 @@ func _on_took_damage():
 	flash_red()
 	# Interrumpe cualquier combo si el enemigo recibe daño
 	is_attacking = false 
+	
+var is_lunging: bool = false
 
 func _physics_process(delta: float) -> void:
+	if is_attacking and not is_lunging:
+		velocity.x = move_toward(velocity.x, 0, delta * 15.0)
+		velocity.z = move_toward(velocity.z, 0, delta * 15.0)
 	# (Tu lógica de detección actual va aquí...)
 	if player and not is_aware:
 		var dist = global_position.distance_to(player.global_position)
