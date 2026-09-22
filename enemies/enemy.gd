@@ -84,10 +84,6 @@ func _physics_process(delta: float) -> void:
 	if is_aware:
 		ai_enabled = true
 
-	if is_attacking:
-		velocity.x = move_toward(velocity.x, 0, delta * 15.0)
-		velocity.z = move_toward(velocity.z, 0, delta * 15.0)
-	
 	super._physics_process(delta)
 
 	if player and not override_look and hitstun_timer <= 0 and is_aware and not is_attacking:

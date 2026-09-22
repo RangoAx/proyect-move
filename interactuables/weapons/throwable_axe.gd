@@ -6,8 +6,6 @@ extends RigidBody3D
 var thrower : Node3D = null
 var hitted : bool = false
 
-
-
 func _physics_process(delta):
 	pass
 

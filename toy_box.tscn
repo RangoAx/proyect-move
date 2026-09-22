@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dhmv0uuc0okel" path="res://interactuables/floor_trap.tscn" id="4_phjgw"]
 [ext_resource type="PackedScene" uid="uid://c62b65p2kf5dq" path="res://components/pawns/player/player.tscn" id="5_ty26i"]
 [ext_resource type="PackedScene" uid="uid://bvngeudqgthha" path="res://levels/map_1/casa.tscn" id="6_jmlt3"]
+[ext_resource type="PackedScene" uid="uid://b3ejlr2kfhsa4" path="res://enemies/enemy_axe.tscn" id="7_gg1b1"]
 [ext_resource type="PackedScene" uid="uid://bgwvrd0o052k" path="res://enemies/enemy_fist.tscn" id="8_jmlt3"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_4pysu"]
@@ -186,10 +187,10 @@ bones/125/position = Vector3(-0.88164705, 1.5142653, -0.027971053)
 bones/125/rotation = Quaternion(0.6748404, -0.4592925, 0.42361084, 0.3926764)
 
 [node name="BoneAttachment3D" parent="Player/PlayerMesh/Armature/Skeleton3D" index="0" unique_id=2105512041]
-transform = Transform3D(0.21920863, -0.9525825, 0.21103288, -0.28721416, -0.2697116, -0.91911, 0.9324461, 0.14086524, -0.33271834, -0.8835908, 1.492658, -0.05629526)
+transform = Transform3D(0.21920863, -0.9525825, 0.21103288, -0.28721416, -0.2697116, -0.91911, 0.9324461, 0.14086524, -0.33271834, -0.881647, 3.7411406, 0.00610666)
 
 [node name="BoneAttachment3D2" parent="Player/PlayerMesh/Armature/Skeleton3D" index="2" unique_id=1372867059]
-transform = Transform3D(0.21920863, -0.9525825, 0.21103288, -0.28721416, -0.2697116, -0.91911, 0.9324461, 0.14086524, -0.33271834, -0.8835908, 1.492658, -0.05629526)
+transform = Transform3D(0.21920863, -0.9525825, 0.21103288, -0.28721416, -0.2697116, -0.91911, 0.9324461, 0.14086524, -0.33271834, -0.881647, 3.7411406, 0.00610666)
 
 [node name="Camera3D" parent="Player/SpringArm3D" parent_id_path=PackedInt32Array(936416609, 229359943) index="0" unique_id=470049034]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.78231, 0, -25.29346)
@@ -218,23 +219,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82.13389, -0.073376894, -25.5
 [node name="Caja2" parent="." unique_id=1267211469 instance=ExtResource("4_gg1b1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.831795, -0.8302345, -33.72435)
 
-[node name="FistEnemy" parent="." unique_id=109757783 instance=ExtResource("8_jmlt3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.503773, 0, 0)
-
-[node name="FistEnemy2" parent="." unique_id=715649026 instance=ExtResource("8_jmlt3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5455194, -0.8287118, -9.388688)
-
-[node name="FistEnemy3" parent="." unique_id=2047696079 instance=ExtResource("8_jmlt3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.239537, -0.82871133, -10.616999)
-
-[node name="FistEnemy4" parent="." unique_id=1873795125 instance=ExtResource("8_jmlt3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9167919, -0.82871133, -9.580536)
-
 [node name="FistEnemy5" parent="." unique_id=1812514261 instance=ExtResource("8_jmlt3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.81836224, -0.82871157, -7.9497385)
 
-[node name="FistEnemy6" parent="." unique_id=1280501455 instance=ExtResource("8_jmlt3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2550783, -0.8287118, -9.354893)
+[node name="AxeEnemy" parent="." unique_id=715649026 instance=ExtResource("7_gg1b1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.304938, -0.8120339, 1.503603)
 
 [editable path="Player"]
 [editable path="Player/PlayerMesh"]
