@@ -42,3 +42,18 @@ main_explanation = "Hacha"
 layout_mode = 2
 ability_string = "player_level"
 main_explanation = "Personaje"
+
+[node name="BtnBack" type="Button" parent="." unique_id=1063388217]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -28.5
+offset_top = -47.0
+offset_right = 28.5
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Volver"

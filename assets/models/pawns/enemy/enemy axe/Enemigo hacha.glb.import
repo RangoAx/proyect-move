@@ -43,9 +43,9 @@ _subresources={
 "animations": {
 "Idle_E2": {
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "",
+"save_to_file/fallback_path": "res://assets/models/pawns/enemy/enemy axe/animaciones/Idle_E2.res",
 "save_to_file/keep_custom_tracks": true,
-"save_to_file/path": "",
+"save_to_file/path": "uid://cw7sjwla3h51q",
 "settings/loop_mode": 1,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,
@@ -2099,9 +2099,9 @@ _subresources={
 },
 "Throw_E2": {
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "",
+"save_to_file/fallback_path": "res://assets/models/pawns/enemy/enemy axe/animaciones/Throw_E2.res",
 "save_to_file/keep_custom_tracks": true,
-"save_to_file/path": "",
+"save_to_file/path": "uid://b3uy5mhtxya8v",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,
@@ -4155,9 +4155,9 @@ _subresources={
 },
 "Walk_E2": {
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "",
+"save_to_file/fallback_path": "res://assets/models/pawns/enemy/enemy axe/animaciones/Walk_E2.res",
 "save_to_file/keep_custom_tracks": true,
-"save_to_file/path": "",
+"save_to_file/path": "uid://cqhem655hnl6c",
 "settings/loop_mode": 1,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,

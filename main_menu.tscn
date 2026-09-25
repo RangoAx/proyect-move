@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bqd7rsqs3ja06"]
 
 [ext_resource type="Script" uid="uid://d3w74sfxw4uyl" path="res://main_menu.gd" id="1_7vrkn"]
-[ext_resource type="PackedScene" uid="uid://bhfkd10wf5u33" path="res://assets/models/church.glb" id="2_7vrkn"]
+[ext_resource type="PackedScene" uid="uid://bhfkd10wf5u33" path="res://assets/models/world/church/church.glb" id="2_7vrkn"]
 
 [node name="MainMenu" type="Node3D" unique_id=1765561722]
 script = ExtResource("1_7vrkn")
@@ -40,14 +40,15 @@ grow_vertical = 2
 theme_override_constants/separation = 25
 alignment = 1
 
+[node name="Continuar" type="Button" parent="UI/MenuContainer/VBoxContainer" unique_id=1420043544]
+visible = false
+layout_mode = 2
+text = "Continuar"
+
 [node name="NuevoJuego" type="Button" parent="UI/MenuContainer/VBoxContainer" unique_id=94131759]
 propagate_maximum_size = true
 layout_mode = 2
 text = "Nuevo juego"
-
-[node name="Ajustes" type="Button" parent="UI/MenuContainer/VBoxContainer" unique_id=162315626]
-layout_mode = 2
-text = "Ajustes"
 
 [node name="Salir" type="Button" parent="UI/MenuContainer/VBoxContainer" unique_id=1965335189]
 layout_mode = 2

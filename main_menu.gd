@@ -8,7 +8,6 @@ extends Node3D
 func _ready():
 	# Conectar las señales "pressed" de los botones a sus respectivas funciones
 	btn_nuevo_juego.pressed.connect(_on_nuevo_juego_pressed)
-	btn_ajustes.pressed.connect(_on_ajustes_pressed)
 	btn_salir.pressed.connect(_on_salir_pressed)
 	
 	# Hacer que el botón "Nuevo Juego" tenga el foco por defecto

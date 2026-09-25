@@ -34,7 +34,7 @@ transform = Transform3D(1.48, 0, 0, 0, 1.48, 0, 0, 0, 1.48, 0, 0, 0.19039059)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.12864229)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Enemigo hacha/Weapon" unique_id=1713909190]
-transform = Transform3D(0.3551774, -0.60986495, 0.70845914, -0.07470712, -0.7739676, -0.62880296, 0.9318088, 0.17040972, -0.32045704, -0.2276624, 0.65173084, -0.15307894)
+transform = Transform3D(0.67182845, 0.7032671, 0.2325131, -0.011082412, 0.3234158, -0.94619226, -0.74062395, 0.63310206, 0.22507377, -0.0016418777, 0.93533736, 0.34892634)
 bone_name = "mixamorig_RightHand"
 bone_idx = 28
 use_external_skeleton = true
@@ -67,7 +67,6 @@ metadata/_custom_type_script = "uid://qrqoxjtc2rk0"
 
 [node name="LeafAxeCombo" type="Node" parent="CompositorSelector" unique_id=39585522]
 script = ExtResource("5_pdswd")
-attack_range = 1.8
 damage = 7.0
 knockback_multiplier = 0.05
 metadata/_custom_type_script = "uid://kw6ht13t422m"

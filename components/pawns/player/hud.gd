@@ -8,6 +8,7 @@ extends CanvasLayer
 @onready var weapon_name_label = $WeaponNotification/WeaponName
 @onready var axe_reload_bar = $Crosshair/AxeReloadProgress
 @onready var axe_ammo_label = $Crosshair/AxeAmmoLabel
+@onready var crosshair = $Crosshair
 
 var player: CharacterBody3D = null
 var notify_tween: Tween
@@ -47,12 +48,24 @@ func _update_health_vignette():
 		health_vignette.color.a = 0.0
 
 func _update_axe_hud():
-	if not player or not ("axe_amount" in player):
+	if not player:
+		return
+	
+	# --- AQUÍ VA EL BLOQUE ---
+	# Si murió o la pantalla de muerte está activa, ocultamos todo el punto de mira y salimos
+	if death_screen.visible or player.health <= 0 or player.weapon_manager.weapon != "Axe":
+		crosshair.visible = false
+		return
+	else:
+		crosshair.visible = true
+	# --------------------------
+
+	if not ("axe_amount" in player):
 		return
 	
 	var weapon_manager = player.get_node_or_null("WeaponManager")
 	
-	# Oculta el HUD si el WeaponManager no existe o el arma activa no es el Hacha
+	# Oculta los elementos del hacha si no está equipada, manteniendo el punto central visible
 	if not weapon_manager or weapon_manager.weapon != "Axe":
 		axe_reload_bar.visible = false
 		if axe_ammo_label: 

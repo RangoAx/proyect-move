@@ -7,6 +7,7 @@ var thrower : Node3D = null
 var hitted : bool = false
 
 func _physics_process(delta):
+	#ProjectSettings.set("display/window/size/viewport_width",2)
 	pass
 
 func _on_hitbox_body_entered(body: Node3D) -> void:

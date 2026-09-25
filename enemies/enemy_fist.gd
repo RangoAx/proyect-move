@@ -100,7 +100,6 @@ func animation_process(delta):
 
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
-	print(right_fist.monitoring)
 	#print(left_fist.monitoring or right_fist.monitoring)
 	#print(left_fist.get_overlapping_bodies())
 	
