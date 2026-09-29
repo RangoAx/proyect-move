@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cyfkdgoura2au"
-path="res://.godot/imported/hacha1.blend-91af2cf5bd7115b8b3272db6f9ffe56d.scn"
+path="res://.godot/imported/hacha1.blend-fbe3fad41b632699c365935a3c3b3892.scn"
 
 [deps]
 
-source_file="res://assets/models/hacha1.blend"
-dest_files=["res://.godot/imported/hacha1.blend-91af2cf5bd7115b8b3272db6f9ffe56d.scn"]
+source_file="res://assets/models/objects/hacha1.blend"
+dest_files=["res://.godot/imported/hacha1.blend-fbe3fad41b632699c365935a3c3b3892.scn"]
 
 [params]
 

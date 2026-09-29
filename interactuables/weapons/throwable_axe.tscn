@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bfctx8akremdc"]
 
-[ext_resource type="PackedScene" uid="uid://cyfkdgoura2au" path="res://assets/models/hacha1.blend" id="1_sy4u1"]
+[ext_resource type="PackedScene" uid="uid://cyfkdgoura2au" path="res://assets/models/objects/hacha1.blend" id="1_sy4u1"]
 [ext_resource type="Script" uid="uid://bh0w4kn2nt7ic" path="res://interactuables/weapons/throwable_axe.gd" id="1_x4bxl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sy4u1"]

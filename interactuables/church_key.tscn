@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://he8mf8ib6jso"]
+
+[ext_resource type="PackedScene" uid="uid://cdp4xcyxswsgp" path="res://assets/models/objects/key.blend" id="1_gtfsb"]
+[ext_resource type="Script" uid="uid://e1ss7aoosvjj" path="res://interactuables/church_key.gd" id="1_siycc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+size = Vector3(5.8746185, 2.338379, 6.727417)
+
+[node name="ChurchKey" type="Area3D" unique_id=2043287166]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_siycc")
+
+[node name="Mesh" parent="." unique_id=1487750631 instance=ExtResource("1_gtfsb")]
+transform = Transform3D(-8.742278e-09, -0.2, 0, 0.2, -8.742278e-09, 0, 0, 0, 0.2, 0, 0.57967573, 0.09155342)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=18915092]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.031039476, 0.66918945, -0.10850704)
+shape = SubResource("BoxShape3D_g4v7s")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1927139549]
+light_color = Color(1, 1, 0.2784314, 1)
+light_energy = 3.0

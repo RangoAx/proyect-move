@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://djlelkwgnuaxx" path="res://enemies/enemy_axe.gd" id="1_jennj"]
 [ext_resource type="PackedScene" uid="uid://c4mnwy5jghosv" path="res://assets/models/pawns/enemy/enemy axe/Enemigo hacha.glb" id="2_48v8s"]
 [ext_resource type="PackedScene" uid="uid://duuikg1641sl7" path="res://enemies/life_bar/enemy_life.tscn" id="3_8tr1a"]
-[ext_resource type="PackedScene" uid="uid://cyfkdgoura2au" path="res://assets/models/hacha1.blend" id="3_bjynw"]
+[ext_resource type="PackedScene" uid="uid://cyfkdgoura2au" path="res://assets/models/objects/hacha1.blend" id="3_bjynw"]
 [ext_resource type="Script" uid="uid://qrqoxjtc2rk0" path="res://components/behavior_tree/selector.gd" id="4_65o8c"]
 [ext_resource type="Script" uid="uid://kevyo417oc2g" path="res://components/behavior_tree/leaf_follow_target.gd" id="5_jennj"]
 [ext_resource type="Script" uid="uid://kw6ht13t422m" path="res://components/behavior_tree/leaf_axe_combo.gd" id="5_pdswd"]

@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://gkaaydwl1ts1" path="res://components/pawns/player/camera.gd" id="3_weavl"]
 [ext_resource type="Script" uid="uid://ccqcbn11mcbts" path="res://components/pawns/player/weapons/slash_trail.gd" id="4_lah1q"]
 [ext_resource type="Script" uid="uid://bh6y8o50nieqe" path="res://components/pawns/player/weapons/weapon_manager.gd" id="4_todix"]
-[ext_resource type="PackedScene" uid="uid://cyfkdgoura2au" path="res://assets/models/hacha1.blend" id="4_ul21n"]
+[ext_resource type="PackedScene" uid="uid://cyfkdgoura2au" path="res://assets/models/objects/hacha1.blend" id="4_ul21n"]
 [ext_resource type="Script" uid="uid://c7b38omn5p7tl" path="res://components/pawns/player/weapons/sword.gd" id="5_p5q5u"]
 [ext_resource type="AnimationLibrary" uid="uid://dehdfe0r86c8k" path="res://assets/models/player_animations.res" id="5_ul21n"]
 [ext_resource type="Script" uid="uid://b82ibmynpw3y4" path="res://components/pawns/player/weapons/axe.gd" id="9_rmd83"]

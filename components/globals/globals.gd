@@ -5,6 +5,7 @@ var player
 signal fragments_updated(total: int, added_amount: int)
 signal weapon_swapped(weapon_name: String)
 var has_church_key: bool = false
+var has_axe : bool = false
 signal objective_updated(new_text: String)
 
 func set_objective(text: String):
