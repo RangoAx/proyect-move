@@ -53,3 +53,35 @@ text = "Nuevo juego"
 [node name="Salir" type="Button" parent="UI/MenuContainer/VBoxContainer" unique_id=1965335189]
 layout_mode = 2
 text = "Salir"
+
+[node name="LoreScreen" type="ColorRect" parent="UI/MenuContainer" unique_id=1313060070]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Continuar" type="Button" parent="UI/MenuContainer/LoreScreen" unique_id=1624987168]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Continuar"
+
+[node name="Label" type="Label" parent="UI/MenuContainer/LoreScreen" unique_id=1112398450]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 143.0
+offset_right = 1193.0
+offset_bottom = 166.0
+text = "Eres Antonio. Tras recibir reportes de extrañas desapariciones, has llegado a este pueblo abandonado. Con solo tu cuchillo, debes adentrarte en la niebla..."

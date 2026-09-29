@@ -71,7 +71,7 @@ func try_estocada():
 
 	var charge_time = 0.0
 	var canceled = false
-	while charge_time < 0.8:
+	while charge_time < 1.2:
 		await get_tree().physics_frame
 		charge_time += get_physics_process_delta_time()
 		

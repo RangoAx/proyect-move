@@ -9,6 +9,7 @@ extends CanvasLayer
 @onready var axe_reload_bar = $Crosshair/AxeReloadProgress
 @onready var axe_ammo_label = $Crosshair/AxeAmmoLabel
 @onready var crosshair = $Crosshair
+@onready var objective_label = $ObjectiveLabel
 
 var player: CharacterBody3D = null
 var notify_tween: Tween
@@ -25,6 +26,11 @@ func _ready():
 	fragment_notify_label.modulate.a = 0.0
 	weapon_notify_panel.modulate.a = 0.0
 	death_screen.visible = false
+	Globals.objective_updated.connect(_on_objective_updated)
+	objective_label.text = "Objetivo: Adéntrate en la niebla."
+
+func _on_objective_updated(text: String):
+	objective_label.text = "Objetivo: " + text
 
 func _process(_delta):
 	_update_health_vignette()

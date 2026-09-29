@@ -24,6 +24,11 @@ config/icon="res://pj/icon.svg"
 Globals="*uid://nvjqgmsn52l0"
 Settings="*uid://caxn3pu5fwq75"
 
+[display]
+
+window/size/mode=3
+window/stretch/mode="canvas_items"
+
 [editor]
 
 movie_writer/movie_file="C:/Games/gola.avi"

@@ -2,10 +2,13 @@ extends Node
 
 var player
 
-var scrap_amount : int = 0
-
 signal fragments_updated(total: int, added_amount: int)
 signal weapon_swapped(weapon_name: String)
+var has_church_key: bool = false
+signal objective_updated(new_text: String)
+
+func set_objective(text: String):
+	objective_updated.emit(text)
 
 var fragments : int = 0
 var knife_level : int = 3

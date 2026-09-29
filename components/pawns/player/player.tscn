@@ -31,7 +31,7 @@ shader = ExtResource("11_fvfw8")
 
 [sub_resource type="Gradient" id="Gradient_lah1q"]
 interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.09047619, 1)
+offsets = PackedFloat32Array(0, 0.044600938, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_m2wnl"]
@@ -47,7 +47,7 @@ anim = NodePath("PlayerMesh/AnimationPlayer")
 
 [node name="PlayerMesh" parent="." unique_id=558761329 instance=ExtResource("2_v0xwp")]
 
-[node name="BoneAttachment3D" type="BoneAttachment3D" parent="PlayerMesh/Armature/Skeleton3D" parent_id_path=PackedInt32Array(558761329, 1228561757) index="0" unique_id=2105512041]
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="PlayerMesh/Armature/Skeleton3D" parent_id_path=PackedInt32Array(558761329, 469026973) index="0" unique_id=2105512041]
 transform = Transform3D(0.21920863, -0.9525825, 0.21103288, -0.28721416, -0.2697116, -0.91911, 0.9324461, 0.14086524, -0.33271834, -0.881647, 1.5142652, -0.027971148)
 bone_name = "mixamorig_RightHand"
 bone_idx = 28
@@ -69,7 +69,7 @@ transform = Transform3D(0.9999232, 0.001083588, -0.012345403, -0.0009982621, 0.9
 script = ExtResource("4_lah1q")
 trail_lifetime = 0.5
 
-[node name="BoneAttachment3D2" type="BoneAttachment3D" parent="PlayerMesh/Armature/Skeleton3D" parent_id_path=PackedInt32Array(558761329, 1228561757) index="2" unique_id=1372867059]
+[node name="BoneAttachment3D2" type="BoneAttachment3D" parent="PlayerMesh/Armature/Skeleton3D" parent_id_path=PackedInt32Array(558761329, 469026973) index="2" unique_id=1372867059]
 transform = Transform3D(0.21920863, -0.9525825, 0.21103288, -0.28721416, -0.2697116, -0.91911, 0.9324461, 0.14086524, -0.33271834, -0.881647, 1.5142652, -0.027971148)
 bone_name = "mixamorig_RightHand"
 bone_idx = 28
@@ -86,11 +86,11 @@ unique_name_in_owner = true
 transform = Transform3D(1.0000037, 0.0006587878, -0.00061160326, -0.00065906346, 1.0000002, -5.0857663e-05, 0.00061020255, 5.1379204e-05, 1.0000044, -1.486558, -0.18660426, 0.043156028)
 shape = SubResource("BoxShape3D_engsh")
 
-[node name="cuchi loco" parent="PlayerMesh" index="2" unique_id=1068161498]
+[node name="cuchi loco" parent="PlayerMesh" index="2" unique_id=245385974]
 transform = Transform3D(-0.3067236, 0.9495438, -0.065468416, -0.6320085, -0.1517557, 0.7599572, 0.7116776, 0.2744734, 0.6466673, -0.58099157, 1.3112522, -0.008180913)
 visible = false
 
-[node name="AnimationPlayer" parent="PlayerMesh" index="3" unique_id=1811300419]
+[node name="AnimationPlayer" parent="PlayerMesh" index="3" unique_id=1362387543]
 libraries/ = ExtResource("5_ul21n")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=165164992]
@@ -106,8 +106,8 @@ margin = 0.1
 
 [node name="Movement" type="Node" parent="." unique_id=692540094]
 script = ExtResource("2_pfj3o")
-walk_speed = 3.5
-run_speed = 6.0
+walk_speed = 2.5
+run_speed = 4.0
 slipperiness = 7.084
 dash_duration = 0.05
 dash_cooldown = 0.7
@@ -215,9 +215,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -93.0
-offset_top = 14.0
+offset_top = -2.0
 offset_right = 17.0
-offset_bottom = 37.0
+offset_bottom = 21.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Fragmentos: 0"
@@ -230,10 +230,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
+offset_left = -4.0
+offset_top = 40.5
+offset_right = 36.0
+offset_bottom = 63.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "+15"
@@ -293,5 +293,11 @@ text = "1/1"
 
 [node name="PauseMenu" parent="HUD" unique_id=153243669 instance=ExtResource("12_5wi1q")]
 visible = false
+
+[node name="ObjectiveLabel" type="Label" parent="HUD" unique_id=1646137531]
+offset_left = 32.0
+offset_top = 70.0
+offset_right = 72.0
+offset_bottom = 93.0
 
 [editable path="PlayerMesh"]
