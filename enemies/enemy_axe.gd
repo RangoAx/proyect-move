@@ -65,7 +65,7 @@ func spawn_projectile():
 		axe.thrower = self
 	
 	# El offset determina de dónde sale el hacha (ajústalo para que salga de su mano)
-	var offset = Vector3(0.7, 1.5, 0)
+	var offset = Vector3(-0.6, 1.3, 0)
 	get_parent().add_child(axe)
 	
 	axe.global_position = global_position + offset.rotated(Vector3(0, 1, 0), rotation.y)

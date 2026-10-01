@@ -8,8 +8,8 @@ class_name MovementManager
 @onready var collision_shape : CollisionShape3D = $"../CollisionShape3D"
 
 @export var jump_impulse : float = 6
-@export var walk_speed : float = 5
-@export var run_speed : float = 8
+@export var walk_speed : float = 2.5
+var run_speed : float = walk_speed * 1.6
 @export_range(1,30) var slipperiness : float = 30
 
 @export var crouch_speed : float = 4.0
@@ -61,6 +61,10 @@ func _process_player_jump():
 		player.anim.play("jump")
 
 func _process_player_run(_delta : float):
+	if not Globals.can_run:
+		is_running = false
+		return
+		
 	if Input.is_action_pressed("run"): is_running = true
 	else: is_running = false
 	if is_aiming:
@@ -132,8 +136,12 @@ func _process_cosmetic(delta : float):
 var is_dashing : bool
 
 func _process_dash_input():
+	if not Globals.can_dash:
+		return
+		
 	if Input.is_action_just_pressed("dash") and not is_dashing and not weapon_manager.is_attacking and _dash_cooldown_timer <= 0:
 		perform_dash()
+		
 func perform_dash():
 	is_dashing = true
 	player.invulnerable = true

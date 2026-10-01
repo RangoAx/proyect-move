@@ -34,7 +34,7 @@ transform = Transform3D(1.48, 0, 0, 0, 1.48, 0, 0, 0, 1.48, 0, 0, 0.19039059)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.12864229)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Enemigo hacha/Weapon" unique_id=1713909190]
-transform = Transform3D(0.67182845, 0.7032671, 0.2325131, -0.011082412, 0.3234158, -0.94619226, -0.74062395, 0.63310206, 0.22507377, -0.0016418777, 0.93533736, 0.34892634)
+transform = Transform3D(0.24643539, -0.94668245, 0.20751382, -0.26950455, -0.27261192, -0.9236074, 0.93093324, 0.17168371, -0.3223163, -0.6093304, 1.0078229, -0.09884895)
 bone_name = "mixamorig_RightHand"
 bone_idx = 28
 use_external_skeleton = true

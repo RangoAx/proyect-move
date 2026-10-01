@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://dsd5ryrk7fbi4"]
+
+[ext_resource type="PackedScene" uid="uid://dcdn0yhgoa05u" path="res://assets/models/pawns/enemy/lumberjack/Leñador v2.glb" id="1_irxth"]
+[ext_resource type="Script" uid="uid://c4u84o634pob5" path="res://enemies/enemy_lumberjack.gd" id="1_xeyt0"]
+[ext_resource type="PackedScene" uid="uid://duuikg1641sl7" path="res://enemies/life_bar/enemy_life.tscn" id="3_alf2d"]
+[ext_resource type="Script" uid="uid://qrqoxjtc2rk0" path="res://components/behavior_tree/selector.gd" id="4_hwvbn"]
+[ext_resource type="Script" uid="uid://kevyo417oc2g" path="res://components/behavior_tree/leaf_follow_target.gd" id="5_ncm3r"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4v7s"]
+radius = 0.36767578
+height = 2.7902222
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_xeyt0"]
+viewport_path = NodePath("SubViewport")
+
+[node name="LumberjackEnemy" type="CharacterBody3D" unique_id=1060898083]
+script = ExtResource("1_xeyt0")
+
+[node name="Leñador v2" parent="." unique_id=856719789 instance=ExtResource("1_irxth")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=811708098]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3377991, 0)
+shape = SubResource("CapsuleShape3D_g4v7s")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1606225963]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0176468, 0)
+billboard = 1
+texture = SubResource("ViewportTexture_xeyt0")
+
+[node name="SubViewport" parent="." unique_id=56900519 instance=ExtResource("3_alf2d")]
+
+[node name="EnemyLifeBar" parent="SubViewport" index="0" unique_id=2025452441]
+max_value = 320.0
+value = 320.0
+
+[node name="CompositorSelector" type="Node" parent="." unique_id=1734455633]
+script = ExtResource("4_hwvbn")
+metadata/_custom_type_script = "uid://qrqoxjtc2rk0"
+
+[node name="LeafFollowTarget" type="Node" parent="CompositorSelector" unique_id=480789990]
+script = ExtResource("5_ncm3r")
+is_target_player = true
+metadata/_custom_type_script = "uid://kevyo417oc2g"
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1277273447]
+
+[editable path="SubViewport"]

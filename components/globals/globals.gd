@@ -19,6 +19,15 @@ var player_level : int = 1
 var cost_level_2 : int = 50
 var cost_level_3 : int = 100
 
+var can_run: bool = false
+var can_dash: bool = false
+var can_attack: bool = false
+
+func reset_tutorial_locks():
+	can_run = false
+	can_dash = false
+	can_attack = false
+
 func add_fragments(amount: int):
 	fragments += amount
 	fragments_updated.emit(fragments, amount)

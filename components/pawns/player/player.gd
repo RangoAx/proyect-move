@@ -82,5 +82,17 @@ func die():
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func _on_retry_pressed():
-	# Reinicia la escena completa limpiando enemigos, objetos y vida
-	get_tree().reload_current_scene()
+	# 1. Quita cualquier pausa que pudiera estar activa
+	get_tree().paused = false 
+	
+	# 2. Reinicia las habilidades por si el jugador murió en el tutorial
+	if Globals.has_method("reset_tutorial_locks"):
+		Globals.reset_tutorial_locks()
+		
+	# 3. Carga la escena de forma segura comprobando la ruta
+	var current_path = get_tree().current_scene.scene_file_path
+	if current_path and current_path != "":
+		get_tree().change_scene_to_file(current_path)
+	else:
+		# Fallback directo al nivel principal si se pierde la ruta
+		get_tree().change_scene_to_file("res://levels/map_1/toy_box.tscn")

@@ -20,6 +20,7 @@ viewport_path = NodePath("SubViewport")
 [node name="FistEnemy" type="CharacterBody3D" unique_id=715649026 groups=["Enemy"]]
 collision_layer = 2
 script = ExtResource("1_x1l8e")
+detection_range = 9.0
 
 [node name="Fists" type="Node3D" parent="." unique_id=1286269430]
 
@@ -65,7 +66,7 @@ shape = SubResource("BoxShape3D_jfak0")
 [node name="Enemigo puño" parent="." unique_id=1980857915 instance=ExtResource("2_x1l8e")]
 transform = Transform3D(0.42, 0, 0, 0, 0.42, 0, 0, 0, 0.42, 0, 0, 0)
 
-[node name="Skeleton3D" parent="Enemigo puño/Armature" parent_id_path=PackedInt32Array(1980857915, 5601757) index="0" unique_id=807894043]
+[node name="Skeleton3D" parent="Enemigo puño/Armature" parent_id_path=PackedInt32Array(1980857915, 1523434187) index="0" unique_id=828801135]
 bones/0/position = Vector3(-6.8697964e-11, 2.5837524, 0.032444194)
 bones/0/rotation = Quaternion(-4.0143494e-08, -3.1786513e-08, 3.5555142e-11, 1)
 bones/1/rotation = Quaternion(-0.087167375, 3.1668627e-08, 2.7353289e-09, 0.99619377)

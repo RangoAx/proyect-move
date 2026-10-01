@@ -34,6 +34,9 @@ func hitbox_close():
 		slash_trail.is_emitting = false # Changed
 
 func attack():
+	if not Globals.can_attack:
+		return
+		
 	if is_estocada:
 		return
 		
@@ -48,11 +51,13 @@ func attack():
 			await play_attack_animation("Ataque3", 0.1)
 	hitbox_close()
 	
-	#player.movement.apply_knockback(push_origin, 0.12)
-	
 func aim_start():
+	if not Globals.can_attack:
+		return
+		
 	if Globals.knife_level >= 2 and not is_estocada:
 		try_estocada()
+	
 
 func aim_attack():
 	pass
