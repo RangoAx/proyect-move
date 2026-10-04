@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://cjeqpb8ti8t7i" path="res://components/zone_spawner.gd" id="1_d84ol"]
 [ext_resource type="PackedScene" uid="uid://b182265d1k344" path="res://levels/map_1/piso.tscn" id="1_ty26i"]
 [ext_resource type="ArrayMesh" uid="uid://4uuwr3fkasyf" path="res://assets/models/world/terrain_Cube_006.res" id="3_4jc0i"]
-[ext_resource type="PackedScene" uid="uid://c4bjtroh7k83h" path="res://enemies/enemy_pitchfork.tscn" id="3_fwb5c"]
 [ext_resource type="PackedScene" uid="uid://b5tev4unam80w" path="res://levels/map_1/caja.tscn" id="4_gg1b1"]
 [ext_resource type="PackedScene" uid="uid://dhmv0uuc0okel" path="res://interactuables/floor_trap.tscn" id="4_phjgw"]
 [ext_resource type="PackedScene" uid="uid://c62b65p2kf5dq" path="res://components/pawns/player/player.tscn" id="5_ty26i"]
@@ -62,8 +61,10 @@ background_mode = 2
 sky = SubResource("Sky_ej0ts")
 tonemap_mode = 2
 glow_enabled = true
+fog_density = 0.07
 fog_depth_curve = 2.2973967
 fog_depth_end = 72.5
+volumetric_fog_enabled = true
 volumetric_fog_density = 0.04
 
 [sub_resource type="LabelSettings" id="LabelSettings_g4v7s"]
@@ -95,20 +96,17 @@ size = Vector3(1, 1, 47.8558)
 
 [node name="TownZone1" type="Area3D" parent="." unique_id=1788823560]
 script = ExtResource("1_d84ol")
-enemy_types = Array[PackedScene]([ExtResource("8_jmlt3"), ExtResource("8_jmlt3"), ExtResource("3_fwb5c"), ExtResource("8_jmlt3"), ExtResource("8_jmlt3"), ExtResource("3_fwb5c")])
+enemy_types = Array[PackedScene]([ExtResource("8_jmlt3"), ExtResource("8_jmlt3"), ExtResource("8_jmlt3"), ExtResource("8_jmlt3"), ExtResource("8_jmlt3"), ExtResource("8_jmlt3"), ExtResource("8_jmlt3"), ExtResource("8_jmlt3"), ExtResource("8_jmlt3"), ExtResource("8_jmlt3"), ExtResource("8_jmlt3"), ExtResource("8_jmlt3"), ExtResource("8_jmlt3"), ExtResource("8_jmlt3"), ExtResource("8_jmlt3"), ExtResource("8_jmlt3"), ExtResource("8_jmlt3"), ExtResource("8_jmlt3"), ExtResource("8_jmlt3"), ExtResource("8_jmlt3"), ExtResource("8_jmlt3")])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TownZone1" unique_id=682367349]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.721634, 3.788025, 0.33364487)
 shape = SubResource("BoxShape3D_57qmd")
 
 [node name="Marker3D" type="Marker3D" parent="TownZone1" unique_id=1951024160]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.221187, 0, 42.997566)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.238983, 0, 5.823593)
 
 [node name="Marker3D2" type="Marker3D" parent="TownZone1" unique_id=66876603]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.791542, 0, 31.398615)
-
-[node name="Marker3D3" type="Marker3D" parent="TownZone1" unique_id=1598066347]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57.862976, 0, 40.15959)
 
 [node name="Marker3D4" type="Marker3D" parent="TownZone1" unique_id=257675546]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9463983, 0, -44.672173)
@@ -208,7 +206,7 @@ shadow_enabled = true
 [node name="Player" parent="." unique_id=936416609 instance=ExtResource("5_ty26i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -96.522095, -0.8006606, -10.50946)
 
-[node name="Skeleton3D" parent="Player/PlayerMesh/Armature" parent_id_path=PackedInt32Array(936416609, 558761329, 809700492) index="0" unique_id=469026973]
+[node name="Skeleton3D" parent="Player/PlayerMesh/Armature" parent_id_path=PackedInt32Array(936416609, 558761329, 1516684087) index="0" unique_id=1228561757]
 bones/0/position = Vector3(-1.2927853e-11, 1.075811, 0.014604775)
 bones/0/rotation = Quaternion(-3.768593e-08, -3.1786513e-08, 8.845539e-12, 1)
 bones/1/position = Vector3(-1.2100373e-09, 0.10798304, -0.019096855)

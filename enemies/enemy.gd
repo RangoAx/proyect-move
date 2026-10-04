@@ -65,6 +65,22 @@ func _on_took_damage():
 	# Interrumpe cualquier combo si el enemigo recibe daño
 	is_attacking = false 
 	
+	# 1. Detiene el AnimationPlayer agresivamente sin importar qué esté haciendo
+	if anim:
+		anim.stop()
+		
+	# 2. Apagar todas las hitboxes activas para evitar "daño fantasma"
+	_apagar_hitboxes(self)
+
+# Función recursiva que busca cualquier Area3D que se llame "Hitbox" y la desactiva
+func _apagar_hitboxes(nodo: Node):
+	for child in nodo.get_children():
+		# Apagamos el monitoreo si es un Area3D y tiene "Hitbox" en el nombre
+		if child is Area3D and "Hitbox" in child.name:
+			child.set_deferred("monitoring", false)
+		
+		# Seguimos buscando más adentro en la jerarquía (por si están dentro de los huesos)
+		_apagar_hitboxes(child)
 var is_lunging: bool = false
 
 func _physics_process(delta: float) -> void:

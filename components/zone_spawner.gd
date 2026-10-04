@@ -4,7 +4,7 @@ class_name ZoneSpawner
 @export_group("Configuración de Oleadas")
 @export var enemy_types: Array[PackedScene] # Arrastra aquí las escenas de tus enemigos
 @export var max_concurrent: int = 5
-@export var total_to_spawn: int = 30
+@export var total_to_spawn: int = 20
 
 var _spawn_points: Array[Marker3D] = []
 var _is_active: bool = false
@@ -32,6 +32,14 @@ func _check_and_spawn() -> void:
 	if not _is_active: 
 		return
 	
+	# --- SEGURO 1: Si el jugador está muerto, cortamos el ciclo ---
+	if Globals.player and Globals.player.is_dead:
+		return
+		
+	# --- SEGURO 2: Si la escena se está borrando/recargando, abortamos ---
+	if not is_inside_tree() or get_tree() == null or get_tree().current_scene == null:
+		return
+	
 	# Repone enemigos mientras haya espacio en pantalla (máx 5) y en la reserva (máx 30)
 	while _alive_count < max_concurrent and _spawned_count < total_to_spawn:
 		_spawn_enemy()
@@ -48,17 +56,20 @@ func _spawn_enemy() -> void:
 	enemy.global_position = sp.global_position
 	
 	enemy.tree_exited.connect(_on_enemy_died)
-	get_tree().current_scene.add_child(enemy)
 	
-	# --- NUEVO: Despierta al enemigo y activa su IA al instante ---
-	if "is_aware" in enemy:
-		enemy.is_aware = true
-	if "ai_enabled" in enemy:
-		enemy.ai_enabled = true
-	# -------------------------------------------------------------
-	
-	_alive_count += 1
-	_spawned_count += 1
+	# --- SEGURO 3: Verificación final justo antes de inyectarlo en el mapa ---
+	if get_tree() and get_tree().current_scene:
+		get_tree().current_scene.add_child(enemy)
+		
+		# Despertamos al enemigo al instante
+		if "is_aware" in enemy: enemy.is_aware = true
+		if "ai_enabled" in enemy: enemy.ai_enabled = true
+		
+		_alive_count += 1
+		_spawned_count += 1
+	else:
+		# Si la escena ya no existe, eliminamos el modelo huérfano para evitar fugas de memoria
+		enemy.queue_free()
 
 func _on_enemy_died() -> void:
 	_alive_count -= 1

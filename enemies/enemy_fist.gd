@@ -87,16 +87,15 @@ func execute_melee_combo(dmg: float, knockback: float):
 func animation_process(delta):
 	# --- GESTOR DE ANIMACIONES DE MOVIMIENTO ---
 	if anim and not is_attacking:
-		# Mide qué tan rápido se mueve en el suelo (ignora la gravedad en Y)
 		var horizontal_speed = Vector2(velocity.x, velocity.z).length()
 		
-		# Si está aturdido por un golpe, no camina
+		# Si está aturdido por un golpe, forzamos la pose Idle para que no se quede congelado
 		if hitstun_timer > 0:
-			pass # Aquí podrías poner anim.play("hurt") en el futuro
+			anim.play("Idle_E1") # <- Cambiamos el "pass" por esto
 		elif horizontal_speed > 0.2:
-			anim.play("walk_E1") # Asegúrate que se llame así en tu AnimationPlayer
+			anim.play("walk_E1") 
 		else:
-			anim.play("Idle_E1")    # Asegúrate que se llame así en tu AnimationPlayer
+			anim.play("Idle_E1")
 
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
