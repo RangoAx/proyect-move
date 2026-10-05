@@ -106,8 +106,6 @@ margin = 0.1
 
 [node name="Movement" type="Node" parent="." unique_id=692540094]
 script = ExtResource("2_pfj3o")
-walk_speed = 2.5
-run_speed = 4.0
 slipperiness = 7.084
 dash_duration = 0.05
 dash_cooldown = 0.7

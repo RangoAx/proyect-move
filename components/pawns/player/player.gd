@@ -96,3 +96,4 @@ func _on_retry_pressed():
 	else:
 		# Fallback directo al nivel principal si se pierde la ruta
 		get_tree().change_scene_to_file("res://levels/map_1/toy_box.tscn")
+		

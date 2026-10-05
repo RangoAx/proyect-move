@@ -60,3 +60,24 @@ func _apply_player_health_upgrade():
 	elif player_level == 3:
 		player.max_health = 200.0 # Nivel 3[cite: 1]
 	player.health = player.max_health
+	
+var _msg_id: int = 0
+
+func show_announcement(text: String, duration: float = 5.0) -> void:
+	if not player:
+		return
+	var label = player.get_node_or_null("HUD/TutorialLabel")
+	if not label:
+		return
+		
+	_msg_id += 1
+	var current_id = _msg_id
+	
+	label.text = text
+	label.visible = true
+	
+	if duration > 0.0:
+		await get_tree().create_timer(duration).timeout
+		# Solo lo oculta si ningún mensaje posterior tomó el control
+		if current_id == _msg_id and is_instance_valid(label):
+			label.visible = false

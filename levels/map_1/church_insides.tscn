@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bko0fvadreqex"]
+
+[ext_resource type="PackedScene" uid="uid://c62b65p2kf5dq" path="res://components/pawns/player/player.tscn" id="1_v0g4c"]
+
+[node name="ChurchInsides" type="Node3D" unique_id=1271118721]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1297393743]
+
+[node name="Floor" type="CSGBox3D" parent="NavigationRegion3D" unique_id=1350445651]
+use_collision = true
+size = Vector3(30, 1, 30)
+
+[node name="Player" parent="." unique_id=936416609 instance=ExtResource("1_v0g4c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6982086, 0.5092888, 10.983)

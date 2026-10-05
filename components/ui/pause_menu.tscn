@@ -71,7 +71,7 @@ text = "Ajustes"
 
 [node name="Ability" type="Button" parent="Panel/MarginContainer/MainOptions" unique_id=1729181070]
 layout_mode = 2
-text = "Habilidades"
+text = "Mejoras"
 
 [node name="BtnQuit" type="Button" parent="Panel/MarginContainer/MainOptions" unique_id=8910408]
 unique_name_in_owner = true

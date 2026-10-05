@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cw3sqcy7hbcii"]
 
-[ext_resource type="Script" uid="uid://dryw58nenclxw" path="res://axe_new.gd" id="1_s78tj"]
+[ext_resource type="Script" uid="uid://dryw58nenclxw" path="res://interactuables/axe_new.gd" id="1_s78tj"]
 [ext_resource type="PackedScene" uid="uid://cyfkdgoura2au" path="res://assets/models/objects/hacha1.blend" id="2_4tpqb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4jc0i"]

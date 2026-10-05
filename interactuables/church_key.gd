@@ -6,30 +6,33 @@ extends Area3D
 
 var _tiempo_pasado: float = 0.0
 var _y_inicial: float = 0.0
+var _ya_recogido: bool = false 
 
 func _ready():
-	# Configuración de físicas
 	collision_layer = 0
 	collision_mask = 4 
 	body_entered.connect(_on_body_entered)
-	
-	# Guardamos la altura original en la que colocaste la llave en el mapa
 	_y_inicial = global_position.y
 
 func _process(delta: float):
+	if _ya_recogido: return
 	_tiempo_pasado += delta
-	
-	# Hace que la llave gire sobre sí misma (Eje Y)
 	rotation.y += velocidad_rotacion * delta
-	
-	# Hace que suba y baje usando una onda matemática suave
 	global_position.y = _y_inicial + (sin(_tiempo_pasado * velocidad_flotacion) * altura_flotacion)
 
 func _on_body_entered(body: Node3D):
+	if _ya_recogido: return
+		
 	if body.is_in_group("player"):
+		_ya_recogido = true
+		
+		# AHORA SÍ: Activa la llave (no el hacha)
 		Globals.has_church_key = true
 		
-		if Globals.has_method("set_objective"):
-			Globals.set_objective("Ve a la entrada de la Iglesia.")
+		visible = false
+		set_deferred("monitoring", false)
+		
+		# Actualiza la misión
+		Globals.set_objective("Ve a la entrada de la Iglesia.")
 		
 		queue_free()

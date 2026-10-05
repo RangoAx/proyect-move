@@ -42,13 +42,24 @@ func attack():
 		
 	is_estocada = false
 	
-	var push_origin = player.global_position - player.movement.mesh.global_transform.basis.z
-	player.movement.apply_knockback(push_origin, 0.12)
+	# GOLPE 1: Calculamos la dirección actual de la malla y empujamos
+	var dir_1 = player.global_position - player.movement.mesh.global_transform.basis.z
+	player.movement.apply_knockback(dir_1, 0.12)
+	
 	if await play_attack_animation("Ataque1", 0.2):
-		player.movement.apply_knockback(push_origin, 0.12)
+		
+		# GOLPE 2: Volvemos a calcular la dirección por si el jugador giró el ratón
+		var dir_2 = player.global_position - player.movement.mesh.global_transform.basis.z
+		player.movement.apply_knockback(dir_2, 0.12)
+		
 		if await play_attack_animation("Ataque2", 0.1):
-			player.movement.apply_knockback(push_origin, 0.2)
+			
+			# GOLPE 3: Volvemos a calcular para el último salto
+			var dir_3 = player.global_position - player.movement.mesh.global_transform.basis.z
+			player.movement.apply_knockback(dir_3, 0.2)
+			
 			await play_attack_animation("Ataque3", 0.1)
+			
 	hitbox_close()
 	
 func aim_start():

@@ -7,6 +7,7 @@ class_name PauseMenu
 
 @onready var btn_resume: Button = %BtnResume
 @onready var btn_settings: Button = %BtnSettings
+@onready var btn_ability: Button = $Panel/MarginContainer/MainOptions/Ability
 @onready var btn_main_menu: Button = %BtnQuit
 
 @onready var volume_slider: HSlider = %VolumeSlider
@@ -23,6 +24,9 @@ func _ready() -> void:
 	main_options.visible = true
 	settings_options.visible = false
 	ability_menu.visible = false
+	
+	if btn_ability:
+		btn_ability.visible = false
 	
 	master_bus_idx = AudioServer.get_bus_index("Master")
 	
@@ -58,6 +62,10 @@ func pause_game() -> void:
 	main_options.visible = true
 	settings_options.visible = false
 	ability_menu.visible = false
+	
+	if btn_ability:
+		btn_ability.visible = Globals.has_axe
+		
 	get_tree().paused = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
