@@ -45,17 +45,19 @@ func _ready() -> void:
 	if ability_back_btn:
 		ability_back_btn.pressed.connect(_close_ability_menu)
 
-func _unhandled_input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("ui_cancel"): # ESC
-		if visible:
-			if settings_options.visible:
-				_close_settings()
-			elif ability_menu.visible:
-				_close_ability_menu()
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey:
+		if event.key_label == KEY_ESCAPE:
+			if visible:
+				if settings_options.visible:
+					_close_settings()
+				elif ability_menu.visible:
+					_close_ability_menu()
+				else:
+					resume_game()
 			else:
-				resume_game()
-		else:
-			pause_game()
+				pause_game()
 
 func pause_game() -> void:
 	visible = true

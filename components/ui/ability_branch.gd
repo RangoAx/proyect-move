@@ -3,11 +3,11 @@ class_name AbilityBranch
 
 @export var ability_string : String
 @export var main_icon : Texture
-@export var main_explanation : String
+@export_multiline() var main_explanation : String
 @export var ability_1_icon : Texture 
-@export var ability_1_explanation : String
+@export_multiline() var ability_1_explanation : String
 @export var ability_2_icon : Texture
-@export var ability_2_explanation : String
+@export_multiline() var ability_2_explanation : String
 
 func _ready():
 	$IconoPrincipal/Icono.texture = main_icon

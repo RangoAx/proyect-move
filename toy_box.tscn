@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bgwvrd0o052k" path="res://enemies/enemy_fist.tscn" id="8_jmlt3"]
 [ext_resource type="PackedScene" uid="uid://he8mf8ib6jso" path="res://interactuables/church_key.tscn" id="8_rjftq"]
 [ext_resource type="PackedScene" uid="uid://cw3sqcy7hbcii" path="res://interactuables/axe_new.tscn" id="9_rjftq"]
+[ext_resource type="Script" uid="uid://cbuc1xl8lou6t" path="res://levels/map_1/cajas.gd" id="10_fwb5c"]
 [ext_resource type="ArrayOccluder3D" uid="uid://cy8286pxhyvsx" path="res://toy_box.occ" id="11_y7c5c"]
 [ext_resource type="Script" uid="uid://cykflajj66j84" path="res://levels/map_1/tutorial_trigger.gd" id="12_e1ccg"]
 
@@ -251,7 +252,7 @@ shadow_enabled = true
 [node name="Player" parent="." unique_id=936416609 instance=ExtResource("5_ty26i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -96.522095, -0.8006606, -10.50946)
 
-[node name="Skeleton3D" parent="Player/PlayerMesh/Armature" parent_id_path=PackedInt32Array(936416609, 558761329, 809700492) index="0" unique_id=469026973]
+[node name="Skeleton3D" parent="Player/PlayerMesh/Armature" parent_id_path=PackedInt32Array(936416609, 558761329, 752286953) index="0" unique_id=1026387575]
 bones/0/position = Vector3(-1.2927853e-11, 1.075811, 0.014604775)
 bones/0/rotation = Quaternion(-3.768593e-08, -3.1786513e-08, 8.845539e-12, 1)
 bones/1/position = Vector3(-1.2100373e-09, 0.10798304, -0.019096855)
@@ -420,14 +421,22 @@ offset_top = -360.0
 offset_right = 500.0
 offset_bottom = 360.0
 
-[node name="Caja" parent="." unique_id=149353488 instance=ExtResource("4_gg1b1")]
+[node name="Cajas" type="Node3D" parent="." unique_id=262102440 node_paths=PackedStringArray("cajas")]
+script = ExtResource("10_fwb5c")
+cajas = [NodePath("Caja"), NodePath("Caja4"), NodePath("Caja3")]
+fragmentos = Array[int]([30, 80, 300])
+
+[node name="Caja" parent="Cajas" unique_id=149353488 instance=ExtResource("4_gg1b1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82.13389, -0.7686696, -25.587149)
+fragmentos = 30
 
-[node name="Caja3" parent="." unique_id=936896321 instance=ExtResource("4_gg1b1")]
+[node name="Caja4" parent="Cajas" unique_id=1278501153 instance=ExtResource("4_gg1b1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.0864115, -0.54472804, -48.999355)
+fragmentos = 300
+
+[node name="Caja3" parent="Cajas" unique_id=936896321 instance=ExtResource("4_gg1b1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.55973, -0.5705627, 73.361206)
-
-[node name="Caja2" parent="." unique_id=1267211469 instance=ExtResource("4_gg1b1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.242855, -0.8302345, -33.72435)
+fragmentos = 80
 
 [node name="FistEnemy5" parent="." unique_id=1812514261 instance=ExtResource("8_jmlt3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.81836224, -0.4693125, -7.9497385)

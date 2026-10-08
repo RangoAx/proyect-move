@@ -1,6 +1,20 @@
 [gd_scene format=3 uid="uid://b5tev4unam80w"]
 
+[ext_resource type="Script" uid="uid://25cux14gch8l" path="res://levels/map_1/caja.gd" id="1_3dmho"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+size = Vector3(1, 1.7039795, 1)
+
 [node name="Caja" type="Node3D" unique_id=149353488]
+script = ExtResource("1_3dmho")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=517447881]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5010544, 0)
+
+[node name="CajaHitbox" type="Area3D" parent="." unique_id=853810113]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CajaHitbox" unique_id=13871139]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85198975, 0)
+shape = SubResource("BoxShape3D_g4v7s")
+
+[connection signal="area_entered" from="CajaHitbox" to="." method="_on_caja_hitbox_area_entered"]

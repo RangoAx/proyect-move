@@ -32,16 +32,22 @@ alignment = 1
 [node name="Rama" parent="RamaContainer" unique_id=391351798 instance=ExtResource("1_h74fb")]
 layout_mode = 2
 ability_string = "knife_level"
+ability_1_explanation = "Mejora 1: Desbloqueas la estocada. Mantené el click derecho para realizar el ataque.si el ataque no conecta, el jugador entra en un estado de vulnerabilidad por un corto tiempo."
+ability_2_explanation = "mejora 2: Aumenta el ataque ligero a 25 de vida."
 
 [node name="Rama2" parent="RamaContainer" unique_id=1463404708 instance=ExtResource("1_h74fb")]
 layout_mode = 2
 ability_string = "axe_level"
 main_explanation = "Hacha"
+ability_1_explanation = "Mejora 1: El tiempo de recarga se reduce de 6 a 3 segundos."
+ability_2_explanation = "mejora 2: Aumenta la cantidad de hacha a 3 de manera simultanea"
 
 [node name="Rama3" parent="RamaContainer" unique_id=1245946477 instance=ExtResource("1_h74fb")]
 layout_mode = 2
 ability_string = "player_level"
 main_explanation = "Personaje"
+ability_1_explanation = "Mejora 1: La vida mejora de 100 a 150."
+ability_2_explanation = "mejora 2: La vida mejora de 150 a 200"
 
 [node name="BtnBack" type="Button" parent="." unique_id=1063388217]
 layout_mode = 1

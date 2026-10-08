@@ -81,3 +81,7 @@ func show_announcement(text: String, duration: float = 5.0) -> void:
 		# Solo lo oculta si ningún mensaje posterior tomó el control
 		if current_id == _msg_id and is_instance_valid(label):
 			label.visible = false
+
+func _process(delta: float) -> void:
+	if Input.is_key_pressed(KEY_F12):
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
