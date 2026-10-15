@@ -1,5 +1,5 @@
 extends Area3D
-
+class_name Key
 @export var velocidad_rotacion: float = 2.0
 @export var altura_flotacion: float = 0.25
 @export var velocidad_flotacion: float = 3.0
