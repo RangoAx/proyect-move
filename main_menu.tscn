@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bqd7rsqs3ja06"]
+[gd_scene format=3 uid="uid://0yihem0u1svy"]
 
 [ext_resource type="Script" uid="uid://d3w74sfxw4uyl" path="res://main_menu.gd" id="1_7vrkn"]
 [ext_resource type="PackedScene" uid="uid://bhfkd10wf5u33" path="res://assets/models/world/church/church.glb" id="2_7vrkn"]

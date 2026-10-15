@@ -17,6 +17,8 @@
 [ext_resource type="ArrayOccluder3D" uid="uid://cy8286pxhyvsx" path="res://toy_box.occ" id="11_y7c5c"]
 [ext_resource type="Script" uid="uid://cykflajj66j84" path="res://levels/map_1/tutorial_trigger.gd" id="12_e1ccg"]
 [ext_resource type="Script" uid="uid://b3jqfdwdcnhta" path="res://interactuables/keys.gd" id="13_puili"]
+[ext_resource type="Script" uid="uid://dg1h4qi0itnsv" path="res://spawner.gd" id="18_wuflk"]
+[ext_resource type="PackedScene" uid="uid://dsd5ryrk7fbi4" path="res://enemies/enemy_lumberjack.tscn" id="19_1ct2d"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_57qmd"]
 size = Vector3(88.53731, 8.57605, 100.039444)
@@ -109,6 +111,9 @@ emission = Color(1, 1, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yf5fn"]
 size = Vector3(1, 1, 47.8558)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_fcnqv"]
+radius = 27.096134
 
 [node name="ToyBox" type="Node3D" unique_id=304246059]
 
@@ -453,8 +458,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.964493, -0.4693125, -10.4
 [node name="AxeEnemy" parent="." unique_id=1572324502 instance=ExtResource("7_gg1b1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.304938, -0.8120339, 1.503603)
 
-[node name="Keys" type="Node3D" parent="." unique_id=207014524]
+[node name="Keys" type="Node3D" parent="." unique_id=207014524 node_paths=PackedStringArray("keys")]
 script = ExtResource("13_puili")
+keys = [NodePath("ChurchKey"), NodePath("ChurchKey2"), NodePath("ChurchKey3")]
 
 [node name="ChurchKey" parent="Keys" unique_id=2043287166 instance=ExtResource("8_rjftq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.15724, -0.6276932, 41.700077)
@@ -559,6 +565,55 @@ desbloquea_dash = true
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TutorialTriggers5/TutorialTriggers4" unique_id=355068382]
 transform = Transform3D(0.7217603, 0, -0.69214314, 0, 3, 0, 0.69214314, 0, 0.7217603, -31.569807, 0.8877592, -0.32656682)
 shape = SubResource("BoxShape3D_yf5fn")
+
+[node name="Spawner" type="Area3D" parent="." unique_id=1398527949 node_paths=PackedStringArray("spawn_points")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.181054, 0, 17.370087)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("18_wuflk")
+spawn_points = [NodePath("Marker3D"), NodePath("Marker3D2"), NodePath("Marker3D3")]
+waves = Array[PackedStringArray]([PackedStringArray("enemy_fist", "enemy_lumberjack", "enemy_fist", "enemy_lumberjack", "enemy_fist"), PackedStringArray("enemy_lumberjack", "enemy_lumberjack", "enemy_lumberjack", "enemy_fist", "enemy_fist"), PackedStringArray("enemy_fist", "enemy_fist", "enemy_fist", "enemy_lumberjack", "enemy_lumberjack"), PackedStringArray("enemy_lumberjack", "enemy_fist", "enemy_lumberjack", "enemy_fist", "enemy_lumberjack"), PackedStringArray("enemy_fist", "enemy_fist", "enemy_fist", "enemy_lumberjack", "enemy_lumberjack"), PackedStringArray("enemy_lumberjack", "enemy_lumberjack", "enemy_lumberjack", "enemy_fist", "enemy_fist")])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Spawner" unique_id=154088225]
+shape = SubResource("SphereShape3D_fcnqv")
+debug_color = Color(0.9999998, 0.011040472, 0.05663678, 0.41960785)
+
+[node name="Marker3D" type="Marker3D" parent="Spawner" unique_id=1551023559]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.517379, 0, 0)
+
+[node name="Marker3D2" type="Marker3D" parent="Spawner" unique_id=2120294156]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.7201405, 0, 9.574379)
+
+[node name="Marker3D3" type="Marker3D" parent="Spawner" unique_id=551079163]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.094539, 0, -9.20133)
+
+[node name="SpawnerBosque" type="Area3D" parent="." unique_id=1051480979 node_paths=PackedStringArray("spawn_points")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 83.968124, 0, 68.712494)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("18_wuflk")
+spawn_points = [NodePath("Bosque1"), NodePath("Bosque2"), NodePath("Bosque3")]
+waves = Array[PackedStringArray]([PackedStringArray("enemy_axe", "enemy_axe", "enemy_axe", "enemy_lumberjack", "enemy_lumberjack"), PackedStringArray("enemy_lumberjack", "enemy_lumberjack", "enemy_lumberjack", "enemy_axe", "enemy_axe"), PackedStringArray("enemy_axe", "enemy_lumberjack", "enemy_axe", "enemy_lumberjack", "enemy_axe"), PackedStringArray("enemy_axe", "enemy_axe", "enemy_axe", "enemy_axe", "enemy_axe"), PackedStringArray("enemy_lumberjack", "enemy_axe", "enemy_lumberjack", "enemy_axe", "enemy_lumberjack"), PackedStringArray("enemy_axe", "enemy_axe", "enemy_axe", "enemy_axe", "enemy_axe")])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnerBosque" unique_id=1901781147]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.098145, 0, 0)
+shape = SubResource("SphereShape3D_fcnqv")
+debug_color = Color(0.9999998, 0.011040472, 0.05663678, 0.41960785)
+
+[node name="Bosque1" type="Marker3D" parent="SpawnerBosque" unique_id=1331188371]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.51738, 0, 19.670776)
+
+[node name="Bosque2" type="Marker3D" parent="SpawnerBosque" unique_id=755548065]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.7201405, 0, 9.574379)
+
+[node name="Bosque3" type="Marker3D" parent="SpawnerBosque" unique_id=1616523808]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.059616, 0, -9.201332)
+
+[node name="LumberjackEnemy" parent="." unique_id=1060898083 instance=ExtResource("19_1ct2d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20206517, -0.58121234, 14.851564)
+
+[connection signal="body_entered" from="Spawner" to="Spawner" method="_on_body_entered"]
+[connection signal="body_entered" from="SpawnerBosque" to="SpawnerBosque" method="_on_body_entered"]
 
 [editable path="Player"]
 [editable path="Player/PlayerMesh"]
