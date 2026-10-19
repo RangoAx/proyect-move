@@ -1,6 +1,10 @@
 extends Leaf
 class_name LeafPitchforkCharge
 
+## NOTA DE FACU
+# la manera de hacer ataques aca es completamente distinta a la de todos los otros enemigos asi que
+# a falta de reescribir todo meti las animaciones donde entraban a lo largo de las funciones
+
 @export var min_charge_range: float = 2.5
 @export var max_charge_range: float = 8.0
 @export var charge_speed: float = 12.0
@@ -34,6 +38,7 @@ func step() -> Result:
 
 	match _internal_state:
 		"idle":
+			owner.is_attacking = false
 			if dist <= min_charge_range or dist > max_charge_range:
 				return Result.FAILURE
 
@@ -42,6 +47,7 @@ func step() -> Result:
 			_timer = windup_time
 
 		"windup":
+			owner.is_attacking = false
 			npc.override_look = false
 			
 			if _timer > windup_time / 2.0:
@@ -63,6 +69,8 @@ func step() -> Result:
 				_timer = 0.8 
 
 		"charging":
+			owner.is_attacking = true
+			owner.anim.play("attacks/cargando_ataque")
 			npc.override_look = true
 			npc.velocity.x = _charge_dir.x * charge_speed
 			npc.velocity.z = _charge_dir.z * charge_speed
@@ -81,6 +89,7 @@ func step() -> Result:
 				npc.velocity.z = 0
 
 		"vulnerable":
+			owner.is_attacking = false
 			npc.override_look = true
 			npc.velocity.x = move_toward(npc.velocity.x, 0, get_physics_process_delta_time() * 20.0)
 			npc.velocity.z = move_toward(npc.velocity.z, 0, get_physics_process_delta_time() * 20.0)
@@ -91,5 +100,9 @@ func step() -> Result:
 				npc.state = "idle" 
 				npc.override_look = false
 				return Result.SUCCESS
+		
+		"charge_attack":
+			owner.is_attacking = true
+			owner.anim.play("attacks/estocada_ataque")
 
 	return Result.RUNNING
