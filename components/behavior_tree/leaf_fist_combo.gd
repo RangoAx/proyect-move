@@ -9,7 +9,7 @@ class_name LeafFistCombo
 var _timer: float = 0.0
 
 func step() -> Result:
-	var npc : FistEnemy = owner
+	var npc : Enemy = owner
 	var target = Globals.player
 	if not target: return Result.FAILURE
 
