@@ -1,6 +1,10 @@
 extends Leaf
 class_name LeafPitchforkBasic
 
+## NOTA DE FACU
+# la manera de hacer ataques aca es completamente distinta a la de todos los otros enemigos asi que
+# a falta de reescribir todo meti las animaciones donde entraban a lo largo de las funciones
+
 @export var attack_range: float = 2.5
 @export var damage: float = 25.0
 @export var recovery_time: float = 1.0
@@ -31,6 +35,7 @@ func step() -> Result:
 
 	match _internal_state:
 		"idle":
+			owner.is_attacking = false
 			if dist > attack_range:
 				return Result.FAILURE
 
@@ -41,6 +46,8 @@ func step() -> Result:
 			npc.velocity.z = 0
 
 		"anticipation":
+			owner.is_attacking = true
+			owner.anim.play("attacks/cargando_ataque")
 			npc.velocity.x = 0
 			npc.velocity.z = 0
 			_timer -= get_physics_process_delta_time()
@@ -55,6 +62,7 @@ func step() -> Result:
 					_timer = vulnerability_time
 
 		"recovery", "vulnerable":
+			owner.is_attacking = false
 			npc.velocity.x = 0
 			npc.velocity.z = 0
 			_timer -= get_physics_process_delta_time()
@@ -63,5 +71,8 @@ func step() -> Result:
 				_internal_state = "idle"
 				npc.state = "idle"
 				return Result.SUCCESS
+		"basic_attack":
+			owner.is_attacking = true
+			owner.anim.play("attacks/estocada_ataque")
 
 	return Result.RUNNING
