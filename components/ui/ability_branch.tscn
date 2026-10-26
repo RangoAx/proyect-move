@@ -1,78 +1,206 @@
-[gd_scene format=3 uid="uid://j0extw2dg1dh"]
+[gd_scene load_steps=8 format=3 uid="uid://j0extw2dg1dh"]
 
 [ext_resource type="Script" uid="uid://c01wkm3rqbvlx" path="res://components/ui/ability_branch.gd" id="1_ed6cs"]
 [ext_resource type="Texture2D" uid="uid://dg1vps4ycwkmh" path="res://assets/icons/mejora-ui-icono.png" id="1_kv03s"]
 [ext_resource type="Texture2D" uid="uid://bdphdi7car0vg" path="res://assets/icons/leaf.svg" id="2_3bpil"]
-[ext_resource type="Texture2D" uid="uid://dw044qw0wl4ph" path="res://assets/icons/behavior_node.svg" id="2_ed6cs"]
 [ext_resource type="Texture2D" uid="uid://ncxd5i8grq3m" path="res://assets/icons/mejora-ui-linea.png" id="2_ldr35"]
 
-[node name="Rama" type="HBoxContainer" unique_id=391351798]
-custom_minimum_size = Vector2(0, 128)
-size_flags_vertical = 4
-alignment = 1
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_branch"]
+bg_color = Color(0.07, 0.02, 0.02, 0.9)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.65, 0.15, 0.15, 0.8)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bar_bg"]
+bg_color = Color(0.15, 0.05, 0.05, 0.9)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bar_fill"]
+bg_color = Color(0.85, 0.2, 0.2, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[node name="Rama" type="PanelContainer" unique_id=391351798]
+custom_minimum_size = Vector2(700, 90)
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_branch")
 script = ExtResource("1_ed6cs")
 main_icon = ExtResource("2_3bpil")
-main_explanation = "cuchillo"
+main_explanation = "Cuchillo"
 ability_1_icon = ExtResource("2_3bpil")
 ability_1_explanation = "Mejora 1"
 ability_2_icon = ExtResource("2_3bpil")
 ability_2_explanation = "mejora 2"
 
-[node name="IconoPrincipal" type="TextureRect" parent="." unique_id=1621545281]
+[node name="Margin" type="MarginContainer" parent="." unique_id=5001]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 8
+
+[node name="HBox" type="HBoxContainer" parent="Margin" unique_id=5002]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="CategoryInfo" type="VBoxContainer" parent="Margin/HBox" unique_id=736993419]
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 3
+alignment = 1
+
+[node name="LblCategory" type="Label" parent="Margin/HBox/CategoryInfo" unique_id=1001]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.95, 0.95, 1)
+theme_override_font_sizes/font_size = 16
+text = "CATEGORÍA"
+
+[node name="LblLevel" type="Label" parent="Margin/HBox/CategoryInfo" unique_id=1002]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
+theme_override_font_sizes/font_size = 12
+text = "Nivel 1/3"
+
+[node name="LevelProgress" type="ProgressBar" parent="Margin/HBox/CategoryInfo" unique_id=1005]
+custom_minimum_size = Vector2(130, 6)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_bar_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_bar_fill")
+max_value = 3.0
+step = 1.0
+value = 1.0
+show_percentage = false
+
+[node name="Spacer" type="Control" parent="Margin/HBox" unique_id=5003]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Progression" type="HBoxContainer" parent="Margin/HBox" unique_id=5004]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="ColBase" type="VBoxContainer" parent="Margin/HBox/Progression" unique_id=5005]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="IconoPrincipal" type="TextureRect" parent="Margin/HBox/Progression/ColBase" unique_id=1621545281]
 clip_children = 2
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 texture = ExtResource("1_kv03s")
+expand_mode = 1
+stretch_mode = 5
 
-[node name="Icono" type="TextureRect" parent="IconoPrincipal" unique_id=1938223125]
+[node name="Icono" type="TextureRect" parent="Margin/HBox/Progression/ColBase/IconoPrincipal" unique_id=1938223125]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_ed6cs")
+mouse_filter = 2
+texture = ExtResource("2_3bpil")
 expand_mode = 5
 stretch_mode = 6
 
-[node name="Espacios" type="Control" parent="." unique_id=736993419]
-custom_minimum_size = Vector2(256, 0)
+[node name="LblBase" type="Label" parent="Margin/HBox/Progression/ColBase" unique_id=5006]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.35, 1, 0.45, 1)
+theme_override_font_sizes/font_size = 10
+text = "Nv. 1 (Base)"
+horizontal_alignment = 1
 
-[node name="Habilidad1" type="Button" parent="." unique_id=64577530]
+[node name="Separador1" type="TextureRect" parent="Margin/HBox/Progression" unique_id=1191898892]
 layout_mode = 2
-icon = ExtResource("1_kv03s")
-flat = true
-
-[node name="Icono" type="TextureRect" parent="Habilidad1" unique_id=480429477]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_ed6cs")
-expand_mode = 5
-stretch_mode = 6
-
-[node name="Separador" type="TextureRect" parent="." unique_id=1191898892]
-layout_mode = 2
+size_flags_vertical = 4
 texture = ExtResource("2_ldr35")
+stretch_mode = 5
 
-[node name="Habilidad2" type="Button" parent="." unique_id=1175210879]
+[node name="ColHabilidad1" type="VBoxContainer" parent="Margin/HBox/Progression" unique_id=2001]
 layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="Habilidad1" type="Button" parent="Margin/HBox/Progression/ColHabilidad1" unique_id=64577530]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
 icon = ExtResource("1_kv03s")
 flat = true
+expand_icon = true
 
-[node name="Icono" type="TextureRect" parent="Habilidad2" unique_id=1372006175]
+[node name="Icono" type="TextureRect" parent="Margin/HBox/Progression/ColHabilidad1/Habilidad1" unique_id=480429477]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_ed6cs")
+mouse_filter = 2
+texture = ExtResource("2_3bpil")
 expand_mode = 5
 stretch_mode = 6
 
-[connection signal="pressed" from="Habilidad1" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Habilidad2" to="." method="_on_button_pressed"]
+[node name="LblHab1" type="Label" parent="Margin/HBox/Progression/ColHabilidad1" unique_id=1003]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Nv. 2 (75 F)"
+horizontal_alignment = 1
+
+[node name="Separador2" type="TextureRect" parent="Margin/HBox/Progression" unique_id=5007]
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("2_ldr35")
+stretch_mode = 5
+
+[node name="ColHabilidad2" type="VBoxContainer" parent="Margin/HBox/Progression" unique_id=2002]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="Habilidad2" type="Button" parent="Margin/HBox/Progression/ColHabilidad2" unique_id=1175210879]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+icon = ExtResource("1_kv03s")
+flat = true
+expand_icon = true
+
+[node name="Icono" type="TextureRect" parent="Margin/HBox/Progression/ColHabilidad2/Habilidad2" unique_id=1372006175]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_3bpil")
+expand_mode = 5
+stretch_mode = 6
+
+[node name="LblHab2" type="Label" parent="Margin/HBox/Progression/ColHabilidad2" unique_id=1004]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Nv. 3 (150 F)"
+horizontal_alignment = 1

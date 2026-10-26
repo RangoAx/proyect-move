@@ -1,38 +1,40 @@
 [gd_scene format=3 uid="uid://c4bjtroh7k83h"]
 
 [ext_resource type="Script" uid="uid://c1ng2awe7gbii" path="res://enemies/enemy_pitchfork.gd" id="1_hi6k6"]
-[ext_resource type="PackedScene" uid="uid://bvskgl6kwvr07" path="res://enemies/model/Personaje con animaciones.glb" id="2_nkiwf"]
-[ext_resource type="Animation" uid="uid://b7cjgcblhmpjv" path="res://pj/animations/cargando_ataque.res" id="3_nkiwf"]
-[ext_resource type="PackedScene" uid="uid://duuikg1641sl7" path="res://enemies/life_bar/enemy_life.tscn" id="3_txqht"]
-[ext_resource type="Script" uid="uid://qrqoxjtc2rk0" path="res://components/behavior_tree/selector.gd" id="4_cakea"]
-[ext_resource type="Animation" uid="uid://hw4qffwos7vw" path="res://pj/animations/estocada_ataque.res" id="4_txqht"]
-[ext_resource type="Script" uid="uid://brhuhwpu4eqhw" path="res://components/behavior_tree/leaf_pitchfork_basic.gd" id="5_0inl2"]
-[ext_resource type="Script" uid="uid://duhq41dkdbulo" path="res://components/behavior_tree/leaf_pitchfork_charge.gd" id="6_m8rhq"]
-[ext_resource type="Script" uid="uid://kevyo417oc2g" path="res://components/behavior_tree/leaf_follow_target.gd" id="8_wcyfa"]
+[ext_resource type="PackedScene" uid="uid://ciboanu8e7s83" path="res://assets/models/pawns/enemy/enemy pitchfork/Enemigo trinche.glb" id="2_trinche"]
+[ext_resource type="PackedScene" path="res://assets/models/objects/pitchfork.tscn" id="3_pitchfork"]
+[ext_resource type="PackedScene" uid="uid://duuikg1641sl7" path="res://enemies/life_bar/enemy_life.tscn" id="4_life"]
+[ext_resource type="Animation" path="res://pj/animations/Idle.res" id="5_idle"]
+[ext_resource type="Animation" path="res://pj/animations/Walk.res" id="6_walk"]
+[ext_resource type="Animation" uid="uid://b7cjgcblhmpjv" path="res://pj/animations/cargando_ataque.res" id="7_carga"]
+[ext_resource type="Animation" uid="uid://hw4qffwos7vw" path="res://pj/animations/estocada_ataque.res" id="8_estocada"]
+[ext_resource type="Script" uid="uid://qrqoxjtc2rk0" path="res://components/behavior_tree/selector.gd" id="9_selector"]
+[ext_resource type="Script" uid="uid://brhuhwpu4eqhw" path="res://components/behavior_tree/leaf_pitchfork_basic.gd" id="10_basic"]
+[ext_resource type="Script" uid="uid://duhq41dkdbulo" path="res://components/behavior_tree/leaf_pitchfork_charge.gd" id="11_charge"]
+[ext_resource type="Script" uid="uid://kevyo417oc2g" path="res://components/behavior_tree/leaf_follow_target.gd" id="12_follow"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jfak0"]
 size = Vector3(0.6586151, 1.9577637, 0.36743164)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8tr1a"]
-transparency = 1
-shading_mode = 0
-albedo_color = Color(1, 1, 1, 0.007843138)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_43lb5"]
-next_pass = SubResource("StandardMaterial3D_8tr1a")
-albedo_color = Color(0, 0, 1, 1)
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_cakea"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_main"]
 _data = {
-&"cargando_ataque": ExtResource("3_nkiwf"),
-&"estocada_ataque": ExtResource("4_txqht")
+&"Idle": ExtResource("5_idle"),
+&"Walk": ExtResource("6_walk"),
+&"cargando_ataque": ExtResource("7_carga"),
+&"estocada_ataque": ExtResource("8_estocada")
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_attacks"]
+_data = {
+&"cargando_ataque": ExtResource("7_carga"),
+&"estocada_ataque": ExtResource("8_estocada")
 }
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_jfak0"]
 viewport_path = NodePath("SubViewport")
 
 [node name="PitchforkEnemy" type="CharacterBody3D" unique_id=715649026 groups=["Enemy"]]
-collision_layer = 3
+collision_layer = 2
 script = ExtResource("1_hi6k6")
 detection_range = 10.0
 
@@ -40,167 +42,56 @@ detection_range = 10.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00046539307, 0.9686279, -0.016235352)
 shape = SubResource("BoxShape3D_jfak0")
 
-[node name="Personaje con animaciones" parent="." unique_id=562842463 instance=ExtResource("2_nkiwf")]
+[node name="Enemigo trinche" parent="." unique_id=562842463 instance=ExtResource("2_trinche")]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
 
-[node name="Skeleton3D" parent="Personaje con animaciones/Armature" parent_id_path=PackedInt32Array(562842463, 1075666511) index="0" unique_id=2128624052]
-bones/0/position = Vector3(0, 3.3026862, 0.048682585)
-bones/0/rotation = Quaternion(0.004036536, -0.22633454, 0.026209338, 0.9736886)
-bones/1/rotation = Quaternion(-0.079799406, 0.012136145, -0.0018993671, 0.99673533)
-bones/2/rotation = Quaternion(0.022737771, 0.05249421, 0.00089624233, 0.998362)
-bones/3/rotation = Quaternion(0.017398523, -0.13816376, 0.010970009, 0.9901958)
-bones/4/rotation = Quaternion(0.08706321, 0.23821397, 0.012939981, 0.96721596)
-bones/5/rotation = Quaternion(-0.008314291, 0.030035809, -0.05857226, 0.9977966)
-bones/7/rotation = Quaternion(-0.6432963, -0.35299325, 0.49046487, -0.47011697)
-bones/8/rotation = Quaternion(0.16142792, -0.00045262004, 0.15029202, 0.9753734)
-bones/9/rotation = Quaternion(2.9047075e-07, 1.2340023e-07, 0.40369302, 0.9148945)
-bones/10/rotation = Quaternion(-0.19392608, 0.12626539, -0.112106726, 0.9663756)
-bones/11/position = Vector3(-0.041598216, 0.034495384, 0.009098752)
-bones/11/rotation = Quaternion(0.12211419, -0.1453843, 0.43345892, 0.88094544)
-bones/12/position = Vector3(0.018413506, 0.02909958, 0.019748982)
-bones/12/rotation = Quaternion(0.18084541, -0.026071936, -0.427873, 0.8851779)
-bones/13/rotation = Quaternion(0.47395805, 0.11382928, -0.3071736, 0.817344)
-bones/15/position = Vector3(-0.017181313, 0.06353129, 0.023476018)
-bones/15/rotation = Quaternion(0.16692053, 0.23863025, 0.03947392, 0.95584255)
-bones/16/rotation = Quaternion(0.38434762, -0.21925797, 0.5925409, 0.67312557)
-bones/17/rotation = Quaternion(0.4685698, -0.1744766, 0.19072706, 0.8447624)
-bones/19/position = Vector3(-0.041598216, 0.034495384, 0.009098752)
-bones/19/rotation = Quaternion(0.12211419, -0.1453843, 0.43345892, 0.88094544)
-bones/20/position = Vector3(0.018413506, 0.02909958, 0.019748982)
-bones/20/rotation = Quaternion(0.18084541, -0.026071936, -0.427873, 0.8851779)
-bones/21/rotation = Quaternion(0.47395805, 0.11382928, -0.3071736, 0.817344)
-bones/22/position = Vector3(-0.017181313, 0.06353129, 0.023476018)
-bones/22/rotation = Quaternion(0.16692053, 0.23863025, 0.03947392, 0.95584255)
-bones/23/rotation = Quaternion(0.38434762, -0.21925797, 0.5925409, 0.67312557)
-bones/24/rotation = Quaternion(0.4685698, -0.1744766, 0.19072706, 0.8447624)
-bones/25/rotation = Quaternion(0.35358238, -0.5630936, 0.67694443, 0.31567594)
-bones/26/rotation = Quaternion(0.23774326, -0.19939674, 0.08017411, 0.94725454)
-bones/27/rotation = Quaternion(3.701134e-07, 1.7229468e-08, -0.445517, 0.8952735)
-bones/28/rotation = Quaternion(0.015838608, -0.2561654, -0.11441776, 0.9597068)
-bones/29/rotation = Quaternion(0.1342057, 0.15823363, -0.14810382, 0.96696246)
-bones/30/position = Vector3(-0.0017769976, 0.031223323, -0.0002310429)
-bones/30/rotation = Quaternion(-0.034350023, 0.20255023, 0.46349955, 0.86195225)
-bones/31/rotation = Quaternion(-0.42310104, 0.18338543, 0.59046644, 0.66234785)
-bones/33/rotation = Quaternion(0.36778587, -0.057527512, 0.1624702, 0.91379845)
-bones/34/rotation = Quaternion(0.6663215, -0.02592123, 0.033791285, 0.7444474)
-bones/35/rotation = Quaternion(0.48029882, 0.04615751, -0.2059722, 0.85132724)
-bones/37/rotation = Quaternion(0.1342057, 0.15823363, -0.14810382, 0.96696246)
-bones/38/position = Vector3(-0.0017769976, 0.031223323, -0.0002310429)
-bones/38/rotation = Quaternion(-0.034350023, 0.20255023, 0.46349955, 0.86195225)
-bones/39/rotation = Quaternion(-0.42310104, 0.18338543, 0.59046644, 0.66234785)
-bones/40/rotation = Quaternion(0.36778587, -0.057527512, 0.1624702, 0.91379845)
-bones/41/rotation = Quaternion(0.6663215, -0.02592123, 0.033791285, 0.7444474)
-bones/42/rotation = Quaternion(0.48029882, 0.04615751, -0.2059722, 0.85132724)
-bones/43/rotation = Quaternion(0.28904665, 0.29818687, 0.90878403, -0.040599287)
-bones/44/rotation = Quaternion(-0.34861088, -5.7233265e-06, -2.2673921e-06, 0.9372676)
-bones/45/rotation = Quaternion(0.52077484, 0.01673954, 0.010175014, 0.8534693)
-bones/45/scale = Vector3(1.000022, 0.9999997, 0.9999997)
-bones/46/rotation = Quaternion(0.27312446, -0.013927572, 0.003954555, 0.96186984)
-bones/48/rotation = Quaternion(0.10454362, 0.023619978, 0.99239254, 0.06057868)
-bones/49/rotation = Quaternion(-0.3171298, 2.859393e-06, 1.0244111e-06, 0.94838214)
-bones/50/rotation = Quaternion(0.7200636, -0.058976036, 0.05599884, 0.68912584)
-bones/50/scale = Vector3(1.0000266, 1, 0.9999999)
-bones/51/rotation = Quaternion(0.28379992, 0.009425345, -0.0027928804, 0.95883316)
-bones/53/position = Vector3(0, -0.011156953, 0)
-bones/54/position = Vector3(-0.0004868177, 3.3026862, 0.04868015)
-bones/54/rotation = Quaternion(0.0039054386, -0.23120008, 0.026229192, 0.9725448)
-bones/55/rotation = Quaternion(1, -7.452844e-10, -4.372594e-08, 4.038583e-10)
-bones/56/rotation = Quaternion(1, 7.09907e-10, -6.806187e-08, -5.2027005e-10)
-bones/57/rotation = Quaternion(0.040599257, 0.90878403, -0.29818687, 0.28904662)
-bones/58/rotation = Quaternion(-0.34861085, -5.721316e-06, -2.2703173e-06, 0.9372676)
-bones/59/rotation = Quaternion(-0.008203791, 0.9999558, 0.004601708, -4.5013545e-05)
-bones/64/rotation = Quaternion(-0.060578685, 0.99239254, -0.023619972, 0.10454355)
-bones/65/rotation = Quaternion(-0.3171298, 2.864324e-06, 1.0210007e-06, 0.9483822)
-bones/71/rotation = Quaternion(-0.079799406, 0.012136113, -0.00189937, 0.99673533)
-bones/72/rotation = Quaternion(0.02273777, 0.0524942, 0.0008962427, 0.99836195)
-bones/73/rotation = Quaternion(0.017398523, -0.13816376, 0.0109700095, 0.9901958)
-bones/74/rotation = Quaternion(0.08706321, 0.238214, 0.012939986, 0.96721596)
-bones/75/rotation = Quaternion(-0.008314289, 0.030035809, -0.058572255, 0.9977966)
-bones/76/rotation = Quaternion(-0.6432963, -0.3529932, 0.4904648, -0.47011697)
-bones/77/rotation = Quaternion(0.16142789, -0.0004526116, 0.150292, 0.9753734)
-bones/78/rotation = Quaternion(2.7725127e-07, 1.1143483e-07, 0.40369305, 0.91489446)
-bones/79/position = Vector3(0.6871139, 0.33180127, 0.1170143)
-bones/82/rotation = Quaternion(0.35358238, -0.5630936, 0.67694443, 0.31567594)
-bones/83/rotation = Quaternion(0.23774321, -0.19939677, 0.080174126, 0.94725466)
-bones/84/rotation = Quaternion(3.7436504e-07, 3.0508623e-08, -0.44551688, 0.89527357)
-bones/85/position = Vector3(-0.6429815, 0.4021859, -0.27778837)
-bones/88/position = Vector3(0.30578566, 0.25241756, 0.9748058)
-bones/88/rotation = Quaternion(0.03387481, 0.701387, 0.7111484, -0.03430536)
-bones/89/position = Vector3(2.4862698e-06, 1.1166983e-05, -5.9564427e-05)
-bones/89/rotation = Quaternion(-0.2752281, -0.008673456, 0.0025025227, 0.9613366)
-bones/91/rotation = Quaternion(0.27392447, -0.013954198, 0.0038641847, 0.9616422)
-bones/92/position = Vector3(3.4026737e-08, -3.46896e-05, 2.1495553e-05)
-bones/92/rotation = Quaternion(-5.6824072e-05, 3.25072e-07, -6.861005e-07, 1)
-bones/94/rotation = Quaternion(9.959811e-10, -0.2405891, -3.064811e-08, 0.97062707)
-bones/95/rotation = Quaternion(-1.2281609e-08, 7.293421e-08, 2.4223777e-08, 1)
-bones/96/rotation = Quaternion(-0.08699281, -6.659325e-09, 3.9876717e-08, 0.99620897)
-bones/97/rotation = Quaternion(-0.07069999, -0.013135742, 0.011551992, 0.99734426)
-bones/99/rotation = Quaternion(-0.27317008, 0.013928379, -0.0039553437, 0.9618568)
-bones/100/rotation = Quaternion(0.009051886, 1.8273977e-09, 0.99995905, -8.200064e-09)
-bones/102/position = Vector3(0.0026558086, -0.07599154, 0.068682335)
-bones/102/rotation = Quaternion(-0.26918083, 0.21241629, 0.0932935, 0.9347285)
-bones/103/position = Vector3(-0.03230232, -0.14374705, 0.011956445)
-bones/104/position = Vector3(-0.11115733, 2.1238105, 3.2082326)
-bones/104/rotation = Quaternion(0.11405388, 7.110961e-09, 1.1844883e-07, 0.9934746)
-bones/105/position = Vector3(-0.29394743, 0.21263473, -1.0162153)
-bones/106/position = Vector3(7.791501e-07, -1.639793e-05, -4.2593525e-05)
-bones/106/rotation = Quaternion(-0.2859764, 0.008750497, -0.002631738, 0.9581932)
-bones/108/rotation = Quaternion(0.28474173, 0.009450986, -0.0027102632, 0.9585539)
-bones/109/position = Vector3(9.776939e-09, -8.015733e-06, 5.2302635e-06)
-bones/109/rotation = Quaternion(-1.3930467e-05, -3.146779e-07, 9.843329e-07, 1)
-bones/111/rotation = Quaternion(-1.5358788e-09, 0.115611084, 8.02689e-09, 0.99329466)
-bones/113/rotation = Quaternion(0.23675342, -1.4413075e-08, -3.688374e-08, 0.9715698)
-bones/114/rotation = Quaternion(0.17686994, 0.0062527605, -0.011703121, 0.98414475)
-bones/116/rotation = Quaternion(-0.75196195, -0.009460718, -0.0026740339, 0.65913326)
-bones/117/rotation = Quaternion(-0.009167027, 1.4635262e-08, 0.999958, -2.0613222e-10)
-bones/119/position = Vector3(-0.01224737, -0.03371342, -0.054756805)
-bones/119/rotation = Quaternion(-0.37540326, -0.08662021, -0.039627522, 0.9219539)
-bones/120/position = Vector3(0.014570302, -0.13682392, -0.031113908)
-bones/121/position = Vector3(-0.709183, 1.2661204, 0.95645297)
-bones/121/rotation = Quaternion(0.44153488, -2.8228746e-07, -5.9858473e-07, 0.89724416)
-bones/122/position = Vector3(2.6172874, 4.7191577, -0.7933865)
-bones/122/rotation = Quaternion(-0.030267159, -0.22711733, 0.018219749, 0.9732264)
-bones/123/position = Vector3(0.31571478, 4.119879, 2.2093403)
-bones/123/rotation = Quaternion(0.6855095, -0.13894287, -0.013209663, 0.71456087)
-bones/124/position = Vector3(0.06784797, 3.9661665, -2.458187)
-bones/124/rotation = Quaternion(-0.03026713, -0.22711733, 0.018219747, 0.9732264)
-bones/125/position = Vector3(-1.185442, 3.4139528, -1.8315362)
-bones/125/rotation = Quaternion(0.6531815, -0.2568479, 0.64212555, 0.30831465)
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Enemigo trinche" unique_id=653125153]
+libraries = {
+&"": SubResource("AnimationLibrary_main"),
+&"attacks": SubResource("AnimationLibrary_attacks")
+}
 
-[node name="Personaje" parent="Personaje con animaciones/Armature/Skeleton3D" index="0" unique_id=1055324231]
-surface_material_override/0 = SubResource("StandardMaterial3D_43lb5")
+[node name="RightHandAttachment" type="BoneAttachment3D" parent="Enemigo trinche" unique_id=1713909190]
+bone_name = "mixamorig_RightHand"
+bone_idx = 28
+use_external_skeleton = true
+external_skeleton = NodePath("../Armature/Skeleton3D")
 
-[node name="AnimationPlayer" parent="Personaje con animaciones" index="2" unique_id=653125153]
-libraries/attacks = SubResource("AnimationLibrary_cakea")
+[node name="Pitchfork" parent="Enemigo trinche/RightHandAttachment" unique_id=1492290212 instance=ExtResource("3_pitchfork")]
+transform = Transform3D(-0.386067, -0.914262, -0.122788, 0.612372, -0.353553, 0.707107, -0.689893, 0.197798, 0.696364, 0.08, 0.02, -0.04)
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=2000607842]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2523718, 0)
 billboard = 1
 texture = SubResource("ViewportTexture_jfak0")
 
-[node name="SubViewport" parent="." unique_id=56900519 instance=ExtResource("3_txqht")]
+[node name="SubViewport" parent="." unique_id=56900519 instance=ExtResource("4_life")]
 
 [node name="CompositorSelector" type="Node" parent="." unique_id=1624268767]
-script = ExtResource("4_cakea")
+script = ExtResource("9_selector")
 metadata/_custom_type_script = "uid://qrqoxjtc2rk0"
 
 [node name="LeafPitchforkBasic" type="Node" parent="CompositorSelector" unique_id=807889055]
-script = ExtResource("5_0inl2")
-attack_range = 1.4
+script = ExtResource("10_basic")
+attack_range = 2.4
+damage = 25.0
 metadata/_custom_type_script = "uid://brhuhwpu4eqhw"
 
 [node name="LeafPitchforkCharge" type="Node" parent="CompositorSelector" unique_id=1044561306]
-script = ExtResource("6_m8rhq")
-min_charge_range = 4.0
-max_charge_range = 7.0
+script = ExtResource("11_charge")
+min_charge_range = 3.5
+max_charge_range = 8.5
+damage = 55.0
+vulnerability_time = 1.5
+charge_cooldown = 4.0
 metadata/_custom_type_script = "uid://duhq41dkdbulo"
 
 [node name="LeafFollowTarget" type="Node" parent="CompositorSelector" unique_id=574496903]
-script = ExtResource("8_wcyfa")
+script = ExtResource("12_follow")
 is_target_player = true
-target_distance = 1.9
+target_distance = 1.8
 metadata/_custom_type_script = "uid://kevyo417oc2g"
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1739851241]
 
-[editable path="Personaje con animaciones"]
 [editable path="SubViewport"]

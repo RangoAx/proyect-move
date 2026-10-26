@@ -13,7 +13,7 @@
 size = Vector3(0.6586151, 1.9577637, 0.36743164)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_axehit"]
-radius = 0.12
+radius = 0.35
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_jfak0"]
 viewport_path = NodePath("SubViewport")
@@ -67,8 +67,8 @@ metadata/_custom_type_script = "uid://qrqoxjtc2rk0"
 
 [node name="LeafAxeCombo" type="Node" parent="CompositorSelector" unique_id=39585522]
 script = ExtResource("5_pdswd")
-damage = 7.0
-knockback_multiplier = 0.05
+damage = 15.0
+knockback_multiplier = 0.2
 metadata/_custom_type_script = "uid://kw6ht13t422m"
 
 [node name="LeafThrowAxe" type="Node" parent="CompositorSelector" unique_id=60850603]

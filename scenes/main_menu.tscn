@@ -1,0 +1,273 @@
+[gd_scene format=3 uid="uid://bqd7rsqs3ja06"]
+
+[ext_resource type="Script" uid="uid://d3w74sfxw4uyl" path="res://scenes/main_menu.gd" id="1_7vrkn"]
+[ext_resource type="PackedScene" uid="uid://bhfkd10wf5u33" path="res://assets/models/world/church/church.glb" id="2_7vrkn"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_night"]
+sky_top_color = Color(0.05, 0.06, 0.09, 1)
+sky_horizon_color = Color(0.12, 0.14, 0.18, 1)
+ground_bottom_color = Color(0.02, 0.03, 0.04, 1)
+ground_horizon_color = Color(0.12, 0.14, 0.18, 1)
+
+[sub_resource type="Sky" id="Sky_night"]
+sky_material = SubResource("ProceduralSkyMaterial_night")
+
+[sub_resource type="Environment" id="Environment_menu"]
+background_mode = 2
+sky = SubResource("Sky_night")
+ambient_light_source = 2
+ambient_light_color = Color(0.15, 0.18, 0.22, 1)
+ambient_light_energy = 0.5
+tonemap_mode = 2
+fog_enabled = true
+fog_light_color = Color(0.1, 0.12, 0.15, 1)
+fog_density = 0.03
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.03
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_grass"]
+albedo_color = Color(0.09, 0.14, 0.1, 1)
+roughness = 0.9
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ground"]
+material = SubResource("StandardMaterial3D_grass")
+size = Vector2(200, 200)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rain"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.75, 0.85, 1, 0.45)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rain"]
+material = SubResource("StandardMaterial3D_rain")
+size = Vector3(0.015, 0.45, 0.015)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_normal"]
+bg_color = Color(0.15, 0.03, 0.03, 0.9)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.65, 0.15, 0.15, 0.8)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_pressed"]
+bg_color = Color(0.1, 0.01, 0.01, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.5, 0.1, 0.1, 0.8)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_hover"]
+bg_color = Color(0.35, 0.07, 0.07, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.95, 0.25, 0.25, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lore_panel"]
+bg_color = Color(0.05, 0.015, 0.015, 0.95)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.7, 0.18, 0.18, 0.85)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="MainMenu" type="Node3D" unique_id=1765561722]
+script = ExtResource("1_7vrkn")
+
+[node name="Background" type="Node3D" parent="." unique_id=846003790]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Background" unique_id=1010101001]
+environment = SubResource("Environment_menu")
+
+[node name="church" parent="Background" unique_id=1761608434 instance=ExtResource("2_7vrkn")]
+
+[node name="Ground" type="MeshInstance3D" parent="Background" unique_id=1010101002]
+mesh = SubResource("PlaneMesh_ground")
+
+[node name="Camera3D" type="Camera3D" parent="Background" unique_id=105931128]
+transform = Transform3D(0.8280604, 0, 0.560639, 0, 1, 0, -0.560639, 0, 0.8280604, 22.466055, 3.7074416, 23.714022)
+fov = 25.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Background" unique_id=1440096070]
+transform = Transform3D(0.866025, -0.353553, 0.353553, 0, 0.707107, 0.707107, -0.5, -0.612372, 0.612372, 3.642094, 15, 0.011998)
+light_color = Color(0.85, 0.9, 1, 1)
+light_energy = 0.35
+
+[node name="RainParticles" type="CPUParticles3D" parent="Background" unique_id=1010101003]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 16, 18)
+amount = 600
+preprocess = 1.0
+mesh = SubResource("BoxMesh_rain")
+emission_shape = 3
+emission_box_extents = Vector3(25, 2, 25)
+direction = Vector3(-0.2, -1, -0.15)
+spread = 6.0
+initial_velocity_min = 20.0
+initial_velocity_max = 28.0
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=729885711]
+
+[node name="LightningOverlay" type="ColorRect" parent="UI" unique_id=1010101004]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.9, 0.95, 1, 1)
+
+[node name="MenuContainer" type="Control" parent="UI" unique_id=474695757]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleContainer" type="VBoxContainer" parent="UI/MenuContainer" unique_id=1010101005]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 48.0
+offset_right = 650.0
+offset_bottom = 150.0
+theme_override_constants/separation = 4
+
+[node name="MainTitle" type="Label" parent="UI/MenuContainer/TitleContainer" unique_id=1010101006]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.2, 0.2, 1)
+theme_override_font_sizes/font_size = 38
+text = "EL PUEBLO DE LAS SOMBRAS"
+
+[node name="Subtitle" type="Label" parent="UI/MenuContainer/TitleContainer" unique_id=1010101007]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.75, 0.7, 0.8)
+theme_override_font_sizes/font_size = 14
+text = "INVESTIGACIÓN EN LA NIEBLA — VERTICAL SLICE"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MenuContainer" unique_id=701057921]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 220.0
+offset_right = 260.0
+offset_bottom = 360.0
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="NuevoJuego" type="Button" parent="UI/MenuContainer/VBoxContainer" unique_id=94131759]
+custom_minimum_size = Vector2(196, 42)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+text = "Nuevo Juego"
+
+[node name="Salir" type="Button" parent="UI/MenuContainer/VBoxContainer" unique_id=1965335189]
+custom_minimum_size = Vector2(196, 42)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+text = "Salir"
+
+[node name="LoreScreen" type="Control" parent="UI/MenuContainer" unique_id=1313060070]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FadeBg" type="ColorRect" parent="UI/MenuContainer/LoreScreen" unique_id=1010101008]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.02, 0.01, 0.01, 0.96)
+
+[node name="LoreCenter" type="CenterContainer" parent="UI/MenuContainer/LoreScreen" unique_id=1010101009]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LorePanel" type="PanelContainer" parent="UI/MenuContainer/LoreScreen/LoreCenter" unique_id=1010101010]
+custom_minimum_size = Vector2(740, 480)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lore_panel")
+
+[node name="Margin" type="MarginContainer" parent="UI/MenuContainer/LoreScreen/LoreCenter/LorePanel" unique_id=1010101011]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 24
+
+[node name="VBox" type="VBoxContainer" parent="UI/MenuContainer/LoreScreen/LoreCenter/LorePanel/Margin" unique_id=1010101012]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="TitleLore" type="Label" parent="UI/MenuContainer/LoreScreen/LoreCenter/LorePanel/Margin/VBox" unique_id=1010101013]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.3, 0.3, 1)
+theme_override_font_sizes/font_size = 22
+text = "DIARIO DE ANTONIO"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="UI/MenuContainer/LoreScreen/LoreCenter/LorePanel/Margin/VBox" unique_id=1010101014]
+layout_mode = 2
+
+[node name="TextLore" type="Label" parent="UI/MenuContainer/LoreScreen/LoreCenter/LorePanel/Margin/VBox" unique_id=1112398450]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.92, 0.9, 0.88, 1)
+theme_override_constants/line_spacing = 6
+theme_override_font_sizes/font_size = 14
+text = "Me llamo Antonio. Soy detective privado.
+
+Acepté este caso porque nadie más quería meter las narices acá: tres personas desaparecieron en este pueblo en menos de un mes, sin dejar una sola pista.
+
+No alcancé a llegar. La niebla en la ruta era tan espesa que no se veía a dos metros. De la nada, algo impactó contra el auto y me tiró de lleno al barranco. El coche dio varias vueltas y terminó prendiéndose fuego contra las rocas.
+
+Mi revólver quedó aplastado entre los fierros calientes del motor, totalmente destruido. Lo único que alcancé a manotear del cinturón antes de que todo explotara fue mi cuchillo militar.
+
+Sin señal, incomunicado y varado en este bosque, solo me queda una opción: entrar al pueblo a pie, averiguar qué demonios pasó acá y salir con vida."
+autowrap_mode = 2
+
+[node name="Spacer" type="Control" parent="UI/MenuContainer/LoreScreen/LoreCenter/LorePanel/Margin/VBox" unique_id=1010101015]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BtnContinuarLore" type="Button" parent="UI/MenuContainer/LoreScreen/LoreCenter/LorePanel/Margin/VBox" unique_id=1624987168]
+custom_minimum_size = Vector2(260, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+text = "ENTRAR AL PUEBLO"

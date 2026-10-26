@@ -21,6 +21,10 @@ var was_crouching : bool = false
 @export var dash_speed : float = 25.0
 @export var dash_duration : float = 0.2
 @export var dash_cooldown : float = 0.6
+@export var dash_ghost_count : int = 4 # Total number of ghosts during a dash
+@export_range(0.0, 0.95, 0.05) var dash_ghost_start_ratio : float = 0.5 # When ghosts start appearing (0.5 = second half of the dash)
+@export var dash_ghost_lifetime : float = 0.3 # How long each ghost stays visible
+@export var dash_ghost_color : Color = Color(0.2, 0.7, 1.0, 0.6)
 
 var _dash_cooldown_timer : float = 0.0
 var _dash_direction : Vector3
@@ -42,7 +46,6 @@ var trapped = false
 var expected_velocity : Vector3
 
 func _physics_process(delta):
-	
 	if _dash_cooldown_timer > 0:
 		_dash_cooldown_timer -= delta
 	_process_dash_input()
@@ -53,7 +56,6 @@ func _physics_process(delta):
 	_process_player_velocity(delta)
 	_snap_up_stairs_check(delta)
 	player.move_and_slide()
-	
 
 func _process_player_jump():
 	if trapped or weapon_manager.is_attacking or is_dashing:
@@ -160,10 +162,67 @@ func perform_dash():
 		_dash_direction = Vector3(input_direction.x, 0, input_direction.y).rotated(Vector3(0, 1, 0), spring.rotation.y).normalized()
 	else:
 		_dash_direction = -mesh.global_transform.basis.z.normalized()
-	await get_tree().create_timer(dash_duration).timeout
+
+	var delay_before_ghosts := dash_duration * clampf(dash_ghost_start_ratio, 0.0, 0.95)
+	var active_ghost_duration := maxf(0.001, dash_duration - delay_before_ghosts)
+
+	if delay_before_ghosts > 0.0:
+		await get_tree().create_timer(delay_before_ghosts).timeout
+		if not is_dashing:
+			player.invulnerable = false
+			_dash_cooldown_timer = dash_cooldown
+			return
+
+	if dash_ghost_count > 0:
+		_spawn_dash_ghost()
+		if dash_ghost_count > 1:
+			var interval := active_ghost_duration / float(dash_ghost_count)
+			for i in range(1, dash_ghost_count):
+				await get_tree().create_timer(interval).timeout
+				if not is_dashing:
+					break
+				_spawn_dash_ghost()
+		else:
+			await get_tree().create_timer(active_ghost_duration).timeout
+	else:
+		await get_tree().create_timer(active_ghost_duration).timeout
+
 	is_dashing = false
 	player.invulnerable = false
 	_dash_cooldown_timer = dash_cooldown
+
+
+func _spawn_dash_ghost() -> void:
+	if not is_instance_valid(player) or not player.is_inside_tree():
+		return
+
+	var ghost_root := Node3D.new()
+	ghost_root.set_script(load("res://components/pawns/player/ghost_trail_effect.gd"))
+	ghost_root.set("duration", dash_ghost_lifetime)
+	ghost_root.set("ghost_color", dash_ghost_color)
+	
+	# Duplicate the player mesh hierarchy (including skeleton pose)
+	var dup_mesh := mesh.duplicate() as Node3D
+	if dup_mesh:
+		# Remove any AnimationPlayer, cameras, or audio from the ghost duplicate
+		for extra in dup_mesh.find_children("*", "AnimationPlayer"):
+			extra.queue_free()
+		for extra in dup_mesh.find_children("*", "AudioStreamPlayer3D"):
+			extra.queue_free()
+		
+		# Copy the skeleton's exact current bone poses to the ghost skeleton
+		var src_skel := mesh.find_child("Skeleton3D", true, false) as Skeleton3D
+		var dst_skel := dup_mesh.find_child("Skeleton3D", true, false) as Skeleton3D
+		if src_skel and dst_skel:
+			for b in range(src_skel.get_bone_count()):
+				dst_skel.set_bone_pose_position(b, src_skel.get_bone_pose_position(b))
+				dst_skel.set_bone_pose_rotation(b, src_skel.get_bone_pose_rotation(b))
+				dst_skel.set_bone_pose_scale(b, src_skel.get_bone_pose_scale(b))
+		
+		ghost_root.add_child(dup_mesh)
+		dup_mesh.global_transform = mesh.global_transform
+
+	player.get_parent().add_child(ghost_root)
 
 func get_speed():
 	if is_crouching:

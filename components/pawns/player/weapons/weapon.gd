@@ -23,7 +23,7 @@ func exit():
 func attack():
 	pass
 
-func _process(float):
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("attack") and attack_window:
 		attack_follow = true
 

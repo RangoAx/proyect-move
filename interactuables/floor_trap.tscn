@@ -1,22 +1,244 @@
-[gd_scene format=3 uid="uid://dhmv0uuc0okel"]
+[gd_scene load_steps=18 format=3 uid="uid://dhmv0uuc0okel"]
 
 [ext_resource type="Script" uid="uid://clsmwwv5cxxq0" path="res://interactuables/floor_trap.gd" id="1_q758g"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_f1k8e"]
-size = Vector3(1.5, 1, 1.5)
+size = Vector3(1.2, 0.5, 1.2)
 
-[sub_resource type="PrismMesh" id="PrismMesh_aqhau"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_metal"]
+albedo_color = Color(0.22, 0.2, 0.19, 1)
+metallic = 0.9
+roughness = 0.45
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eov3f"]
-albedo_color = Color(1, 0, 0, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_teeth"]
+albedo_color = Color(0.35, 0.33, 0.32, 1)
+metallic = 0.95
+roughness = 0.35
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_base"]
+material = SubResource("StandardMaterial3D_metal")
+top_radius = 0.45
+bottom_radius = 0.45
+height = 0.03
+
+[sub_resource type="BoxMesh" id="BoxMesh_bar"]
+material = SubResource("StandardMaterial3D_metal")
+size = Vector3(0.9, 0.04, 0.1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_plate"]
+material = SubResource("StandardMaterial3D_metal")
+top_radius = 0.18
+bottom_radius = 0.18
+height = 0.04
+
+[sub_resource type="BoxMesh" id="BoxMesh_jaw_bar"]
+material = SubResource("StandardMaterial3D_metal")
+size = Vector3(0.04, 0.04, 0.8)
+
+[sub_resource type="PrismMesh" id="PrismMesh_tooth"]
+material = SubResource("StandardMaterial3D_teeth")
+size = Vector3(0.04, 0.1, 0.06)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hud_panel"]
+bg_color = Color(0.06, 0.015, 0.015, 0.92)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.9, 0.2, 0.2, 0.9)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_key_badge"]
+bg_color = Color(0.2, 0.04, 0.04, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.85, 0.3, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_progress_bg"]
+bg_color = Color(0.12, 0.03, 0.03, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_progress_fill"]
+bg_color = Color(0.9, 0.25, 0.2, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [node name="FloorTrap" type="Area3D" unique_id=1087649761]
 collision_mask = 6
 script = ExtResource("1_q758g")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1624238710]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 shape = SubResource("BoxShape3D_f1k8e")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1447117349]
-mesh = SubResource("PrismMesh_aqhau")
-surface_material_override/0 = SubResource("StandardMaterial3D_eov3f")
+[node name="Model" type="Node3D" parent="." unique_id=880011001]
+
+[node name="BaseRing" type="MeshInstance3D" parent="Model" unique_id=880011002]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.015, 0)
+mesh = SubResource("CylinderMesh_base")
+
+[node name="Crossbar1" type="MeshInstance3D" parent="Model" unique_id=880011003]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0)
+mesh = SubResource("BoxMesh_bar")
+
+[node name="Crossbar2" type="MeshInstance3D" parent="Model" unique_id=880011004]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.02, 0)
+mesh = SubResource("BoxMesh_bar")
+
+[node name="TriggerPan" type="MeshInstance3D" parent="Model" unique_id=880011005]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.035, 0)
+mesh = SubResource("CylinderMesh_plate")
+
+[node name="JawLeft" type="Node3D" parent="Model" unique_id=880011006]
+transform = Transform3D(0.34202, 0.939693, 0, -0.939693, 0.34202, 0, 0, 0, 1, -0.4, 0.03, 0)
+
+[node name="Bar" type="MeshInstance3D" parent="Model/JawLeft" unique_id=880011007]
+mesh = SubResource("BoxMesh_jaw_bar")
+
+[node name="Tooth1" type="MeshInstance3D" parent="Model/JawLeft" unique_id=880011008]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06, -0.28)
+mesh = SubResource("PrismMesh_tooth")
+
+[node name="Tooth2" type="MeshInstance3D" parent="Model/JawLeft" unique_id=880011009]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06, -0.14)
+mesh = SubResource("PrismMesh_tooth")
+
+[node name="Tooth3" type="MeshInstance3D" parent="Model/JawLeft" unique_id=880011010]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06, 0)
+mesh = SubResource("PrismMesh_tooth")
+
+[node name="Tooth4" type="MeshInstance3D" parent="Model/JawLeft" unique_id=880011011]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06, 0.14)
+mesh = SubResource("PrismMesh_tooth")
+
+[node name="Tooth5" type="MeshInstance3D" parent="Model/JawLeft" unique_id=880011012]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06, 0.28)
+mesh = SubResource("PrismMesh_tooth")
+
+[node name="JawRight" type="Node3D" parent="Model" unique_id=880011013]
+transform = Transform3D(0.34202, -0.939693, 0, 0.939693, 0.34202, 0, 0, 0, 1, 0.4, 0.03, 0)
+
+[node name="Bar" type="MeshInstance3D" parent="Model/JawRight" unique_id=880011014]
+mesh = SubResource("BoxMesh_jaw_bar")
+
+[node name="Tooth1" type="MeshInstance3D" parent="Model/JawRight" unique_id=880011015]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06, -0.28)
+mesh = SubResource("PrismMesh_tooth")
+
+[node name="Tooth2" type="MeshInstance3D" parent="Model/JawRight" unique_id=880011016]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06, -0.14)
+mesh = SubResource("PrismMesh_tooth")
+
+[node name="Tooth3" type="MeshInstance3D" parent="Model/JawRight" unique_id=880011017]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06, 0)
+mesh = SubResource("PrismMesh_tooth")
+
+[node name="Tooth4" type="MeshInstance3D" parent="Model/JawRight" unique_id=880011018]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06, 0.14)
+mesh = SubResource("PrismMesh_tooth")
+
+[node name="Tooth5" type="MeshInstance3D" parent="Model/JawRight" unique_id=880011019]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06, 0.28)
+mesh = SubResource("PrismMesh_tooth")
+
+[node name="TrapHUD" type="CanvasLayer" parent="." unique_id=880011020]
+visible = false
+
+[node name="Center" type="CenterContainer" parent="TrapHUD" unique_id=880011021]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -220.0
+offset_top = -180.0
+offset_right = 220.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Panel" type="PanelContainer" parent="TrapHUD/Center" unique_id=880011022]
+custom_minimum_size = Vector2(400, 130)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hud_panel")
+
+[node name="Margin" type="MarginContainer" parent="TrapHUD/Center/Panel" unique_id=880011023]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 12
+
+[node name="VBox" type="VBoxContainer" parent="TrapHUD/Center/Panel/Margin" unique_id=880011024]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="LblAlert" type="Label" parent="TrapHUD/Center/Panel/Margin/VBox" unique_id=880011025]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.2, 0.2, 1)
+theme_override_font_sizes/font_size = 16
+text = "¡ATRAPADO EN UNA TRAMPA!"
+horizontal_alignment = 1
+
+[node name="KeyRow" type="HBoxContainer" parent="TrapHUD/Center/Panel/Margin/VBox" unique_id=880011026]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="KeyBadge" type="PanelContainer" parent="TrapHUD/Center/Panel/Margin/VBox/KeyRow" unique_id=880011027]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+pivot_offset = Vector2(20, 20)
+theme_override_styles/panel = SubResource("StyleBoxFlat_key_badge")
+
+[node name="KeyLabel" type="Label" parent="TrapHUD/Center/Panel/Margin/VBox/KeyRow/KeyBadge" unique_id=880011028]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.3, 1)
+theme_override_font_sizes/font_size = 20
+text = "E"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LblAction" type="Label" parent="TrapHUD/Center/Panel/Margin/VBox/KeyRow" unique_id=880011029]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "¡Presiona [E] repetidamente!"
+
+[node name="ProgressRow" type="HBoxContainer" parent="TrapHUD/Center/Panel/Margin/VBox" unique_id=880011030]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="EscapeProgress" type="ProgressBar" parent="TrapHUD/Center/Panel/Margin/VBox/ProgressRow" unique_id=880011031]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(260, 10)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_progress_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_progress_fill")
+max_value = 8.0
+step = 1.0
+show_percentage = false
+
+[node name="LblPressCount" type="Label" parent="TrapHUD/Center/Panel/Margin/VBox/ProgressRow" unique_id=880011032]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
+theme_override_font_sizes/font_size = 12
+text = "0 / 8"

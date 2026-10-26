@@ -1,0 +1,98 @@
+[gd_scene format=3]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wood"]
+albedo_color = Color(0.36, 0.22, 0.12, 1)
+roughness = 0.75
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_shaft"]
+material = SubResource("StandardMaterial3D_wood")
+top_radius = 0.016
+bottom_radius = 0.018
+height = 1.45
+radial_segments = 12
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iron"]
+albedo_color = Color(0.22, 0.23, 0.25, 1)
+metallic = 0.9
+roughness = 0.35
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ferrule"]
+material = SubResource("StandardMaterial3D_iron")
+top_radius = 0.022
+bottom_radius = 0.02
+height = 0.08
+radial_segments = 12
+
+[sub_resource type="BoxMesh" id="BoxMesh_crossbar"]
+material = SubResource("StandardMaterial3D_iron")
+size = Vector3(0.24, 0.02, 0.024)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_tine"]
+material = SubResource("StandardMaterial3D_iron")
+top_radius = 0.007
+bottom_radius = 0.009
+height = 0.32
+radial_segments = 8
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_tip"]
+material = SubResource("StandardMaterial3D_iron")
+top_radius = 0.001
+bottom_radius = 0.007
+height = 0.08
+radial_segments = 8
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_center_tine"]
+material = SubResource("StandardMaterial3D_iron")
+top_radius = 0.007
+bottom_radius = 0.009
+height = 0.35
+radial_segments = 8
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hitbox"]
+size = Vector3(0.3, 0.45, 0.1)
+
+[node name="Pitchfork" type="Node3D"]
+
+[node name="Shaft" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_shaft")
+
+[node name="Ferrule" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.725, 0)
+mesh = SubResource("CylinderMesh_ferrule")
+
+[node name="Crossbar" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.765, 0)
+mesh = SubResource("BoxMesh_crossbar")
+
+[node name="LeftTine" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.999, -0.045, 0, 0.045, 0.999, 0, 0, 0, 1, -0.105, 0.92, 0)
+mesh = SubResource("CylinderMesh_tine")
+
+[node name="LeftTip" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.999, -0.045, 0, 0.045, 0.999, 0, 0, 0, 1, -0.112, 1.11, 0)
+mesh = SubResource("CylinderMesh_tip")
+
+[node name="CenterTine" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.935, 0)
+mesh = SubResource("CylinderMesh_center_tine")
+
+[node name="CenterTip" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.145, 0)
+mesh = SubResource("CylinderMesh_tip")
+
+[node name="RightTine" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.999, 0.045, 0, -0.045, 0.999, 0, 0, 0, 1, 0.105, 0.92, 0)
+mesh = SubResource("CylinderMesh_tine")
+
+[node name="RightTip" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.999, 0.045, 0, -0.045, 0.999, 0, 0, 0, 1, 0.112, 1.11, 0)
+mesh = SubResource("CylinderMesh_tip")
+
+[node name="PitchforkHitbox" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.98, 0)
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PitchforkHitbox"]
+shape = SubResource("BoxShape3D_hitbox")

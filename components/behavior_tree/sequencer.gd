@@ -3,9 +3,10 @@ extends BehaviorNode
 class_name CompositorSequencer
 
 func step() -> Result:
-	for child : BehaviorNode in get_children():
-		var child_result : Result = child.step()
-		if child_result != Result.SUCCESS:
-			return child_result
+	for child in get_children():
+		if child is BehaviorNode:
+			var child_result : Result = child.step()
+			if child_result != Result.SUCCESS:
+				return child_result
 	return Result.SUCCESS
 	

@@ -12,6 +12,8 @@ func step() -> Result:
 			return Result.FAILURE
 	else:
 		target = Globals.player
+		if not target:
+			return Result.FAILURE
 		npc.nav.target_position = target.global_position
 		
 	# LOS FRENOS:
