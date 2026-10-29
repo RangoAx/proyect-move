@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3]
+
+[sub_resource type="GDScript" id="1"]
+script/source = "extends Node3D
+
+func _ready() -> void:
+	var f = FileAccess.open(\"res://scratch/test_out.txt\", FileAccess.WRITE)
+	f.store_line(\"Testing FogVolume...\")
+	var fv = FogVolume.new()
+	f.store_line(\"FogVolume created: \" + str(fv != null))
+	f.store_line(\"FogVolume shape: \" + str(fv.shape))
+	fv.free()
+	f.close()
+	get_tree().quit(0)
+"
+
+[node name="TestFogVolume" type="Node3D"]
+script = SubResource("1")
+

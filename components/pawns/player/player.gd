@@ -6,7 +6,8 @@ class_name Player
 @onready var movement = $Movement
 @onready var camera = $Camera
 @onready var weapon_manager = $WeaponManager
-@onready var life_bar = $CanvasLayer/MarginContainer/ProgressBar 
+@onready var life_bar = $HUD/MarginContainer/ProgressBar 
+@onready var hp_label: Label = $HUD/MarginContainer/ProgressBar/HpLabel
 
 # Referencias a la pantalla de muerte ya existente en tu escena
 @onready var death_screen: Control = $HUD/DeathScreen
@@ -18,9 +19,20 @@ var _heal_delay_timer : float = 0.0
 var _heal_tick_timer : float = 0.0
 var is_dead: bool = false
 
+func update_life_bar_display() -> void:
+	if not life_bar or not is_instance_valid(life_bar):
+		return
+	life_bar.max_value = max_health
+	life_bar.value = health
+	if not hp_label and life_bar.has_node("HpLabel"):
+		hp_label = life_bar.get_node("HpLabel") as Label
+	if hp_label and is_instance_valid(hp_label):
+		var current_hp = maxi(0, int(ceil(health)))
+		hp_label.text = "%d HP" % current_hp
+
 func _ready():
 	Globals.player = self
-	life_bar.value = health
+	update_life_bar_display()
 	
 	print("REFERENCIA AL BOTON: ", btn_retry) # <-- COMPROBACIÓN
 	# Ocultar pantalla de muerte al iniciar y conectar botón
@@ -33,8 +45,7 @@ func _process(delta: float) -> void:
 	if is_dead:
 		return
 		
-	life_bar.value = health
-	life_bar.max_value = max_health
+	update_life_bar_display()
 	if health < max_health and health > 0:
 		_heal_delay_timer += delta
 
@@ -54,6 +65,7 @@ func take_damage(damage: float, attacker_pos: Vector3 = Vector3.ZERO, knockback_
 		return
 		
 	super.take_damage(damage, attacker_pos, knockback_mult)
+	update_life_bar_display()
 	
 	_heal_delay_timer = 0.0
 	_heal_tick_timer = 3.0
@@ -68,6 +80,8 @@ func die():
 		
 	is_dead = true
 	invulnerable = true # Evita que Pawn vuelva a llamar a die() cada frame
+	health = 0.0
+	update_life_bar_display()
 	
 	# Frenar por completo movimiento y físicas
 	velocity = Vector3.ZERO

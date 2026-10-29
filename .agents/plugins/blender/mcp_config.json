@@ -1,0 +1,22 @@
+{
+  "mcpServers": {
+    "blender": {
+      "command": "C:\\Users\\USER\\AppData\\Local\\Python\\bin\\python.exe",
+      "args": [
+        "c:\\Godot Proyects\\proyect-move\\.agents\\plugins\\blender\\headless_blender_server.py"
+      ],
+      "env": {
+        "BLENDER_EXECUTABLE": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Blender\\blender.exe",
+        "PROJECT_ROOT": "c:\\Godot Proyects\\proyect-move"
+      }
+    },
+    "blender-live": {
+      "command": "C:\\Users\\USER\\AppData\\Local\\Python\\pythoncore-3.14-64\\Scripts\\mcp-for-blender.exe",
+      "args": ["--host", "localhost", "--port", "9876"],
+      "env": {
+        "BLENDER_EXECUTABLE": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Blender\\blender.exe"
+      }
+    }
+  }
+}
+

@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3]
+
+[sub_resource type="GDScript" id="1"]
+script/source = "extends Node3D
+
+func _ready() -> void:
+	print('--- Testing Ring GPUParticles3D ---')
+	var particles = GPUParticles3D.new()
+	var proc_mat = ParticleProcessMaterial.new()
+	proc_mat.emission_shape = ParticleProcessMaterial.EMISSION_SHAPE_RING
+	proc_mat.emission_ring_radius = 17.5
+	proc_mat.emission_ring_inner_radius = 16.0
+	proc_mat.emission_ring_height = 1.0
+	proc_mat.emission_ring_axis = Vector3(0, 1, 0)
+	proc_mat.gravity = Vector3(0, 0.4, 0)
+	particles.process_material = proc_mat
+	
+	var quad = QuadMesh.new()
+	quad.size = Vector2(4.0, 4.0)
+	particles.draw_pass_1 = quad
+	
+	add_child(particles)
+	print('Ring GPUParticles3D created with 0 errors!')
+	get_tree().quit(0)
+"
+
+[node name="TestParticles" type="Node3D"]
+script = SubResource("1")
+

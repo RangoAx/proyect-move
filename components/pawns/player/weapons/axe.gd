@@ -40,6 +40,9 @@ func aim_attack():
 	if player.axe_amount > 0:
 		create_thrown_axe()
 
+func attack():
+	aim_attack()
+
 func create_thrown_axe():
 	var axe : RigidBody3D = axe_scene.instantiate()
 	

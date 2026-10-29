@@ -1,0 +1,14 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://assets/models/world/arena_barricade.glb" id="1_barricade"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_barricade"]
+size = Vector3(4.8, 3.8, 0.8)
+
+[node name="Barricade" type="StaticBody3D"]
+
+[node name="arena_barricade" parent="." instance=ExtResource("1_barricade")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+shape = SubResource("BoxShape3D_barricade")

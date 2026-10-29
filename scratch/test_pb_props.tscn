@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3]
+
+[sub_resource type="GDScript" id="1"]
+script/source = "extends Node
+
+func _ready() -> void:
+	var pb = ProgressBar.new()
+	print('show_percentage: ', pb.show_percentage)
+	for prop in pb.get_property_list():
+		if 'text' in prop.name or 'percent' in prop.name or 'format' in prop.name:
+			print(prop.name, ' (type: ', prop.type, ')')
+	get_tree().quit(0)
+"
+
+[node name="TestPB" type="Node"]
+script = SubResource("1")
+

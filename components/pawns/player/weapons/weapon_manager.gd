@@ -25,15 +25,29 @@ func _input(_event):
 	# weapon switching
 	if not movement.is_aiming and not is_attacking:
 		if Input.is_action_just_pressed("weapon_1"):
-			weapon = "Sword"
-			%"Cuchillo loco".visible = true
-			%hacha1.visible = false
-			Globals.weapon_swapped.emit("Cuchillo")
+			switch_to("Sword")
 		elif Input.is_action_just_pressed("weapon_2"):
-			weapon = "Axe"
-			%hacha1.visible = true
-			%"Cuchillo loco".visible = false
-			Globals.weapon_swapped.emit("Hacha")
+			switch_to("Axe")
+
+func switch_to(new_weapon: StringName) -> void:
+	if new_weapon == "Sword":
+		weapon = "Sword"
+		var knife_mesh = get_node_or_null("%Cuchillo loco")
+		if knife_mesh:
+			knife_mesh.visible = true
+		var axe_mesh = get_node_or_null("%hacha1")
+		if axe_mesh:
+			axe_mesh.visible = false
+		Globals.weapon_swapped.emit("Cuchillo")
+	elif new_weapon == "Axe":
+		weapon = "Axe"
+		var axe_mesh = get_node_or_null("%hacha1")
+		if axe_mesh:
+			axe_mesh.visible = true
+		var knife_mesh = get_node_or_null("%Cuchillo loco")
+		if knife_mesh:
+			knife_mesh.visible = false
+		Globals.weapon_swapped.emit("Hacha")
 
 func get_weapon() -> Weapon:
 	return get_node(str(weapon))

@@ -4,6 +4,7 @@ var player
 
 signal fragments_updated(total: int, added_amount: int)
 signal weapon_swapped(weapon_name: String)
+signal axe_acquired
 var has_church_key: bool = false
 var has_axe : bool = false
 signal objective_updated(new_text: String)
@@ -71,6 +72,8 @@ func _apply_player_health_upgrade():
 	if "life_bar" in player and is_instance_valid(player.life_bar):
 		player.life_bar.max_value = player.max_health
 		player.life_bar.value = player.health
+	if player.has_method("update_life_bar_display"):
+		player.update_life_bar_display()
 	
 var _msg_id: int = 0
 

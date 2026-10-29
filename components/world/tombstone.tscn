@@ -1,0 +1,14 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://assets/models/world/stone_tombstone.glb" id="1_tombstone"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tombstone"]
+size = Vector3(0.7, 1.1, 0.4)
+
+[node name="Tombstone" type="StaticBody3D"]
+
+[node name="stone_tombstone" parent="." instance=ExtResource("1_tombstone")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
+shape = SubResource("BoxShape3D_tombstone")

@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dfboss876123"]
+
+[ext_resource type="PackedScene" uid="uid://bko0fvadreqex" path="res://levels/map_1/church_insides.tscn" id="1_church"]
+[ext_resource type="Script" path="res://scratch/test_boss_encounter.gd" id="2_script"]
+
+[node name="ChurchInsides" instance=ExtResource("1_church")]
+script = ExtResource("2_script")
+

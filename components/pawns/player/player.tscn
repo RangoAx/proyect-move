@@ -26,8 +26,31 @@ size = Vector3(5.3861084, 1, 8.177103)
 radius = 0.2578125
 height = 1.888916
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f4dpa"]
+shader = ExtResource("11_fvfw8")
+shader_parameter/resolution_x = 640
+shader_parameter/resolution_y = 480
+shader_parameter/color_bit_depth = 5
+shader_parameter/dither_strength = 0.03
+shader_parameter/jitter_amount = 0.002
+shader_parameter/jitter_speed = 3.0
+shader_parameter/jitter_frequency = 100.0
+shader_parameter/chromatic_aberration_strength = 0.01200000057
+shader_parameter/vignette_strength = 0.50000002375
+shader_parameter/vignette_radius = 1.0000000475
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g4v7s"]
 shader = ExtResource("11_fvfw8")
+shader_parameter/resolution_x = 320
+shader_parameter/resolution_y = 240
+shader_parameter/color_bit_depth = 4
+shader_parameter/dither_strength = 0.03
+shader_parameter/jitter_amount = 0.008
+shader_parameter/jitter_speed = 1.2
+shader_parameter/jitter_frequency = 180.0
+shader_parameter/chromatic_aberration_strength = 0.015
+shader_parameter/vignette_strength = 0.8
+shader_parameter/vignette_radius = 0.9
 
 [sub_resource type="Gradient" id="Gradient_lah1q"]
 interpolation_mode = 1
@@ -47,7 +70,7 @@ anim = NodePath("PlayerMesh/AnimationPlayer")
 
 [node name="PlayerMesh" parent="." unique_id=558761329 instance=ExtResource("2_v0xwp")]
 
-[node name="Skeleton3D" parent="PlayerMesh/Armature" parent_id_path=PackedInt32Array(558761329, 809700492) index="0" unique_id=469026973]
+[node name="Skeleton3D" parent="PlayerMesh/Armature" parent_id_path=PackedInt32Array(558761329, 70562368) index="0" unique_id=246774191]
 bones/0/position = Vector3(0, 3.3026862, 0.048682585)
 bones/0/rotation = Quaternion(0.004036536, -0.22633454, 0.026209338, 0.9736886)
 bones/1/rotation = Quaternion(-0.087408856, 3.8184744e-08, 3.6612495e-09, 0.99617255)
@@ -162,11 +185,11 @@ unique_name_in_owner = true
 transform = Transform3D(1.0000037, 0.0006587878, -0.00061160326, -0.00065906346, 1.0000002, -5.0857663e-05, 0.00061020255, 5.1379204e-05, 1.0000044, -1.486558, -0.18660426, 0.043156028)
 shape = SubResource("BoxShape3D_engsh")
 
-[node name="cuchi loco" parent="PlayerMesh" index="2" unique_id=245385974]
+[node name="cuchi loco" parent="PlayerMesh" index="2" unique_id=2129781184]
 transform = Transform3D(-0.3067236, 0.9495438, -0.065468416, -0.6320085, -0.1517557, 0.7599572, 0.7116776, 0.2744734, 0.6466673, -0.58099157, 1.3112522, -0.008180913)
 visible = false
 
-[node name="AnimationPlayer" parent="PlayerMesh" index="3" unique_id=1362387543]
+[node name="AnimationPlayer" parent="PlayerMesh" index="3" unique_id=1310080445]
 libraries/ = ExtResource("5_ul21n")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=165164992]
@@ -205,22 +228,21 @@ sword_area = NodePath("../../PlayerMesh/Armature/Skeleton3D/BoneAttachment3D/Cuc
 script = ExtResource("9_rmd83")
 thrown_axe_damage = 30.0
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=356310538]
+[node name="ShaderPass" type="CanvasLayer" parent="." unique_id=552997226]
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer" unique_id=1909645217]
-offset_right = 245.0
-offset_bottom = 87.0
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 30
-
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/MarginContainer" unique_id=1016106747]
-layout_mode = 2
+[node name="ColorRect" type="ColorRect" parent="ShaderPass" unique_id=1297394216]
+material = SubResource("ShaderMaterial_f4dpa")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1031895793]
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=131546094]
+layer = 2
 script = ExtResource("11_engsh")
 
 [node name="HealthVignette" type="ColorRect" parent="HUD" unique_id=2036478977]
@@ -232,48 +254,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 0, 0, 0)
-
-[node name="DeathScreen" type="Control" parent="HUD" unique_id=764685953]
-visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="RedBackground" type="ColorRect" parent="HUD/DeathScreen" unique_id=168247857]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.53333336, 0, 0, 1)
-metadata/_edit_use_anchors_ = true
-
-[node name="DeathLabel" type="Label" parent="HUD/DeathScreen" unique_id=1044804170]
-layout_mode = 0
-offset_left = 506.0
-offset_top = 258.0
-offset_right = 619.0
-offset_bottom = 281.0
-text = "HAS MUERTO"
-
-[node name="BtnRetry" type="Button" parent="HUD/DeathScreen" unique_id=1006181002]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -45.5
-offset_top = -15.5
-offset_right = 45.5
-offset_bottom = 15.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "Reintentar"
 
 [node name="FragmentDisplay" type="Control" parent="HUD" unique_id=2002620069]
 layout_mode = 3
@@ -393,5 +373,77 @@ grow_horizontal = 2
 grow_vertical = 0
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD" unique_id=1909645217]
+offset_right = 245.0
+offset_bottom = 87.0
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="ProgressBar" type="ProgressBar" parent="HUD/MarginContainer" unique_id=1016106747]
+layout_mode = 2
+value = 100.0
+show_percentage = false
+
+[node name="HpLabel" type="Label" parent="HUD/MarginContainer/ProgressBar" unique_id=1016106748]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 14
+text = "100 HP"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DeathScreen" type="Control" parent="HUD" unique_id=764685953]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RedBackground" type="ColorRect" parent="HUD/DeathScreen" unique_id=168247857]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.53333336, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="DeathLabel" type="Label" parent="HUD/DeathScreen" unique_id=1044804170]
+layout_mode = 0
+offset_left = 506.0
+offset_top = 258.0
+offset_right = 619.0
+offset_bottom = 281.0
+text = "HAS MUERTO"
+
+[node name="BtnRetry" type="Button" parent="HUD/DeathScreen" unique_id=1006181002]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.5
+offset_top = -15.5
+offset_right = 45.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Reintentar"
 
 [editable path="PlayerMesh"]

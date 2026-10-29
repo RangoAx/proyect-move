@@ -23,23 +23,37 @@ func exit():
 func attack():
 	pass
 
+var attack_buffered : bool = false
+@export var attack_window : bool = false
+var attack_follow : bool = false
+
+func buffer_attack() -> void:
+	attack_buffered = true
+	attack_follow = true
+
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("attack") and attack_window:
 		attack_follow = true
 
-@export var attack_window : bool
-var attack_follow : bool
-
 func play_attack_animation(animation : String, lag_amount:float):
-	attack_follow = false
+	if attack_buffered:
+		attack_follow = true
+		attack_buffered = false
+	else:
+		attack_follow = false
+	attack_window = true
 	if not player.anim.has_animation(animation): printerr("Animacion no existe: %s" % animation) 
+	player.anim.stop()
 	player.anim.play(animation)
 	await player.anim.animation_finished
-	if attack_follow: return true
+	if attack_follow or attack_buffered:
+		attack_buffered = false
+		return true
 	await get_tree().create_timer(lag_amount).timeout
 	attack_window = false
-	print(attack_follow)
-	return attack_follow
+	var res = attack_follow or attack_buffered
+	attack_buffered = false
+	return res
 #
 #func play_interruptible_animation(animation : StringName, startup : float = 0, action : StringName = "attack"):
 	#var anim : AnimationPlayer = player.anim

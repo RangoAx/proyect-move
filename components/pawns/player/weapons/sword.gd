@@ -23,15 +23,37 @@ func _ready():
 		sword_area.body_entered.connect(_on_body_entered)
 
 func hitbox_open():
-	enemies_hit.clear()
-	sword_area.set_deferred("monitoring", true)
+	if not sword_area.monitoring:
+		enemies_hit.clear()
+	sword_area.monitoring = true
 	if slash_trail:
-		slash_trail.is_emitting = true # Changed
+		slash_trail.is_emitting = true
+	_check_hitbox()
+
+func _check_hitbox() -> void:
+	if not sword_area:
+		return
+	for body in sword_area.get_overlapping_bodies():
+		_on_body_entered(body)
+	if player and is_instance_valid(player):
+		var space = player.get_world_3d().direct_space_state if player.get_world_3d() else null
+		if space:
+			var query = PhysicsShapeQueryParameters3D.new()
+			var sphere = SphereShape3D.new()
+			sphere.radius = 2.4
+			query.shape = sphere
+			var fwd = -player.movement.mesh.global_transform.basis.z.normalized() if (player.movement and player.movement.mesh) else -player.global_transform.basis.z.normalized()
+			query.transform = Transform3D(Basis(), player.global_position + fwd * 1.2 + Vector3(0, 0.8, 0))
+			query.collision_mask = 2 # Capa 2: Enemigos
+			var hits = space.intersect_shape(query, 16)
+			for hit in hits:
+				if hit.collider is Node3D:
+					_on_body_entered(hit.collider)
 
 func hitbox_close():
-	sword_area.set_deferred("monitoring", false)
+	sword_area.monitoring = false
 	if slash_trail:
-		slash_trail.is_emitting = false # Changed
+		slash_trail.is_emitting = false
 
 func attack():
 	if not Globals.can_attack:
@@ -41,26 +63,33 @@ func attack():
 		return
 		
 	is_estocada = false
+	weapon_manager.is_attacking = true
 	
-	# GOLPE 1: Calculamos la dirección actual de la malla y empujamos
+	# GOLPE 1
 	var dir_1 = player.global_position - player.movement.mesh.global_transform.basis.z
 	player.movement.apply_knockback(dir_1, 0.12)
+	hitbox_open()
 	
-	if await play_attack_animation("Ataque1", 0.2):
-		
-		# GOLPE 2: Volvemos a calcular la dirección por si el jugador giró el ratón
+	var did_follow_1 = await play_attack_animation("Ataque1", 0.2)
+	hitbox_close()
+	if did_follow_1:
+		# GOLPE 2
 		var dir_2 = player.global_position - player.movement.mesh.global_transform.basis.z
 		player.movement.apply_knockback(dir_2, 0.12)
+		hitbox_open()
 		
-		if await play_attack_animation("Ataque2", 0.1):
-			
-			# GOLPE 3: Volvemos a calcular para el último salto
+		var did_follow_2 = await play_attack_animation("Ataque2", 0.1)
+		hitbox_close()
+		if did_follow_2:
+			# GOLPE 3
 			var dir_3 = player.global_position - player.movement.mesh.global_transform.basis.z
 			player.movement.apply_knockback(dir_3, 0.2)
-			
+			hitbox_open()
 			await play_attack_animation("Ataque3", 0.1)
+			hitbox_close()
 			
 	hitbox_close()
+	weapon_manager.is_attacking = false
 	
 func aim_start():
 	if not Globals.can_attack:

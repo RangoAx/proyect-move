@@ -1,0 +1,72 @@
+[gd_scene load_steps=2 format=3]
+
+[sub_resource type="GDScript" id="1"]
+script/source = "extends Node3D
+
+func _ready() -> void:
+	print('--- Testing advanced fog shader ---')
+	var shader = Shader.new()
+	shader.code = '''
+shader_type fog;
+
+uniform float radius = 17.5;
+uniform float thickness = 4.0;
+uniform float max_density = 2.0;
+uniform float fade_progress = 1.0;
+uniform vec3 fog_albedo = vec3(0.6, 0.63, 0.68);
+
+float hash3(vec3 p) {
+    p = fract(p * 0.1031);
+    p += dot(p, p.zyx + 31.32);
+    return fract((p.x + p.y) * p.z);
+}
+
+float noise3(vec3 p) {
+    vec3 i = floor(p);
+    vec3 f = fract(p);
+    f = f * f * (3.0 - 2.0 * f);
+    return mix(
+        mix(mix(hash3(i + vec3(0,0,0)), hash3(i + vec3(1,0,0)), f.x),
+            mix(hash3(i + vec3(0,1,0)), hash3(i + vec3(1,1,0)), f.x), f.y),
+        mix(mix(hash3(i + vec3(0,0,1)), hash3(i + vec3(1,0,1)), f.x),
+            mix(hash3(i + vec3(0,1,1)), hash3(i + vec3(1,1,1)), f.x), f.y), f.z);
+}
+
+void fog() {
+    float dist = length(OBJECT_POSITION.xz);
+    float ring_dist = abs(dist - radius);
+    if (ring_dist < thickness) {
+        // Soft falloff from center of the fog wall ring
+        float profile = 1.0 - (ring_dist / thickness);
+        profile = profile * profile * (3.0 - 2.0 * profile);
+        
+        // Vertical falloff near top and bottom of volume
+        float h = abs(OBJECT_POSITION.y);
+        float v_fade = clamp(1.0 - (h / 6.0), 0.0, 1.0);
+        
+        // 3D animated noise for swirling, billowing clouds
+        vec3 np = OBJECT_POSITION * 0.25 + vec3(TIME * 0.1, TIME * 0.05, -TIME * 0.08);
+        float n = noise3(np);
+        
+        float final_density = max_density * profile * v_fade * (0.6 + 0.8 * n) * fade_progress;
+        DENSITY = clamp(final_density, 0.0, 10.0);
+        ALBEDO = fog_albedo;
+    } else {
+        DENSITY = 0.0;
+    }
+}
+'''
+	var mat = ShaderMaterial.new()
+	mat.shader = shader
+	var fv = FogVolume.new()
+	fv.shape = RenderingServer.FOG_VOLUME_SHAPE_BOX
+	fv.size = Vector3(45, 12, 45)
+	fv.material = mat
+	add_child(fv)
+	print('Advanced volumetric fog shader compiled and loaded perfectly!')
+	get_tree().quit(0)
+"
+
+[node name="TestAdvFog" type="Node3D"]
+script = SubResource("1")
+

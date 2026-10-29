@@ -1,0 +1,10 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://levels/map_1/toy_box.tscn" id="1_map"]
+[ext_resource type="Script" path="res://scratch/gameplay_validator.gd" id="2_val"]
+
+[node name="TestRunner" instance=ExtResource("1_map")]
+
+[node name="GameplayValidator" type="Node" parent="."]
+script = ExtResource("2_val")
+

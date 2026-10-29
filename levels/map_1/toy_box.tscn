@@ -363,7 +363,7 @@ shadow_enabled = true
 [node name="Player" parent="." unique_id=936416609 instance=ExtResource("5_ty26i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -96.522095, -0.8006606, -10.50946)
 
-[node name="Skeleton3D" parent="Player/PlayerMesh/Armature" parent_id_path=PackedInt32Array(936416609, 558761329, 809700492) index="0" unique_id=469026973]
+[node name="Skeleton3D" parent="Player/PlayerMesh/Armature" parent_id_path=PackedInt32Array(936416609, 558761329, 70562368) index="0" unique_id=246774191]
 bones/0/position = Vector3(-1.2927853e-11, 1.075811, 0.014604775)
 bones/0/rotation = Quaternion(-3.768593e-08, -3.1786513e-08, 8.845539e-12, 1)
 bones/1/position = Vector3(-1.2100373e-09, 0.10798304, -0.019096855)
@@ -776,9 +776,9 @@ collision_layer = 0
 collision_mask = 4
 script = ExtResource("1_d84ol")
 zone_name = "Entrada Iglesia"
+enemy_scenes = Array[PackedScene]([ExtResource("8_jmlt3"), ExtResource("8_jmlt3"), ExtResource("20_pitchfork"), ExtResource("20_pitchfork"), ExtResource("7_gg1b1"), ExtResource("7_gg1b1")])
 can_respawn = false
 requires_church_key = true
-enemy_scenes = Array[PackedScene]([ExtResource("8_jmlt3"), ExtResource("8_jmlt3"), ExtResource("20_pitchfork"), ExtResource("20_pitchfork"), ExtResource("7_gg1b1"), ExtResource("7_gg1b1")])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EnemySpawnZones/ZoneEntradaIglesia" unique_id=2140000041]
 shape = SubResource("BoxShape3D_zone_iglesia")

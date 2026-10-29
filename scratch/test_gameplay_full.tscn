@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://df237yhn6asdf"]
+
+[ext_resource type="Script" path="res://scratch/test_gameplay_full.gd" id="1_test"]
+[ext_resource type="PackedScene" uid="uid://btcasuxejncv1" path="res://levels/map_1/toy_box.tscn" id="2_toybox"]
+
+[node name="TestRunner" type="Node3D"]
+script = ExtResource("1_test")
+
+[node name="ToyBox" parent="." instance=ExtResource("2_toybox")]
+

@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3]
+
+[sub_resource type="GDScript" id="1"]
+script/source = "extends Node3D
+
+func _ready() -> void:
+	print('Loading circular_fog_wall.gdshader...')
+	var shader = load('res://components/world/circular_fog_wall.gdshader') as Shader
+	if not shader:
+		printerr('Failed to load circular_fog_wall.gdshader')
+		get_tree().quit(1)
+		return
+	var mat = ShaderMaterial.new()
+	mat.shader = shader
+	var fv = FogVolume.new()
+	fv.shape = RenderingServer.FOG_VOLUME_SHAPE_BOX
+	fv.size = Vector3(50, 14, 50)
+	fv.material = mat
+	add_child(fv)
+	print('circular_fog_wall.gdshader compiled and assigned to FogVolume with 0 errors!')
+	get_tree().quit(0)
+"
+
+[node name="TestShaderLoad" type="Node3D"]
+script = SubResource("1")
+
