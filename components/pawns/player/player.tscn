@@ -350,8 +350,6 @@ offset_transform_enabled = true
 offset_transform_position = Vector2(0, 48)
 text = "1/1"
 
-[node name="PauseMenu" parent="HUD" unique_id=153243669 instance=ExtResource("12_5wi1q")]
-
 [node name="ObjectiveLabel" type="Label" parent="HUD" unique_id=1646137531]
 offset_left = 32.0
 offset_top = 70.0
@@ -396,13 +394,15 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 14
 text = "100 HP"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="PauseMenu" parent="HUD" unique_id=153243669 instance=ExtResource("12_5wi1q")]
 
 [node name="DeathScreen" type="Control" parent="HUD" unique_id=764685953]
 visible = false
