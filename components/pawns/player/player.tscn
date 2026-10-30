@@ -15,6 +15,7 @@
 [ext_resource type="Shader" uid="uid://iws8h11e6aqa" path="res://components/pawns/player/player.gdshader" id="11_fvfw8"]
 [ext_resource type="PackedScene" uid="uid://j6bdd8ibkkua" path="res://components/ui/pause_menu.tscn" id="12_5wi1q"]
 [ext_resource type="Texture2D" uid="uid://br6lf3w4fpvh8" path="res://assets/textures/icons/behavior_tree/gray-circle-outline-png.webp" id="13_xjfsf"]
+[ext_resource type="AudioStream" uid="uid://601njftjd0w6" path="res://Audio/Sonidos-Pasos.mp3" id="16_lkf6o"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fvfw8"]
 size = Vector3(0.2140274, 0.08154297, 0.75416946)
@@ -70,7 +71,7 @@ anim = NodePath("PlayerMesh/AnimationPlayer")
 
 [node name="PlayerMesh" parent="." unique_id=558761329 instance=ExtResource("2_v0xwp")]
 
-[node name="Skeleton3D" parent="PlayerMesh/Armature" parent_id_path=PackedInt32Array(558761329, 70562368) index="0" unique_id=246774191]
+[node name="Skeleton3D" parent="PlayerMesh/Armature" parent_id_path=PackedInt32Array(558761329, 1256934910) index="0" unique_id=1918147058]
 bones/0/position = Vector3(0, 3.3026862, 0.048682585)
 bones/0/rotation = Quaternion(0.004036536, -0.22633454, 0.026209338, 0.9736886)
 bones/1/rotation = Quaternion(-0.087408856, 3.8184744e-08, 3.6612495e-09, 0.99617255)
@@ -185,11 +186,11 @@ unique_name_in_owner = true
 transform = Transform3D(1.0000037, 0.0006587878, -0.00061160326, -0.00065906346, 1.0000002, -5.0857663e-05, 0.00061020255, 5.1379204e-05, 1.0000044, -1.486558, -0.18660426, 0.043156028)
 shape = SubResource("BoxShape3D_engsh")
 
-[node name="cuchi loco" parent="PlayerMesh" index="2" unique_id=2129781184]
+[node name="cuchi loco" parent="PlayerMesh" index="2" unique_id=1856000641]
 transform = Transform3D(-0.3067236, 0.9495438, -0.065468416, -0.6320085, -0.1517557, 0.7599572, 0.7116776, 0.2744734, 0.6466673, -0.58099157, 1.3112522, -0.008180913)
 visible = false
 
-[node name="AnimationPlayer" parent="PlayerMesh" index="3" unique_id=1310080445]
+[node name="AnimationPlayer" parent="PlayerMesh" index="3" unique_id=1655550893]
 libraries/ = ExtResource("5_ul21n")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=165164992]
@@ -445,5 +446,10 @@ offset_bottom = 15.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "Reintentar"
+
+[node name="AudioWalk" type="AudioStreamPlayer3D" parent="." unique_id=237610990]
+stream = ExtResource("16_lkf6o")
+unit_size = 36.8
+autoplay = true
 
 [editable path="PlayerMesh"]

@@ -8,7 +8,6 @@ class_name Player
 @onready var weapon_manager = $WeaponManager
 @onready var life_bar = $HUD/MarginContainer/ProgressBar 
 @onready var hp_label: Label = $HUD/MarginContainer/ProgressBar/HpLabel
-
 # Referencias a la pantalla de muerte ya existente en tu escena
 @onready var death_screen: Control = $HUD/DeathScreen
 @onready var btn_retry: Button = $HUD/DeathScreen/BtnRetry

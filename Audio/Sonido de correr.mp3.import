@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dp1p1r3pj0nbf"
+path="res://.godot/imported/Sonido de correr.mp3-36ca56503bb6b22e8ddc754f9ab63359.mp3str"
+
+[deps]
+
+source_file="res://Audio/Sonido de correr.mp3"
+dest_files=["res://.godot/imported/Sonido de correr.mp3-36ca56503bb6b22e8ddc754f9ab63359.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

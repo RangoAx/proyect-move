@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://m2g1b84fs7u3"
+path="res://.godot/imported/Sonido de seleccion en menu.wav-0d5353d4a22642201adc883562a81f8f.sample"
+
+[deps]
+
+source_file="res://Audio/Sonido de seleccion en menu.wav"
+dest_files=["res://.godot/imported/Sonido de seleccion en menu.wav-0d5353d4a22642201adc883562a81f8f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

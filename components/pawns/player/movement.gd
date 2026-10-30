@@ -6,6 +6,8 @@ class_name MovementManager
 @onready var weapon_manager = $"../WeaponManager"
 @onready var mesh : Node3D = $"../PlayerMesh"
 @onready var collision_shape : CollisionShape3D = $"../CollisionShape3D"
+@onready var audio_caminar : AudioStreamPlayer3D = $"../AudioWalk"
+
 
 @export var jump_impulse : float = 6
 @export var walk_speed : float = 2.5
@@ -100,7 +102,7 @@ func _process_player_velocity(delta : float):
 	var direction := Vector3(input_direction.x, 0, input_direction.y).rotated(Vector3(0, 1, 0), spring.rotation.y)
 	expected_velocity = Vector3(direction.x * get_speed(), player.velocity.y, direction.z * get_speed())
 	player.velocity = player.velocity.move_toward(expected_velocity, delta * slipperiness * player.velocity.distance_to(expected_velocity))
-
+	
 func _process_cosmetic(delta : float):
 	# ELIMINAMOS el "if weapon_manager.is_attacking: return" que bloqueaba el giro
 	
@@ -132,7 +134,12 @@ func _process_cosmetic(delta : float):
 			anim.play("Idle", 0.25) 
 			
 	was_crouching = is_crouching
-
+	
+	if is_moving:
+		if not audio_caminar.playing:
+			audio_caminar.play()
+	else:
+		audio_caminar.stop()
 ##crouch
 #func _process_player_crouch(delta: float):
 	#if Input.is_action_pressed("crouch") and player.is_on_floor() and not is_dashing and not weapon_manager.is_attacking:

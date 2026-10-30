@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cbj7g2eerabnx"
+path="res://.godot/imported/Guitarra menu.mp3-6761acc847ca28ad820ad6e78332c56c.mp3str"
+
+[deps]
+
+source_file="res://Audio/Guitarra menu.mp3"
+dest_files=["res://.godot/imported/Guitarra menu.mp3-6761acc847ca28ad820ad6e78332c56c.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

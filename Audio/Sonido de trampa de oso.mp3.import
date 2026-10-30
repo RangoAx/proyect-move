@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b52lv6on74704"
+path="res://.godot/imported/Sonido de trampa de oso.mp3-6f2a32020a807d10e5262565d88d7d3b.mp3str"
+
+[deps]
+
+source_file="res://Audio/Sonido de trampa de oso.mp3"
+dest_files=["res://.godot/imported/Sonido de trampa de oso.mp3-6f2a32020a807d10e5262565d88d7d3b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
