@@ -363,7 +363,7 @@ shadow_enabled = true
 [node name="Player" parent="." unique_id=936416609 instance=ExtResource("5_ty26i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -96.522095, -0.8006606, -10.50946)
 
-[node name="Skeleton3D" parent="Player/PlayerMesh/Armature" parent_id_path=PackedInt32Array(936416609, 558761329, 70562368) index="0" unique_id=246774191]
+[node name="Skeleton3D" parent="Player/PlayerMesh/Armature" parent_id_path=PackedInt32Array(936416609, 558761329, 497280481) index="0" unique_id=1802811838]
 bones/0/position = Vector3(-1.2927853e-11, 1.075811, 0.014604775)
 bones/0/rotation = Quaternion(-3.768593e-08, -3.1786513e-08, 8.845539e-12, 1)
 bones/1/position = Vector3(-1.2100373e-09, 0.10798304, -0.019096855)
@@ -492,7 +492,25 @@ transform = Transform3D(0.12522042, 0.036775377, 0.9914473, 0.14341544, -0.98948
 [node name="BoneAttachment3D2" parent="Player/PlayerMesh/Armature/Skeleton3D" index="2" unique_id=1372867059]
 transform = Transform3D(0.12522042, 0.036775377, 0.9914473, 0.14341544, -0.9894881, 0.018589422, 0.9817089, 0.13986105, -0.1291782, -0.27516684, 0.8974757, -0.044932194)
 
-[node name="DeathScreen" parent="Player/HUD" parent_id_path=PackedInt32Array(936416609, 131546094) index="1" unique_id=764685953]
+[node name="FragmentDisplay" parent="Player/HUD" parent_id_path=PackedInt32Array(936416609, 131546094) index="1" unique_id=2002620069]
+offset_left = -40.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 40.0
+
+[node name="TotalFragments" parent="Player/HUD/FragmentDisplay" index="0" unique_id=563866843]
+offset_left = -114.0
+offset_top = -11.5
+offset_right = -4.0
+offset_bottom = 11.5
+
+[node name="Crosshair" parent="Player/HUD" parent_id_path=PackedInt32Array(936416609, 131546094) index="3" unique_id=600936071]
+offset_left = -500.0
+offset_top = -360.0
+offset_right = 500.0
+offset_bottom = 360.0
+
+[node name="DeathScreen" parent="Player/HUD" parent_id_path=PackedInt32Array(936416609, 131546094) index="8" unique_id=764685953]
 visible = true
 
 [node name="DeathLabel" parent="Player/HUD/DeathScreen" index="1" unique_id=1044804170]
@@ -509,24 +527,6 @@ offset_bottom = -89.5
 grow_horizontal = 2
 grow_vertical = 2
 label_settings = SubResource("LabelSettings_g4v7s")
-
-[node name="FragmentDisplay" parent="Player/HUD" parent_id_path=PackedInt32Array(936416609, 131546094) index="2" unique_id=2002620069]
-offset_left = -40.0
-offset_top = 0.0
-offset_right = 0.0
-offset_bottom = 40.0
-
-[node name="TotalFragments" parent="Player/HUD/FragmentDisplay" index="0" unique_id=563866843]
-offset_left = -114.0
-offset_top = -11.5
-offset_right = -4.0
-offset_bottom = 11.5
-
-[node name="Crosshair" parent="Player/HUD" parent_id_path=PackedInt32Array(936416609, 131546094) index="4" unique_id=600936071]
-offset_left = -500.0
-offset_top = -360.0
-offset_right = 500.0
-offset_bottom = 360.0
 
 [node name="Cajas" type="Node3D" parent="." unique_id=262102440 node_paths=PackedStringArray("cajas")]
 script = ExtResource("10_fwb5c")
@@ -559,7 +559,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.105137, -0.6368352, 18.066
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1071157, -0.6368352, 34.502434)
 
 [node name="AxeNew" parent="." unique_id=1239786087 instance=ExtResource("9_rjftq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 81.69924, -0.25526035, 72.98881)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 81.69924, -0.25526035, -11.46035)
 
 [node name="Barriers" type="StaticBody3D" parent="." unique_id=1366305270]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -84.20864, 0, -7.8630013)
@@ -742,7 +742,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 4)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -6)
 
 [node name="ZoneBosque" type="Area3D" parent="EnemySpawnZones" unique_id=2140000030]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80, 0, 72)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71.21611, 0, -8.839052)
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("1_d84ol")
@@ -802,7 +802,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 0)
 
 [node name="ZoneAbajoPueblo" type="Area3D" parent="EnemySpawnZones" unique_id=2140000050]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 65)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, -18.20013)
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("1_d84ol")
