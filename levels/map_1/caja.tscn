@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b5tev4unam80w"]
 
 [ext_resource type="Script" uid="uid://25cux14gch8l" path="res://levels/map_1/caja.gd" id="1_3dmho"]
+[ext_resource type="PackedScene" uid="uid://bms6kpah6oa21" path="res://levels/map_1/caja amarilla.glb" id="2_2it0p"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
 size = Vector3(1, 1.7039795, 1)
@@ -8,8 +9,8 @@ size = Vector3(1, 1.7039795, 1)
 [node name="Caja" type="Node3D" unique_id=149353488]
 script = ExtResource("1_3dmho")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=517447881]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5010544, 0)
+[node name="caja amarilla" parent="." unique_id=889715866 instance=ExtResource("2_2it0p")]
+transform = Transform3D(0.555, 0, 0, 0, 0.555, 0, 0, 0, 0.555, 0, 0, 0)
 
 [node name="CajaHitbox" type="Area3D" parent="." unique_id=853810113]
 

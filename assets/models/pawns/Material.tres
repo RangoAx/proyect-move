@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b4hlrsonawxkc"]
+
+[ext_resource type="Texture2D" uid="uid://hkye5s58qkye" path="res://assets/models/pawns/player/Animation personaje_jugador texture.png" id="1_xm8kk"]
+
+[resource]
+resource_name = "Material"
+cull_mode = 2
+albedo_texture = ExtResource("1_xm8kk")
+roughness = 0.5
+texture_filter = 2
+metadata/_gltf_primary_texture_coord = 0

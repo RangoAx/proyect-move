@@ -2,14 +2,14 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcd5pulkm3117"
+uid="uid://m4lq4vpa61ix"
 path.s3tc="res://.godot/imported/Enemigo trinche_trinche color.png-ec96530cf5e4488fe47eecafd541c1ea.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "573a8f6a2ec15f96cbe10ff1459bbc63"
+"md5": "ff745c430410a98205a6ab3fb4cc584c"
 }
 
 [deps]

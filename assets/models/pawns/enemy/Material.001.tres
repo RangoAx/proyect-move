@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cyuwa0vptydsy"]
+
+[ext_resource type="Texture2D" uid="uid://bnh1itkec0n8g" path="res://levels/map_1/caja amarilla_caja amarilla.png" id="1_powvx"]
+
+[resource]
+resource_name = "Material.001"
+cull_mode = 2
+albedo_texture = ExtResource("1_powvx")
+metallic = 0.50453174
+texture_filter = 2
+metadata/_gltf_primary_texture_coord = 0

@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://w5ijr78id7s8"]
+
+[ext_resource type="Texture2D" uid="uid://dkdnusn2f4tts" path="res://components/pawns/player/Animation personaje_PS1 knife texture.png" id="1_shisu"]
+
+[resource]
+resource_name = "cuchi loco"
+cull_mode = 2
+shading_mode = 0
+albedo_texture = ExtResource("1_shisu")
+metadata/_gltf_primary_texture_coord = 0

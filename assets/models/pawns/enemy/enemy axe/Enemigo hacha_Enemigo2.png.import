@@ -2,14 +2,14 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cl3e8gomrtkmo"
+uid="uid://peuyaiomhpas"
 path.s3tc="res://.godot/imported/Enemigo hacha_Enemigo2.png-13543ee3fd8d2a9388424b4cec03549a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "747082f4c5f431d677ab422126e66ab1"
+"md5": "60191c51cec270cdefcca2aac551bbda"
 }
 
 [deps]

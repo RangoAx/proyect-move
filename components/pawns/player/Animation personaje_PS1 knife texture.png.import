@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dmt01osu2acqx"
-path.s3tc="res://.godot/imported/Animation personaje_jugador texture.png-491ea4304984989b2836b237de3b831d.s3tc.ctex"
+uid="uid://dkdnusn2f4tts"
+path.s3tc="res://.godot/imported/Animation personaje_PS1 knife texture.png-db5b7ad6fdcc06052cf7db94a1be72f3.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "ddcb3c90376352a5776d585626d3bf8f"
+"md5": "62bfcf6a1e06b84b29988e7a675525d8"
 }
 
 [deps]
 
-source_file="res://assets/models/Animation personaje_jugador texture.png"
-dest_files=["res://.godot/imported/Animation personaje_jugador texture.png-491ea4304984989b2836b237de3b831d.s3tc.ctex"]
+source_file="res://components/pawns/player/Animation personaje_PS1 knife texture.png"
+dest_files=["res://.godot/imported/Animation personaje_PS1 knife texture.png-db5b7ad6fdcc06052cf7db94a1be72f3.s3tc.ctex"]
 
 [params]
 

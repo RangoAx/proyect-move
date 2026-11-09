@@ -2,14 +2,14 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b7mpjbg5gkkau"
+uid="uid://bgn1ixh42j21v"
 path.s3tc="res://.godot/imported/Enemigo puño_texture_enemigo.png-e3d1df59e628bd7c4559c61698053169.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "f9f16234592deebadd2c48c8ae587be4"
+"md5": "8d811afe6f20723f1993d15d800f4aa5"
 }
 
 [deps]
