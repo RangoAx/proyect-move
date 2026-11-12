@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bykyqrsem1025"]
+
+[ext_resource type="Texture2D" uid="uid://46tr0kdj2q3q" path="res://levels/map_1/house 2_metal-pixelated.png" id="1_drsnx"]
+
+[resource]
+resource_name = "Handle_material"
+cull_mode = 2
+albedo_texture = ExtResource("1_drsnx")
+metallic = 0.8
+texture_filter = 2
+metadata/_gltf_primary_texture_coord = 0

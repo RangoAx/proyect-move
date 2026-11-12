@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://b68l48v2ye11f"]
+
+[ext_resource type="PackedScene" uid="uid://doh1ndsy0cj7l" path="res://levels/map_1/house 2.glb" id="1_dih8o"]
+
+[node name="house 2" unique_id=476751671 instance=ExtResource("1_dih8o")]

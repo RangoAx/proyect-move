@@ -1,0 +1,148 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://doh1ndsy0cj7l"
+path="res://.godot/imported/house 2.glb-b0939a501ed1c512d3955f4d1ab5f1fa.scn"
+
+[deps]
+
+source_file="res://levels/map_1/house 2.glb"
+dest_files=["res://.godot/imported/house 2.glb-b0939a501ed1c512d3955f4d1ab5f1fa.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/root_script=null
+mesh_library/use_node_names_as_mesh_names=false
+array_mesh/deduplicate_surfaces=true
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+nodes/use_name_suffixes=true
+nodes/use_node_type_suffixes=true
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+materials/extract=0
+materials/extract_format=0
+materials/extract_path=""
+_subresources={
+"materials": {
+"Ceiling_material": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/objects/Ceiling_material.tres",
+"use_external/path": "uid://p7xdahvb75at"
+},
+"Door_material": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/objects/Door_material.tres",
+"use_external/path": "uid://dsfsxcfcoqjn1"
+},
+"Floor_material": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/objects/Floor_material.tres",
+"use_external/path": "uid://c865r00cdfs7r"
+},
+"Glass_material": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/objects/Glass_material.tres",
+"use_external/path": "uid://chw7gcvfj330v"
+},
+"Glass_material.006": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/objects/Glass_material.006.tres",
+"use_external/path": "uid://dmrhtokml5hoi"
+},
+"Glass_material.007": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/objects/Glass_material.007.tres",
+"use_external/path": "uid://dv8oh43ftq8jn"
+},
+"Glass_material.008": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/objects/Glass_material.008.tres",
+"use_external/path": "uid://d35o74eoowth5"
+},
+"Glass_material.009": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/objects/Glass_material.009.tres",
+"use_external/path": "uid://dcp581lrykpsx"
+},
+"Handle_material": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/objects/Handle_material.tres",
+"use_external/path": "uid://bykyqrsem1025"
+},
+"Material.001": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/objects/Material.001.tres",
+"use_external/path": "uid://bxeeik2043bed"
+},
+"Material.008": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/objects/Material.008.tres",
+"use_external/path": "uid://c03mjdih4pnba"
+},
+"Material.009": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/objects/Material.009.tres",
+"use_external/path": "uid://ef8w45inxmu1"
+},
+"Material.010": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/objects/Material.010.tres",
+"use_external/path": "uid://pjjgtj5sbxl5"
+},
+"Material.011": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/objects/Material.011.tres",
+"use_external/path": "uid://qs8lr50wmbr1"
+},
+"Wall_material": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/objects/Wall_material.tres",
+"use_external/path": "uid://do8x5eqp0a6er"
+},
+"Window_material": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/objects/Window_material.tres",
+"use_external/path": "uid://dm0ep2so48ejn"
+},
+"Window_material.006": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/objects/Window_material.006.tres",
+"use_external/path": "uid://cc5mcl431rr32"
+},
+"Window_material.007": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/objects/Window_material.007.tres",
+"use_external/path": "uid://c5x4r2be1ho43"
+},
+"Window_material.008": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/objects/Window_material.008.tres",
+"use_external/path": "uid://cyk54e1tpdvty"
+},
+"Window_material.009": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/objects/Window_material.009.tres",
+"use_external/path": "uid://bextxglu6a2pw"
+}
+}
+}
+gltf/naming_version=2
+gltf/embedded_image_handling=1
+gltf/texture_map_mode=1

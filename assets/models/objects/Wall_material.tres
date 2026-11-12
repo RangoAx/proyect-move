@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://do8x5eqp0a6er"]
+
+[ext_resource type="Texture2D" uid="uid://d0pn8g1puqfca" path="res://levels/map_1/house 2_wall house texture.png" id="1_npbxp"]
+
+[resource]
+resource_name = "Wall_material"
+cull_mode = 2
+albedo_texture = ExtResource("1_npbxp")
+metallic = 0.8
+texture_filter = 2
+metadata/_gltf_primary_texture_coord = 0

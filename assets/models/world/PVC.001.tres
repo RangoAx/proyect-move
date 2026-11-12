@@ -1,0 +1,5 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dejjbghrjwku4"]
+
+[resource]
+resource_name = "PVC.001"
+cull_mode = 2

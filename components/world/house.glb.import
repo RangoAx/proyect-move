@@ -1,0 +1,163 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://unghov5nsoja"
+path="res://.godot/imported/house.glb-8e73b64dfd653f5474bb0514f943f126.scn"
+
+[deps]
+
+source_file="res://components/world/house.glb"
+dest_files=["res://.godot/imported/house.glb-8e73b64dfd653f5474bb0514f943f126.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/root_script=null
+mesh_library/use_node_names_as_mesh_names=false
+array_mesh/deduplicate_surfaces=true
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+nodes/use_name_suffixes=true
+nodes/use_node_type_suffixes=true
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+materials/extract=0
+materials/extract_format=0
+materials/extract_path=""
+_subresources={
+"materials": {
+"Ceiling_material": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/world/Ceiling_material.tres",
+"use_external/path": "uid://c17xcjfpjvhxr"
+},
+"Door_material": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/world/Door_material.tres",
+"use_external/path": "uid://buil8xbqo0idf"
+},
+"Floor_material": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/world/Floor_material.tres",
+"use_external/path": "uid://va3csu2wmw5r"
+},
+"Handle_material": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/world/Handle_material.tres",
+"use_external/path": "uid://bj7jhwqt4axrl"
+},
+"Marble": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/world/Marble.tres",
+"use_external/path": "uid://dcdm48x60qbp3"
+},
+"Marble.001": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/world/Marble.001.tres",
+"use_external/path": "uid://86vjmsm72kpw"
+},
+"Marble.002": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/world/Marble.002.tres",
+"use_external/path": "uid://bcxv2rpkit0dq"
+},
+"Marble.003": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/world/Marble.003.tres",
+"use_external/path": "uid://cic13dmmmhxpv"
+},
+"Material": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/world/Material.tres",
+"use_external/path": "uid://qvrmqvru3r51"
+},
+"Material.001": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/world/Material.001.tres",
+"use_external/path": "uid://bgxu4lqp1p3iu"
+},
+"Material.002": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/world/Material.002.tres",
+"use_external/path": "uid://bxej0gt6n8nn5"
+},
+"Material.003": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/world/Material.003.tres",
+"use_external/path": "uid://d4c1ullmsj56n"
+},
+"Material.004": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/world/Material.004.tres",
+"use_external/path": "uid://dgvrvosohr617"
+},
+"PVC": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/world/PVC.tres",
+"use_external/path": "uid://b1q1qm7ldadtg"
+},
+"PVC.001": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/world/PVC.001.tres",
+"use_external/path": "uid://dejjbghrjwku4"
+},
+"PVC.002": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/world/PVC.002.tres",
+"use_external/path": "uid://b8dmi7ov7jwgw"
+},
+"PVC.003": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/world/PVC.003.tres",
+"use_external/path": "uid://b1ibmfnnm47qs"
+},
+"Plastic": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/world/Plastic.tres",
+"use_external/path": "uid://crryfhca23hh5"
+},
+"Plastic.001": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/world/Plastic.001.tres",
+"use_external/path": "uid://dow7pk4efv06t"
+},
+"Plastic.002": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/world/Plastic.002.tres",
+"use_external/path": "uid://cqqy755a111au"
+},
+"Plastic.003": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/world/Plastic.003.tres",
+"use_external/path": "uid://cywrnxd7b1oqk"
+},
+"Wall_material": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/world/Wall_material.tres",
+"use_external/path": "uid://nwv814vbk25o"
+},
+"hidden_material": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/world/hidden_material.tres",
+"use_external/path": "uid://c44hdtxul06sk"
+}
+}
+}
+gltf/naming_version=2
+gltf/embedded_image_handling=1
+gltf/texture_map_mode=1

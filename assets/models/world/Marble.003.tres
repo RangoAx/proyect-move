@@ -1,0 +1,5 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cic13dmmmhxpv"]
+
+[resource]
+resource_name = "Marble.003"
+cull_mode = 2

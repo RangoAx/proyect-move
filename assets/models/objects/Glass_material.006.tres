@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dmrhtokml5hoi"]
+
+[ext_resource type="Texture2D" uid="uid://bmccc8eddle8n" path="res://levels/map_1/house 2_glass-pixelated.png" id="1_8rxoe"]
+
+[resource]
+resource_name = "Glass_material.006"
+cull_mode = 2
+albedo_texture = ExtResource("1_8rxoe")
+metallic = 0.8
+metadata/_gltf_primary_texture_coord = 0
