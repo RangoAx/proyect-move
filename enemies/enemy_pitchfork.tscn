@@ -50,10 +50,12 @@ metadata/_custom_type_script = "uid://qrqoxjtc2rk0"
 
 [node name="LeafPitchforkBasic" type="Node" parent="CompositorSelector" unique_id=807889055]
 script = ExtResource("10_basic")
+damage = 12.5
 metadata/_custom_type_script = "uid://brhuhwpu4eqhw"
 
 [node name="LeafPitchforkCharge" type="Node" parent="CompositorSelector" unique_id=1044561306]
 script = ExtResource("11_charge")
+damage = 27.5
 metadata/_custom_type_script = "uid://duhq41dkdbulo"
 
 [node name="LeafFollowTarget" type="Node" parent="CompositorSelector" unique_id=574496903]
