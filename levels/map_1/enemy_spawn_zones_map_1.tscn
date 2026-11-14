@@ -1,0 +1,201 @@
+[gd_scene format=3 uid="uid://ko5y01u6a8nm"]
+
+[ext_resource type="Script" uid="uid://cjeqpb8ti8t7i" path="res://components/world/zone_spawner.gd" id="1_dexu8"]
+[ext_resource type="PackedScene" uid="uid://bgwvrd0o052k" path="res://enemies/enemy_fist.tscn" id="2_ocoks"]
+[ext_resource type="PackedScene" uid="uid://c4bjtroh7k83h" path="res://enemies/enemy_pitchfork.tscn" id="3_4a5jf"]
+[ext_resource type="PackedScene" uid="uid://b3ejlr2kfhsa4" path="res://enemies/enemy_axe.tscn" id="4_3w82n"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_zone_primeros"]
+size = Vector3(20, 6, 14)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_zone_pueblo"]
+size = Vector3(65, 8, 55)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_zone_camino"]
+size = Vector3(30, 8, 30)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_zone_bosque"]
+size = Vector3(35, 8, 35)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_zone_iglesia"]
+size = Vector3(30, 8, 25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_zone_abajo"]
+size = Vector3(50, 8, 35)
+
+[node name="EnemySpawnZones" type="Node3D" unique_id=1026683935]
+
+[node name="ZonePrimerosEnemigos" type="Area3D" parent="." unique_id=1575317745]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44, 0, -10)
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_dexu8")
+zone_name = "Primeros Enemigos"
+enemy_scenes = Array[PackedScene]([ExtResource("2_ocoks"), ExtResource("2_ocoks"), ExtResource("2_ocoks")])
+can_respawn = false
+auto_spawn_on_start = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ZonePrimerosEnemigos" unique_id=636991960]
+shape = SubResource("BoxShape3D_zone_primeros")
+
+[node name="Marker3D" type="Marker3D" parent="ZonePrimerosEnemigos" unique_id=594624987]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.86, 0, -1.69)
+
+[node name="Marker3D2" type="Marker3D" parent="ZonePrimerosEnemigos" unique_id=753161072]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.78, 0, 2.05)
+
+[node name="Marker3D3" type="Marker3D" parent="ZonePrimerosEnemigos" unique_id=1833284116]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.96, 0, -0.48)
+
+[node name="ZonePueblo" type="Area3D" parent="." unique_id=1964724073]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 22)
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_dexu8")
+zone_name = "Pueblo"
+enemy_scenes = Array[PackedScene]([ExtResource("2_ocoks"), ExtResource("2_ocoks"), ExtResource("2_ocoks"), ExtResource("3_4a5jf"), ExtResource("3_4a5jf"), ExtResource("3_4a5jf")])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ZonePueblo" unique_id=1507759133]
+shape = SubResource("BoxShape3D_zone_pueblo")
+
+[node name="Marker3D" type="Marker3D" parent="ZonePueblo" unique_id=314694173]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -7)
+
+[node name="Marker3D2" type="Marker3D" parent="ZonePueblo" unique_id=296409300]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -7)
+
+[node name="Marker3D3" type="Marker3D" parent="ZonePueblo" unique_id=1992921415]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 8)
+
+[node name="Marker3D4" type="Marker3D" parent="ZonePueblo" unique_id=613855214]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, 3)
+
+[node name="Marker3D5" type="Marker3D" parent="ZonePueblo" unique_id=1755153453]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 0, 6)
+
+[node name="Marker3D6" type="Marker3D" parent="ZonePueblo" unique_id=967157642]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 18)
+
+[node name="Marker3D7" type="Marker3D" parent="ZonePueblo" unique_id=1287225910]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -10)
+
+[node name="Marker3D8" type="Marker3D" parent="ZonePueblo" unique_id=616255965]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, -18)
+
+[node name="ZoneCaminoBosque" type="Area3D" parent="." unique_id=418589024]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62, 0, 42)
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_dexu8")
+zone_name = "Camino al Bosque"
+enemy_scenes = Array[PackedScene]([ExtResource("2_ocoks"), ExtResource("2_ocoks"), ExtResource("2_ocoks"), ExtResource("3_4a5jf"), ExtResource("3_4a5jf"), ExtResource("3_4a5jf")])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ZoneCaminoBosque" unique_id=1101181400]
+shape = SubResource("BoxShape3D_zone_camino")
+
+[node name="Marker3D" type="Marker3D" parent="ZoneCaminoBosque" unique_id=223826413]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -10)
+
+[node name="Marker3D2" type="Marker3D" parent="ZoneCaminoBosque" unique_id=2100946562]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="Marker3D3" type="Marker3D" parent="ZoneCaminoBosque" unique_id=1830981153]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 2)
+
+[node name="Marker3D4" type="Marker3D" parent="ZoneCaminoBosque" unique_id=1771400691]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 8)
+
+[node name="Marker3D5" type="Marker3D" parent="ZoneCaminoBosque" unique_id=172239034]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 4)
+
+[node name="Marker3D6" type="Marker3D" parent="ZoneCaminoBosque" unique_id=251498279]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -6)
+
+[node name="ZoneBosque" type="Area3D" parent="." unique_id=1198637582]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71.21611, 0, -8.839052)
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_dexu8")
+zone_name = "Bosque"
+enemy_scenes = Array[PackedScene]([ExtResource("4_3w82n"), ExtResource("4_3w82n"), ExtResource("4_3w82n"), ExtResource("4_3w82n")])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ZoneBosque" unique_id=1030095909]
+shape = SubResource("BoxShape3D_zone_bosque")
+
+[node name="Marker3D" type="Marker3D" parent="ZoneBosque" unique_id=335833844]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -6)
+
+[node name="Marker3D2" type="Marker3D" parent="ZoneBosque" unique_id=1682469843]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -4)
+
+[node name="Marker3D3" type="Marker3D" parent="ZoneBosque" unique_id=735964536]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 4)
+
+[node name="Marker3D4" type="Marker3D" parent="ZoneBosque" unique_id=345045529]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 8)
+
+[node name="Marker3D5" type="Marker3D" parent="ZoneBosque" unique_id=2073059525]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 2)
+
+[node name="Marker3D6" type="Marker3D" parent="ZoneBosque" unique_id=1901615191]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 12)
+
+[node name="ZoneEntradaIglesia" type="Area3D" parent="." unique_id=2108387414]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, 0, -36)
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_dexu8")
+zone_name = "Entrada Iglesia"
+enemy_scenes = Array[PackedScene]([ExtResource("2_ocoks"), ExtResource("2_ocoks"), ExtResource("3_4a5jf"), ExtResource("3_4a5jf"), ExtResource("4_3w82n"), ExtResource("4_3w82n")])
+can_respawn = false
+requires_church_key = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ZoneEntradaIglesia" unique_id=52647496]
+shape = SubResource("BoxShape3D_zone_iglesia")
+
+[node name="Marker3D" type="Marker3D" parent="ZoneEntradaIglesia" unique_id=744566096]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 4)
+
+[node name="Marker3D2" type="Marker3D" parent="ZoneEntradaIglesia" unique_id=1897715284]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 4)
+
+[node name="Marker3D3" type="Marker3D" parent="ZoneEntradaIglesia" unique_id=1351162288]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -4)
+
+[node name="Marker3D4" type="Marker3D" parent="ZoneEntradaIglesia" unique_id=471632117]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -4)
+
+[node name="Marker3D5" type="Marker3D" parent="ZoneEntradaIglesia" unique_id=1961790409]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 0)
+
+[node name="Marker3D6" type="Marker3D" parent="ZoneEntradaIglesia" unique_id=574529564]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 0)
+
+[node name="ZoneAbajoPueblo" type="Area3D" parent="." unique_id=1333844853]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, -18.20013)
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_dexu8")
+zone_name = "Abajo del Pueblo"
+enemy_scenes = Array[PackedScene]([ExtResource("2_ocoks"), ExtResource("2_ocoks"), ExtResource("2_ocoks"), ExtResource("3_4a5jf"), ExtResource("3_4a5jf"), ExtResource("3_4a5jf")])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ZoneAbajoPueblo" unique_id=2106587316]
+shape = SubResource("BoxShape3D_zone_abajo")
+
+[node name="Marker3D" type="Marker3D" parent="ZoneAbajoPueblo" unique_id=1106083836]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -8)
+
+[node name="Marker3D2" type="Marker3D" parent="ZoneAbajoPueblo" unique_id=1856337922]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -8)
+
+[node name="Marker3D3" type="Marker3D" parent="ZoneAbajoPueblo" unique_id=1589618501]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, 8)
+
+[node name="Marker3D4" type="Marker3D" parent="ZoneAbajoPueblo" unique_id=309162474]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 8)
+
+[node name="Marker3D5" type="Marker3D" parent="ZoneAbajoPueblo" unique_id=1085440528]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 12)
+
+[node name="Marker3D6" type="Marker3D" parent="ZoneAbajoPueblo" unique_id=328381258]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
