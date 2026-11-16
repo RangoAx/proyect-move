@@ -1,6 +1,7 @@
 extends Node
 
 var player
+var current_battle
 
 signal fragments_updated(total: int, added_amount: int)
 signal weapon_swapped(weapon_name: String)

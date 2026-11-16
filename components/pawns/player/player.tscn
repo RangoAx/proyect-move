@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://cyfkdgoura2au" path="res://assets/models/objects/hacha1.blend" id="4_ul21n"]
 [ext_resource type="Script" uid="uid://c7b38omn5p7tl" path="res://components/pawns/player/weapons/sword.gd" id="5_p5q5u"]
 [ext_resource type="AnimationLibrary" uid="uid://dehdfe0r86c8k" path="res://assets/models/player_animations.res" id="5_ul21n"]
-[ext_resource type="Script" uid="uid://b82ibmynpw3y4" path="res://components/pawns/player/weapons/axe.gd" id="9_rmd83"]
 [ext_resource type="Script" uid="uid://dj44q6dvq267r" path="res://components/pawns/player/hud.gd" id="11_engsh"]
 [ext_resource type="Shader" uid="uid://iws8h11e6aqa" path="res://components/pawns/player/player.gdshader" id="11_fvfw8"]
 [ext_resource type="PackedScene" uid="uid://j6bdd8ibkkua" path="res://components/ui/pause_menu.tscn" id="12_5wi1q"]
@@ -64,6 +63,20 @@ gradient = SubResource("Gradient_lah1q")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
+[sub_resource type="GDScript" id="GDScript_6gmjt"]
+resource_name = "ObjectiveLabel"
+script/source = "extends Label
+
+func _physics_process(delta: float) -> void:
+	var hacha = Globals.player.get_parent().get_node_or_null(\"HachaPickup\")
+	if Globals.current_battle:
+		text = \"Asesina a los enemigos. Restantes: %s\" % Globals.current_battle._alive_enemies.size()
+	elif hacha:
+		text = \"Encuentra un arma. Distancia %sm\" % String.num(Globals.player.global_position.distance_to(hacha.global_position),1)
+	else:
+		text = \"Adentrate a la niebla.\"
+"
+
 [node name="Player" type="CharacterBody3D" unique_id=936416609 node_paths=PackedStringArray("anim") groups=["player"]]
 collision_layer = 4
 collision_mask = 3
@@ -72,7 +85,7 @@ anim = NodePath("PlayerMesh/AnimationPlayer")
 
 [node name="PlayerMesh" parent="." unique_id=558761329 instance=ExtResource("2_v0xwp")]
 
-[node name="Skeleton3D" parent="PlayerMesh/Armature" parent_id_path=PackedInt32Array(558761329, 1055894284) index="0" unique_id=1488002389]
+[node name="Skeleton3D" parent="PlayerMesh/Armature" parent_id_path=PackedInt32Array(558761329, 1072212980) index="0" unique_id=719787252]
 bones/0/position = Vector3(0, 3.3026862, 0.048682585)
 bones/0/rotation = Quaternion(0.004036536, -0.22633454, 0.026209338, 0.9736886)
 bones/1/rotation = Quaternion(-0.087408856, 3.8184744e-08, 3.6612495e-09, 0.99617255)
@@ -186,11 +199,11 @@ unique_name_in_owner = true
 transform = Transform3D(1.0000037, 0.0006587878, -0.00061160326, -0.00065906346, 1.0000002, -5.0857663e-05, 0.00061020255, 5.1379204e-05, 1.0000044, -1.486558, -0.18660426, 0.043156028)
 shape = SubResource("BoxShape3D_engsh")
 
-[node name="cuchi loco" parent="PlayerMesh" index="2" unique_id=809409821]
+[node name="cuchi loco" parent="PlayerMesh" index="2" unique_id=1401355771]
 transform = Transform3D(-0.3067236, 0.9495438, -0.065468416, -0.6320085, -0.1517557, 0.7599572, 0.7116776, 0.2744734, 0.6466673, -0.58099157, 1.3112522, -0.008180913)
 visible = false
 
-[node name="AnimationPlayer" parent="PlayerMesh" index="3" unique_id=1101891106]
+[node name="AnimationPlayer" parent="PlayerMesh" index="3" unique_id=114798133]
 libraries/ = ExtResource("5_ul21n")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=165164992]
@@ -224,10 +237,6 @@ script = ExtResource("4_todix")
 [node name="Sword" type="Node" parent="WeaponManager" unique_id=1316841485 node_paths=PackedStringArray("sword_area")]
 script = ExtResource("5_p5q5u")
 sword_area = NodePath("../../PlayerMesh/Armature/Skeleton3D/BoneAttachment3D/Cuchillo loco/HitboxKnife")
-
-[node name="Axe" type="Node" parent="WeaponManager" unique_id=1259311212]
-script = ExtResource("9_rmd83")
-thrown_axe_damage = 30.0
 
 [node name="ShaderPass" type="CanvasLayer" parent="." unique_id=552997226]
 
@@ -356,6 +365,7 @@ offset_left = 32.0
 offset_top = 70.0
 offset_right = 72.0
 offset_bottom = 93.0
+script = SubResource("GDScript_6gmjt")
 
 [node name="TutorialLabel" type="Label" parent="HUD" unique_id=1345957196]
 visible = false
