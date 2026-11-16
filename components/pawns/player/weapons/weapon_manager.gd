@@ -5,6 +5,9 @@ class_name WeaponManager
 var weapon : StringName = "Sword"
 var is_attacking : bool = false
 
+func _ready() -> void:
+	switch_to("Sword")
+
 func _input(_event):
 	
 	if Input.is_action_just_released("aim"):

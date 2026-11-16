@@ -9,7 +9,7 @@ signal zone_cleared
 ## Escenas de enemigos que se spawnearán exactamente en esta zona
 @export var enemy_scenes: Array[PackedScene] = []
 ## Si es false (como en el tutorial), la zona no vuelve a spawnear enemigos tras derrotarlos a todos
-@export var can_respawn: bool = true
+var can_respawn: bool = false #esto rompe todo y yo no lo puse no se ni por que carajo esta aca no tiene nada que ver con lo que querian hacer
 ## Tiempo de espera en segundos tras vencer a TODOS los enemigos antes de que reaparezcan
 @export var respawn_delay: float = 10.0
 ## Si es true, la reaparición prioriza los puntos situados a las espaldas del jugador
@@ -25,7 +25,9 @@ var _is_active: bool = false
 var _is_cleared: bool = false
 var _is_respawning: bool = false
 
+var initial_pos
 func _ready() -> void:
+	initial_pos = $FogWall.position
 	# Configurar colisiones para detectar solo al jugador (layer 4)
 	collision_layer = 0
 	collision_mask = 4
@@ -39,12 +41,24 @@ func _ready() -> void:
 
 	if auto_spawn_on_start:
 		_start_zone_deferred()
+	
+	
 
 func _start_zone_deferred() -> void:
 	await get_tree().physics_frame
 	_start_zone()
 
 func _process(_delta: float) -> void:
+	if not auto_spawn_on_start:
+		if not Globals.current_battle: $FogWall.visible = false
+		else: $FogWall.visible = true
+		if Globals.current_battle and Globals.current_battle != self:
+			$FogWall.position = Vector3(10000,10000,10000)
+		elif Globals.current_battle == self:
+			$FogWall.position = initial_pos
+	if Globals.current_battle == self:
+		if _alive_enemies.size() < 1: $FogWall.position = Vector3(10000,10000,10000)
+		else: $FogWall.position = initial_pos
 	if requires_church_key and not _is_active and not _is_cleared and not _is_respawning:
 		if has_node("/root/Globals") and Globals.has_church_key:
 			for body in get_overlapping_bodies():
@@ -62,8 +76,10 @@ func _on_player_entered(body: Node3D) -> void:
 		_start_zone()
 
 func _start_zone() -> void:
+	if Globals.current_battle and Globals.current_battle != self: return
 	if _is_cleared or _is_active:
 		return
+	if not auto_spawn_on_start: Globals.current_battle = self
 	_is_active = true
 	zone_activated.emit()
 	_spawn_wave(false)
@@ -220,6 +236,7 @@ func _on_enemy_tree_exited(enemy: Node3D) -> void:
 	_alive_enemies.erase(enemy)
 
 	if _alive_enemies.is_empty():
+		Globals.current_battle = null
 		if not can_respawn:
 			_is_cleared = true
 			_is_active = false
