@@ -2,6 +2,20 @@
 
 [ext_resource type="PackedScene" uid="uid://cyfkdgoura2au" path="res://assets/models/objects/hacha1.blend" id="1_sy4u1"]
 [ext_resource type="Script" uid="uid://bh0w4kn2nt7ic" path="res://interactuables/weapons/throwable_axe.gd" id="1_x4bxl"]
+[ext_resource type="Texture2D" uid="uid://c0afpkpfhndkn" path="res://interactuables/weapons/hacha1_metal texture.jpg" id="3_rjvtu"]
+[ext_resource type="Texture2D" uid="uid://3wkpgadq0tb8" path="res://interactuables/weapons/hacha1_wood texture.webp" id="4_lqwcl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jm21u"]
+albedo_texture = ExtResource("3_rjvtu")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rjvtu"]
+albedo_texture = ExtResource("3_rjvtu")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oh41v"]
+albedo_texture = ExtResource("4_lqwcl")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lqwcl"]
+albedo_texture = ExtResource("4_lqwcl")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sy4u1"]
 size = Vector3(0.138, 0.393, 0.04096216)
@@ -15,6 +29,14 @@ script = ExtResource("1_x4bxl")
 
 [node name="hacha1" parent="." unique_id=960700430 instance=ExtResource("1_sy4u1")]
 transform = Transform3D(-2.6226832e-09, -0.06, 2.6226832e-09, 0, -2.6226832e-09, -0.06, 0.06, -2.6226832e-09, 1.1464113e-16, 0, 0.4534295, 0)
+
+[node name="Metal" parent="hacha1" index="0" unique_id=1169399980]
+material_override = SubResource("StandardMaterial3D_jm21u")
+surface_material_override/0 = SubResource("StandardMaterial3D_rjvtu")
+
+[node name="Palo" parent="hacha1" index="1" unique_id=850500870]
+material_override = SubResource("StandardMaterial3D_oh41v")
+surface_material_override/0 = SubResource("StandardMaterial3D_lqwcl")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1507468029]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.00096447766, 0.3135504, -0.05170863)

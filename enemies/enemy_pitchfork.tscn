@@ -1,16 +1,34 @@
 [gd_scene format=3 uid="uid://c4bjtroh7k83h"]
 
 [ext_resource type="Script" uid="uid://c1ng2awe7gbii" path="res://enemies/enemy_pitchfork.gd" id="1_hi6k6"]
+[ext_resource type="PackedScene" uid="uid://ciboanu8e7s83" path="res://assets/models/pawns/enemy/enemy pitchfork/Enemigo trinche.glb" id="2_trinche"]
 [ext_resource type="PackedScene" path="res://assets/models/objects/pitchfork.tscn" id="3_pitchfork"]
 [ext_resource type="PackedScene" uid="uid://duuikg1641sl7" path="res://enemies/life_bar/enemy_life.tscn" id="4_life"]
+[ext_resource type="Animation" uid="uid://co46pas3ua7ll" path="res://pj/animations/Idle.res" id="5_idle"]
+[ext_resource type="Animation" uid="uid://dofpcjmpextjb" path="res://pj/animations/Walk.res" id="6_walk"]
+[ext_resource type="Animation" uid="uid://b7cjgcblhmpjv" path="res://pj/animations/cargando_ataque.res" id="7_carga"]
+[ext_resource type="Animation" uid="uid://hw4qffwos7vw" path="res://pj/animations/estocada_ataque.res" id="8_estocada"]
 [ext_resource type="Script" uid="uid://qrqoxjtc2rk0" path="res://components/behavior_tree/selector.gd" id="9_selector"]
 [ext_resource type="Script" uid="uid://brhuhwpu4eqhw" path="res://components/behavior_tree/leaf_pitchfork_basic.gd" id="10_basic"]
 [ext_resource type="Script" uid="uid://duhq41dkdbulo" path="res://components/behavior_tree/leaf_pitchfork_charge.gd" id="11_charge"]
 [ext_resource type="Script" uid="uid://kevyo417oc2g" path="res://components/behavior_tree/leaf_follow_target.gd" id="12_follow"]
-[ext_resource type="PackedScene" uid="uid://c52i34106dibs" path="res://assets/models/pawns/enemy/enemy pitchfork/Enemigo trinche.glb" id="13_rwos2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jfak0"]
 size = Vector3(0.6586151, 1.9577637, 0.36743164)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_main"]
+_data = {
+&"Idle": ExtResource("5_idle"),
+&"Walk": ExtResource("6_walk"),
+&"cargando_ataque": ExtResource("7_carga"),
+&"estocada_ataque": ExtResource("8_estocada")
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_attacks"]
+_data = {
+&"cargando_ataque": ExtResource("7_carga"),
+&"estocada_ataque": ExtResource("8_estocada")
+}
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_jfak0"]
 viewport_path = NodePath("SubViewport")
@@ -24,18 +42,22 @@ detection_range = 10.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00046539307, 0.9686279, -0.016235352)
 shape = SubResource("BoxShape3D_jfak0")
 
-[node name="Enemigo trinche" parent="." unique_id=562842463 instance=ExtResource("13_rwos2")]
+[node name="Enemigo trinche" parent="." unique_id=562842463 instance=ExtResource("2_trinche")]
 transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Enemigo trinche" unique_id=653125153]
+libraries/ = SubResource("AnimationLibrary_main")
+libraries/attacks = SubResource("AnimationLibrary_attacks")
+
 [node name="RightHandAttachment" type="BoneAttachment3D" parent="Enemigo trinche" unique_id=1713909190]
-transform = Transform3D(0.20806447, -0.95639884, 0.20496571, -0.28657797, -0.25996315, -0.922113, 0.935191, 0.13312036, -0.32817194, -0.7841301, 1.3535587, -0.025515668)
+transform = Transform3D(0.68824524, -0.29121917, 0.66446227, 0.1251151, -0.8545271, -0.5041133, 0.71460813, 0.43008792, -0.55168813, -0.055979483, 1.2131982, 0.7719234)
 bone_name = "mixamorig_RightHand"
 bone_idx = 28
 use_external_skeleton = true
 external_skeleton = NodePath("../Armature/Skeleton3D")
 
 [node name="Pitchfork" parent="Enemigo trinche/RightHandAttachment" unique_id=1492290212 instance=ExtResource("3_pitchfork")]
-transform = Transform3D(-0.386067, -0.914262, -0.122788, 0.612372, -0.353553, 0.707107, -0.689893, 0.197798, 0.696364, 0.08, 0.02, -0.04)
+transform = Transform3D(0.04129079, 0.9860836, -0.16103502, -0.28766, 0.16608046, 0.94322264, 0.9568419, 0.007376954, 0.2905147, -0.016825866, 0.06902027, 0.0321759)
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=2000607842]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2523718, 0)
@@ -50,12 +72,10 @@ metadata/_custom_type_script = "uid://qrqoxjtc2rk0"
 
 [node name="LeafPitchforkBasic" type="Node" parent="CompositorSelector" unique_id=807889055]
 script = ExtResource("10_basic")
-damage = 12.5
 metadata/_custom_type_script = "uid://brhuhwpu4eqhw"
 
 [node name="LeafPitchforkCharge" type="Node" parent="CompositorSelector" unique_id=1044561306]
 script = ExtResource("11_charge")
-damage = 27.5
 metadata/_custom_type_script = "uid://duhq41dkdbulo"
 
 [node name="LeafFollowTarget" type="Node" parent="CompositorSelector" unique_id=574496903]
@@ -65,9 +85,5 @@ target_distance = 1.8
 metadata/_custom_type_script = "uid://kevyo417oc2g"
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1739851241]
-
-[node name="Enemigo trinche2" parent="." unique_id=1897007434 instance=ExtResource("13_rwos2")]
-transform = Transform3D(1.21, 0, 0, 0, 1.21, 0, 0, 0, 1.21, 0, 0, 0)
-visible = false
 
 [editable path="SubViewport"]
