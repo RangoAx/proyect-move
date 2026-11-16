@@ -2,17 +2,16 @@
 
 [ext_resource type="Texture2D" uid="uid://b7itantyk1fen" path="res://levels/map_1/Terreno_forrest_ground_02_diff_4k-pixelated.png" id="1_sh7hq"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bg5r0"]
-albedo_color = Color(0.45840502, 0.45840508, 0.45840502, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0g7rd"]
+albedo_color = Color(0.6803213, 0.6803213, 0.6803212, 1)
 albedo_texture = ExtResource("1_sh7hq")
-uv1_scale = Vector3(19.505, 19.505, 19.505)
-uv1_offset = Vector3(0, -0.265, 0)
+uv1_scale = Vector3(10, 10, 10)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_g4v7s"]
-material = SubResource("StandardMaterial3D_bg5r0")
+material = SubResource("StandardMaterial3D_0g7rd")
 size = Vector2(200, 200)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_lah1q"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_0ncl8"]
 size = Vector3(200, 0.1, 200)
 
 [node name="Piso" type="MeshInstance3D" unique_id=749006322]
@@ -22,4 +21,4 @@ mesh = SubResource("PlaneMesh_g4v7s")
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=589705267]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1286996431]
-shape = SubResource("BoxShape3D_lah1q")
+shape = SubResource("BoxShape3D_0ncl8")

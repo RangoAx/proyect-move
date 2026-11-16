@@ -8,7 +8,7 @@ extends Node3D
 @onready var btn_continuar_lore: Button = find_child("BtnContinuarLore", true, false) as Button
 @onready var dir_light: DirectionalLight3D = $Background/DirectionalLight3D
 @onready var lightning_overlay: ColorRect = $UI/LightningOverlay
-
+@onready var audio_menu : AudioStreamPlayer3D = $Audiomenu
 var _thunder_timer: float = 3.0
 var _base_light_energy: float = 0.35
 
@@ -30,7 +30,8 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
 	_schedule_next_thunder()
-
+	audio_menu.play()
+	
 func _process(delta: float) -> void:
 	_thunder_timer -= delta
 	if _thunder_timer <= 0.0:
