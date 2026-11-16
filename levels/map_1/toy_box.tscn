@@ -1041,7 +1041,7 @@ material = SubResource("FogMaterial_6gmjt")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7127686, -1, -0.5)
 shape = SubResource("ConcavePolygonShape3D_6gmjt")
 
-[node name="AxeEnemy" parent="." unique_id=715649026 instance=ExtResource("7_gg1b1")]
+[node name="AxeEnemy" parent="." unique_id=912304120 instance=ExtResource("7_gg1b1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -77.9745, -0.77417326, 63.919914)
 
 [node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="." unique_id=2102076477]
