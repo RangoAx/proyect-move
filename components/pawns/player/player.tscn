@@ -64,6 +64,15 @@ gradient = SubResource("Gradient_lah1q")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ncl8"]
+bg_color = Color(1, 0, 0, 1)
+skew = Vector2(0.5, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
 [node name="Player" type="CharacterBody3D" unique_id=936416609 node_paths=PackedStringArray("anim") groups=["player"]]
 collision_layer = 4
 collision_mask = 3
@@ -72,7 +81,7 @@ anim = NodePath("PlayerMesh/AnimationPlayer")
 
 [node name="PlayerMesh" parent="." unique_id=558761329 instance=ExtResource("2_v0xwp")]
 
-[node name="Skeleton3D" parent="PlayerMesh/Armature" parent_id_path=PackedInt32Array(558761329, 1055894284) index="0" unique_id=1488002389]
+[node name="Skeleton3D" parent="PlayerMesh/Armature" parent_id_path=PackedInt32Array(558761329, 1072212980) index="0" unique_id=719787252]
 bones/0/position = Vector3(0, 3.3026862, 0.048682585)
 bones/0/rotation = Quaternion(0.004036536, -0.22633454, 0.026209338, 0.9736886)
 bones/1/rotation = Quaternion(-0.087408856, 3.8184744e-08, 3.6612495e-09, 0.99617255)
@@ -186,11 +195,11 @@ unique_name_in_owner = true
 transform = Transform3D(1.0000037, 0.0006587878, -0.00061160326, -0.00065906346, 1.0000002, -5.0857663e-05, 0.00061020255, 5.1379204e-05, 1.0000044, -1.486558, -0.18660426, 0.043156028)
 shape = SubResource("BoxShape3D_engsh")
 
-[node name="cuchi loco" parent="PlayerMesh" index="2" unique_id=809409821]
+[node name="cuchi loco" parent="PlayerMesh" index="2" unique_id=1401355771]
 transform = Transform3D(-0.3067236, 0.9495438, -0.065468416, -0.6320085, -0.1517557, 0.7599572, 0.7116776, 0.2744734, 0.6466673, -0.58099157, 1.3112522, -0.008180913)
 visible = false
 
-[node name="AnimationPlayer" parent="PlayerMesh" index="3" unique_id=1101891106]
+[node name="AnimationPlayer" parent="PlayerMesh" index="3" unique_id=114798133]
 libraries/ = ExtResource("5_ul21n")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=165164992]
@@ -382,7 +391,10 @@ theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 30
 
 [node name="ProgressBar" type="ProgressBar" parent="HUD/MarginContainer" unique_id=1016106747]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_0ncl8")
+theme_override_styles/fill = SubResource("StyleBoxFlat_0ncl8")
 value = 100.0
 show_percentage = false
 
@@ -404,6 +416,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="PauseMenu" parent="HUD" unique_id=153243669 instance=ExtResource("12_5wi1q")]
+visible = false
 
 [node name="DeathScreen" type="Control" parent="HUD" unique_id=764685953]
 visible = false

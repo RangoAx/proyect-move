@@ -18,7 +18,7 @@ transform = Transform3D(0.555, 0, 0, 0, 0.555, 0, 0, 0, 0.555, 0, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85198975, 0)
 shape = SubResource("BoxShape3D_g4v7s")
 
-[node name="caja amarilla" parent="." unique_id=586909606 instance=ExtResource("2_2it0p")]
+[node name="caja amarilla2" parent="." unique_id=586909606 instance=ExtResource("2_2it0p")]
 transform = Transform3D(0.53, 0, 0, 0, 0.53, 0, 0, 0, 0.53, 0, 0.5407874, 0)
 
 [connection signal="area_entered" from="CajaHitbox" to="." method="_on_caja_hitbox_area_entered"]
