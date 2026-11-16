@@ -27,7 +27,7 @@ func _input(_event):
 		if Input.is_action_just_pressed("weapon_1"):
 			switch_to("Sword")
 		elif Input.is_action_just_pressed("weapon_2"):
-			switch_to("Axe")
+			if get_children().size() > 1: switch_to("Axe")
 
 func switch_to(new_weapon: StringName) -> void:
 	if new_weapon == "Sword":

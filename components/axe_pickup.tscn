@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bvpt6ewi0g742"]
+
+[ext_resource type="Script" uid="uid://b82ibmynpw3y4" path="res://components/pawns/player/weapons/axe.gd" id="1_hqnlu"]
+
+[node name="Axe" type="Node" unique_id=351647084]
+script = ExtResource("1_hqnlu")
+thrown_axe_damage = 30.0
