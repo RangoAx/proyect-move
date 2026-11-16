@@ -59,6 +59,8 @@ func _process(_delta: float) -> void:
 	if Globals.current_battle == self:
 		if _alive_enemies.size() < 1: $FogWall.position = Vector3(10000,10000,10000)
 		else: $FogWall.position = initial_pos
+	if not Globals.current_battle == self:
+		$FogWall.position = Vector3(10000,10000,10000)
 	if requires_church_key and not _is_active and not _is_cleared and not _is_respawning:
 		if has_node("/root/Globals") and Globals.has_church_key:
 			for body in get_overlapping_bodies():
@@ -237,6 +239,7 @@ func _on_enemy_tree_exited(enemy: Node3D) -> void:
 
 	if _alive_enemies.is_empty():
 		Globals.current_battle = null
+		queue_free()
 		if not can_respawn:
 			_is_cleared = true
 			_is_active = false
