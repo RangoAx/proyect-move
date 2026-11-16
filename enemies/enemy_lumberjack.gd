@@ -42,3 +42,8 @@ func animation_process(_delta: float) -> void:
 		anim.play("walk")
 	else:
 		anim.play("idle")
+
+
+func _on_melee_hit(body: Node3D) -> void:
+	if body.is_in_group("player") and body.has_method("take_damage"):
+		body.take_damage(current_damage, global_position, current_knockback)
