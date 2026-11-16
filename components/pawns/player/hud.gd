@@ -34,7 +34,7 @@ func _on_objective_updated(text: String):
 
 func _process(_delta):
 	_update_health_vignette()
-	_update_axe_hud()
+	if Globals.player.get_node("WeaponManager").get_children().size() > 1: _update_axe_hud()
 
 func _update_health_vignette():
 	if not player:

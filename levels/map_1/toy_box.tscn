@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://bphybcemn2vof" path="res://assets/models/world/wooden_fence.glb" id="22_km4gv"]
 [ext_resource type="PackedScene" uid="uid://ko5y01u6a8nm" path="res://levels/map_1/enemy_spawn_zones_map_1.tscn" id="23_0ncl8"]
 [ext_resource type="PackedScene" uid="uid://cmfgurhvk7o3o" path="res://assets/models/world/stone_tombstone.glb" id="23_6gmjt"]
+[ext_resource type="PackedScene" uid="uid://cd6dodineuv4h" path="res://assets/models/objects/hacha1.glb" id="24_km4gv"]
 [ext_resource type="PackedScene" uid="uid://s0wtbqaq4p4o" path="res://assets/models/world/arena_barricade.glb" id="24_rw867"]
 [ext_resource type="Texture2D" uid="uid://5jldbj0xwp7k" path="res://assets/textures/forest_ground_06_disp_1k.png" id="25_6gmjt"]
 
@@ -191,6 +192,19 @@ lightmap_size_hint = Vector2i(13, 7)
 material = SubResource("StandardMaterial3D_d0u6y")
 uv2_padding = 3.97
 size = Vector2(2, 0.65)
+
+[sub_resource type="GDScript" id="GDScript_km4gv"]
+resource_name = "HachaPickup"
+script/source = "extends Area3D
+
+
+func _on_body_entered(body: Node3D) -> void:
+	Globals.player.get_node(\"WeaponManager\").add_child(preload(\"res://components/axe_pickup.tscn\").instantiate())
+	queue_free()
+"
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_0nodn"]
+radius = 0.85153836
 
 [node name="ToyBox" type="Node3D" unique_id=304246059]
 
@@ -826,6 +840,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.864269, -43.688416, 43.00
 area_range = 139.288
 
 [node name="EnemySpawnZones" parent="." unique_id=792179912 instance=ExtResource("23_0ncl8")]
+
+[node name="HachaPickup" type="Area3D" parent="." unique_id=1195453669]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.52838, 0, -7.8246984)
+collision_layer = 4
+collision_mask = 4
+script = SubResource("GDScript_km4gv")
+
+[node name="hacha1" parent="HachaPickup" unique_id=1424047272 instance=ExtResource("24_km4gv")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="HachaPickup/hacha1" unique_id=1097943969]
+light_color = Color(1, 0, 0, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HachaPickup" unique_id=380403145]
+shape = SubResource("SphereShape3D_0nodn")
+
+[connection signal="body_entered" from="HachaPickup" to="HachaPickup" method="_on_body_entered"]
 
 [editable path="Player"]
 [editable path="Player/PlayerMesh"]
