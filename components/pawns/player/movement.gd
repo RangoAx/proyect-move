@@ -7,7 +7,7 @@ class_name MovementManager
 @onready var mesh : Node3D = $"../PlayerMesh"
 @onready var collision_shape : CollisionShape3D = $"../CollisionShape3D"
 @onready var audio_caminar : AudioStreamPlayer3D = $"../AudioWalk"
-
+@onready var audio_run : AudioStreamPlayer3D = $"../AudioRun"
 
 @export var jump_impulse : float = 6
 @export var walk_speed : float = 2.5

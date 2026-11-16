@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://d3w74sfxw4uyl" path="res://scenes/main_menu.gd" id="1_7vrkn"]
 [ext_resource type="PackedScene" uid="uid://bhfkd10wf5u33" path="res://assets/models/world/church/church.glb" id="2_7vrkn"]
 [ext_resource type="Shader" uid="uid://iws8h11e6aqa" path="res://components/pawns/player/player.gdshader" id="3_bqqt6"]
+[ext_resource type="AudioStream" uid="uid://cbj7g2eerabnx" path="res://Audio/Guitarra menu.mp3" id="4_wu84c"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_night"]
 sky_top_color = Color(0.05, 0.06, 0.09, 1)
@@ -296,3 +297,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
 theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
 text = "ENTRAR AL PUEBLO"
+
+[node name="Audiomenu" type="AudioStreamPlayer3D" parent="." unique_id=899584451]
+stream = ExtResource("4_wu84c")
